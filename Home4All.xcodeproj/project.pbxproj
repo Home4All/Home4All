@@ -13,6 +13,8 @@
 		6A077D321CC487BD0097915C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A077D311CC487BD0097915C /* Assets.xcassets */; };
 		6A077D351CC487BD0097915C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A077D331CC487BD0097915C /* LaunchScreen.storyboard */; };
 		6A077D3D1CC494470097915C /* Home_Start_Page.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A077D3C1CC494470097915C /* Home_Start_Page.png */; };
+		6A841ECF1CC5E4F70077C14F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A841ECE1CC5E4F70077C14F /* GoogleService-Info.plist */; };
+		B203E79C4C800851FD554D0F /* libPods-Home4All.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA5D3F2149821D970FACB3F /* libPods-Home4All.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,11 @@
 		6A077D341CC487BD0097915C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A077D361CC487BD0097915C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A077D3C1CC494470097915C /* Home_Start_Page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_Start_Page.png; sourceTree = "<group>"; };
+		6A841ECE1CC5E4F70077C14F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6A841ED01CC5E52D0077C14F /* Home4All-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Home4All-Bridging-Header.h"; sourceTree = "<group>"; };
+		AA71A598ABBAB0AFA1C3BD71 /* Pods-Home4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.debug.xcconfig"; sourceTree = "<group>"; };
+		AF3EA6D0BF1B0EE5CF999E04 /* Pods-Home4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.release.xcconfig"; sourceTree = "<group>"; };
+		EDA5D3F2149821D970FACB3F /* libPods-Home4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Home4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +38,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B203E79C4C800851FD554D0F /* libPods-Home4All.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		211BD9325A4C8E47E455B49F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EDA5D3F2149821D970FACB3F /* libPods-Home4All.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6A077D1E1CC487BD0097915C = {
 			isa = PBXGroup;
 			children = (
 				6A077D291CC487BD0097915C /* Home4All */,
 				6A077D281CC487BD0097915C /* Products */,
+				C9C2C606B2D393B7571EB1B2 /* Pods */,
+				211BD9325A4C8E47E455B49F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,9 +80,20 @@
 				6A077D311CC487BD0097915C /* Assets.xcassets */,
 				6A077D331CC487BD0097915C /* LaunchScreen.storyboard */,
 				6A077D361CC487BD0097915C /* Info.plist */,
+				6A841ECE1CC5E4F70077C14F /* GoogleService-Info.plist */,
 				6A077D3C1CC494470097915C /* Home_Start_Page.png */,
+				6A841ED01CC5E52D0077C14F /* Home4All-Bridging-Header.h */,
 			);
 			path = Home4All;
+			sourceTree = "<group>";
+		};
+		C9C2C606B2D393B7571EB1B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA71A598ABBAB0AFA1C3BD71 /* Pods-Home4All.debug.xcconfig */,
+				AF3EA6D0BF1B0EE5CF999E04 /* Pods-Home4All.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +103,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A077D391CC487BD0097915C /* Build configuration list for PBXNativeTarget "Home4All" */;
 			buildPhases = (
+				417D13C27BE85AA115263A78 /* Check Pods Manifest.lock */,
 				6A077D231CC487BD0097915C /* Sources */,
 				6A077D241CC487BD0097915C /* Frameworks */,
 				6A077D251CC487BD0097915C /* Resources */,
+				B8E83F8988E6A1B1F84435C7 /* Embed Pods Frameworks */,
+				0462D0F49DC8CF7F637A326F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,12 +160,61 @@
 			files = (
 				6A077D3D1CC494470097915C /* Home_Start_Page.png in Resources */,
 				6A077D351CC487BD0097915C /* LaunchScreen.storyboard in Resources */,
+				6A841ECF1CC5E4F70077C14F /* GoogleService-Info.plist in Resources */,
 				6A077D321CC487BD0097915C /* Assets.xcassets in Resources */,
 				6A077D301CC487BD0097915C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0462D0F49DC8CF7F637A326F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home4All/Pods-Home4All-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		417D13C27BE85AA115263A78 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8E83F8988E6A1B1F84435C7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home4All/Pods-Home4All-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A077D231CC487BD0097915C /* Sources */ = {
@@ -252,24 +333,31 @@
 		};
 		6A077D3A1CC487BD0097915C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA71A598ABBAB0AFA1C3BD71 /* Pods-Home4All.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Home4All/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home4all.Home4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Home4All/Home4All-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6A077D3B1CC487BD0097915C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF3EA6D0BF1B0EE5CF999E04 /* Pods-Home4All.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Home4All/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home4all.Home4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Home4All/Home4All-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
