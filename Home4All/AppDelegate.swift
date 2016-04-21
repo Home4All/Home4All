@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Initialize sign-in
+        Parse.setApplicationId("WS8orT6p2gRNib1BC8fQcJZNjX65QI9Uq4JqctN8", clientKey: "kU9gk9dNguikS51dMtsxtEtOMC0YeZf1ZzJlmv3B")
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
@@ -35,8 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                                     annotation: options[UIApplicationOpenURLOptionsAnnotationKey])
     }
     
-    
-    
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!,
                 withError error: NSError!) {
         if (error == nil) {
@@ -47,42 +46,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let familyName = user.profile.familyName
             let email = user.profile.email
             */
-            let fullName = user.profile.name
+            let fullName = user.userID
             print("User Name \(fullName)")
             
-            
+            let query = PFQuery(className: "AppUser")
+            query.whereKey("username", equalTo: fullName)
+            query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+                let pfObjects : NSArray = objects!;
+                if pfObjects.count > 0 && error == nil {
+                    NSLog("Successfully retrieved: \(objects)")
+                } else {
+                    self.registerUser(fullName);
+                }
+            }
             let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
             
-            let T_AfterSignIn =
-                myStoryBoard.instantiateViewControllerWithIdentifier("T_AfterSignInVC") as! T_AfterSignInVC
+            let afterSignInTabbarController : UITabBarController=myStoryBoard.instantiateViewControllerWithIdentifier("aftersignintabbar") as! UITabBarController
+            afterSignInTabbarController.selectedIndex = 0;
             
-            let T_AfterSignInNav = UINavigationController(rootViewController:T_AfterSignIn)
-            
-            self.window?.rootViewController = T_AfterSignInNav
-            
-            
-            
-            
+            self.window?.rootViewController = afterSignInTabbarController
+
         } else {
             print("\(error.localizedDescription)")
         }
     }
     
-    
-    
+    func registerUser(userName : NSString) {
+        let user = PFObject(className: "AppUser")
+        user.setObject(userName, forKey: "username")
+        user.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if succeeded {
+                NSLog("Object Uploaded")
+            } else {
+                NSLog("Error: \(error) \(error!.userInfo)")
+            }
+        }
+    }
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
                 withError error: NSError!) {
         // Perform any operations when the user disconnects from app here.
         // ...
     }
-
     
-    
-    
-    
-    
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
