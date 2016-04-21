@@ -59,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     self.registerUser(fullName);
                 }
             }
+            
+            NSUserDefaults.standardUserDefaults().setValue(fullName, forKey: "username");
+            
             let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
             
             let afterSignInTabbarController : UITabBarController=myStoryBoard.instantiateViewControllerWithIdentifier("aftersignintabbar") as! UITabBarController

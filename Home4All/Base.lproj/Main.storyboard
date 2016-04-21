@@ -120,9 +120,6 @@
                             <constraint firstItem="UfC-wB-HMU" firstAttribute="top" secondItem="2ke-iR-b1K" secondAttribute="bottom" constant="143" id="q9R-IQ-PtH"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="fqG-AV-g1Z" kind="show" id="Mfl-ak-Hiw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGN-qp-d5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -283,7 +280,7 @@
         <!--All Postings-->
         <scene sceneID="lps-VC-cL7">
             <objects>
-                <viewController title="All Postings" id="AmO-rT-TnX" sceneMemberID="viewController">
+                <viewController title="All Postings" id="AmO-rT-TnX" customClass="AllPostingsViewController" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0oA-Ve-hnO"/>
                         <viewControllerLayoutGuide type="bottom" id="CGa-Tf-WDE"/>
@@ -291,9 +288,48 @@
                     <view key="view" contentMode="scaleToFill" id="7Bo-6Y-Ziv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eQn-vl-1oZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AllPostingTableCell" textLabel="ZYN-l8-aad" detailTextLabel="h0P-MT-hlO" style="IBUITableViewCellStyleSubtitle" id="Oes-04-cdA">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oes-04-cdA" id="Z8y-YP-lkT">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZYN-l8-aad">
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h0P-MT-hlO">
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="AmO-rT-TnX" id="HMd-TJ-Jc7"/>
+                                    <outlet property="delegate" destination="AmO-rT-TnX" id="1lS-mF-022"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9Rt-OE-txg"/>
+                    <connections>
+                        <outlet property="allpostingsTableView" destination="eQn-vl-1oZ" id="kdX-46-XbN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91d-t6-JfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
