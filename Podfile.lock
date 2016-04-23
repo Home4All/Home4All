@@ -27,10 +27,14 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
+  - ParseUI (1.2.0):
+    - Bolts/Tasks (~> 1.3)
+    - Parse (~> 1.9)
 
 DEPENDENCIES:
   - Google/SignIn
   - Parse
+  - ParseUI
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
@@ -43,7 +47,8 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
   GoogleUtilities: 5c653f7df2eedf0ce0efdfe5afe4f831f375fd7a
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
+  ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
 
-PODFILE CHECKSUM: bdd4e6dc0d8ee3e7ecdd7f9701c339e330558629
+PODFILE CHECKSUM: 18ba00fd79e3e1ed57ee6759e5e715e2f384a423
 
 COCOAPODS: 1.0.0.beta.8

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ParseUI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Home4All.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,7 +37,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91EF9531016E9AFB3C784C0AC9FFD132</key>
+		<key>CD2B367A6ADAD06EE4F327DD0F8F1B6E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D03CCE47EB0A1430A52D61423597724E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

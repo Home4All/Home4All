@@ -6,5 +6,6 @@
 target 'Home4All' do
 pod 'Google/SignIn'
 pod ‘Parse’
+pod ‘ParseUI’
 end
 

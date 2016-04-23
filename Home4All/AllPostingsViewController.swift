@@ -34,7 +34,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         
         let username : NSString = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
         
-        let query = PFQuery(className: "PlacePost")
+        let query = PlacePost.query()! as PFQuery
         query.whereKey("postedby", equalTo: username)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             let pfObjects : NSArray = objects!;
@@ -47,7 +47,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-//    
+   
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
@@ -57,15 +57,21 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let allpostingTableCell = tableView.dequeueReusableCellWithIdentifier("AllPostingTableCell", forIndexPath: indexPath)
+        let allpostingTableCell = tableView.dequeueReusableCellWithIdentifier("AllPostingTableCell", forIndexPath: indexPath) as! AllPostingsTableViewCell
         
         let row = indexPath.row as Int;
-        let postingObject : PFObject = self.allPostings[row] as! PFObject;
-        allpostingTableCell.textLabel?.text = postingObject.objectForKey("propertytype") as? String
+        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
         let stateText = postingObject.objectForKey("state") as? String
         let zipCode = postingObject.objectForKey("zipcode") as? String
-        allpostingTableCell.detailTextLabel?.text = stateText! + zipCode!
+        allpostingTableCell.state.text = stateText! + zipCode!;
+        allpostingTableCell.propertyType.text = postingObject.objectForKey("propertytype") as? String;
+        postingObject.image.getDataInBackgroundWithBlock { (data, error) in
+            if let data = data {
+                if let image = UIImage(data: data) {
+                    allpostingTableCell.propertyImageView.image = image;
+                        }
+            }
+            }
         return allpostingTableCell;
-    }
-    
+        }
 }
