@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGN-qp-d5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="599"/>
+            <point key="canvasLocation" x="850" y="2151"/>
         </scene>
         <!--SignOut-->
         <scene sceneID="gkO-2A-LyI">
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SD8-mn-NZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2335" y="-86"/>
+            <point key="canvasLocation" x="2648" y="1641"/>
         </scene>
         <!--Post-->
         <scene sceneID="fLP-pQ-2jq">
@@ -281,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uL2-yh-8hQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3287" y="1565"/>
+            <point key="canvasLocation" x="4016" y="3236"/>
         </scene>
         <!--Upload-->
         <scene sceneID="ef0-eq-VUf">
@@ -335,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNM-xV-o4C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4049" y="1557"/>
+            <point key="canvasLocation" x="4865" y="3236"/>
         </scene>
         <!--All Postings-->
         <scene sceneID="lps-VC-cL7">
@@ -366,13 +366,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqi-mJ-BZ0">
                                                     <rect key="frame" x="20" y="151" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQh-38-dxn">
                                                     <rect key="frame" x="20" y="180" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -422,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91d-t6-JfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="702"/>
+            <point key="canvasLocation" x="4016" y="2407"/>
         </scene>
         <!--Landlord-->
         <scene sceneID="KBF-dN-lWe">
@@ -441,7 +441,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keW-Hn-kop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1790" y="723"/>
+            <point key="canvasLocation" x="1782" y="2151"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Ua4-cE-uwE">
@@ -491,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSN-nZ-Clb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094" y="-99"/>
+            <point key="canvasLocation" x="1102" y="-1055"/>
         </scene>
         <!--All Postings-->
         <scene sceneID="eia-dK-tzX">
@@ -510,7 +510,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lCv-Zm-me7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2836" y="702"/>
+            <point key="canvasLocation" x="2648" y="2407"/>
         </scene>
         <!--Post-->
         <scene sceneID="00D-pf-P6t">
@@ -529,7 +529,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEe-iK-GKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2517" y="1552"/>
+            <point key="canvasLocation" x="2648" y="3236"/>
         </scene>
     </scenes>
     <resources>
