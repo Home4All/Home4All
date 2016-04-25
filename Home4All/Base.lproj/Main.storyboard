@@ -128,7 +128,7 @@
         <!--SignOut-->
         <scene sceneID="gkO-2A-LyI">
             <objects>
-                <viewController storyboardIdentifier="T_AfterSignInVC" title="SignOut" id="fhv-bG-yEx" customClass="T_AfterSignInVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LL_AfterSignInVC" title="SignOut" id="fhv-bG-yEx" customClass="LL_AfterSignInVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qNH-Bm-SM5"/>
                         <viewControllerLayoutGuide type="bottom" id="DMe-iC-WlG"/>
@@ -491,7 +491,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSN-nZ-Clb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1102" y="-1055"/>
+            <point key="canvasLocation" x="1102" y="-911"/>
+        </scene>
+        <!--After Sign InVC-->
+        <scene sceneID="SDe-mb-n6R">
+            <objects>
+                <viewController storyboardIdentifier="T_AfterSignInVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lpN-ti-IAD" customClass="T_AfterSignInVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e3R-Pv-GTf"/>
+                        <viewControllerLayoutGuide type="bottom" id="G2M-Ui-Zuf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cje-DW-UoI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-Fi-n1U">
+                                <rect key="frame" x="114" y="157" width="407" height="197"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.68627450980000004" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SWC-Qo-cHV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xSj-Ob-wQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="-911"/>
         </scene>
         <!--All Postings-->
         <scene sceneID="eia-dK-tzX">

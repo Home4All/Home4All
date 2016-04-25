@@ -17,6 +17,19 @@ class TSignInViewController: UIViewController,GIDSignInUIDelegate {
         
         // Uncomment to automatically sign in the user.
         GIDSignIn.sharedInstance().signInSilently()
+       
+        
+        
+       
+             print("Going towards the T_AfterSignInVC")
+            let storyboard:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+            
+            let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("T_AfterSignInVC") as UIViewController
+            
+            self.presentViewController(vc, animated: true , completion: nil )
+            
+        
+        
         
         // TODO(developer) Configure the sign-in button look/feel
         // ...
@@ -30,18 +43,24 @@ class TSignInViewController: UIViewController,GIDSignInUIDelegate {
     // pressed the Sign In button
     func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
         
+        
+        
+        
     }
     
     // Present a view that prompts the user to sign in with Google
     func signIn(signIn: GIDSignIn!,
                 presentViewController viewController: UIViewController!) {
         self.presentViewController(viewController, animated: true, completion: nil)
+        
     }
     
     // Dismiss the "Sign in with Google" view
     func signIn(signIn: GIDSignIn!,
                 dismissViewController viewController: UIViewController!) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    
+    
     }
     
     
