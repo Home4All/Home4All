@@ -19,6 +19,8 @@
 		6A841ED51CC5E85F0077C14F /* LLSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A841ED41CC5E85F0077C14F /* LLSignInViewController.swift */; };
 		6A841ED71CC5EAA80077C14F /* TSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */; };
 		6ABC5C861CC5F21600F85AE4 /* T_AfterSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABC5C851CC5F21600F85AE4 /* T_AfterSignInVC.swift */; };
+		75048F4F1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */; };
+		75048F511CCF36D70040D9C9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */; };
 		7510FAC31CCB840700A0C05A /* PlacePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510FAC21CCB840700A0C05A /* PlacePost.swift */; };
 		751E9CC31CCB6C9C00B95508 /* ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */; };
 		75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E583631CC87E33008682D0 /* LandLordPostViewController.swift */; };
@@ -41,6 +43,8 @@
 		6A841ED41CC5E85F0077C14F /* LLSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLSignInViewController.swift; sourceTree = "<group>"; };
 		6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSignInViewController.swift; sourceTree = "<group>"; };
 		6ABC5C851CC5F21600F85AE4 /* T_AfterSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = T_AfterSignInVC.swift; sourceTree = "<group>"; };
+		75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploadThumbnailCell.swift; sourceTree = "<group>"; };
+		75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		7510FAC21CCB840700A0C05A /* PlacePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePost.swift; sourceTree = "<group>"; };
 		751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadViewController.swift; sourceTree = "<group>"; };
 		75E583631CC87E33008682D0 /* LandLordPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandLordPostViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				75E583651CC88D57008682D0 /* AllPostingsViewController.swift */,
 				751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */,
 				75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */,
+				75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */,
+				75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */,
 			);
 			path = Home4All;
 			sourceTree = "<group>";
@@ -277,12 +283,14 @@
 				6A2EBF9D1CCDB9DF00743491 /* LL_AfterSignInVC.swift in Sources */,
 				751E9CC31CCB6C9C00B95508 /* ImageUploadViewController.swift in Sources */,
 				6A841ED71CC5EAA80077C14F /* TSignInViewController.swift in Sources */,
+				75048F4F1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift in Sources */,
 				75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */,
 				75E583661CC88D57008682D0 /* AllPostingsViewController.swift in Sources */,
 				7510FAC31CCB840700A0C05A /* PlacePost.swift in Sources */,
 				6A077D2D1CC487BD0097915C /* ViewController.swift in Sources */,
 				6ABC5C861CC5F21600F85AE4 /* T_AfterSignInVC.swift in Sources */,
 				6A077D2B1CC487BD0097915C /* AppDelegate.swift in Sources */,
+				75048F511CCF36D70040D9C9 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
