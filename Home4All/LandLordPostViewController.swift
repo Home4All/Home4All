@@ -8,8 +8,15 @@
 
 import UIKit
 
-class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
+enum TextFieldTag : NSInteger {
+    case TextFieldTagRent = 0
+      case TextFieldTagBath
+       case TextFieldTagRoom
+       case TextFieldTypeHouse
+};
 
+class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
     @IBOutlet weak var propertyType: UITextField!
     @IBOutlet weak var zipCodeField: UITextField!
     @IBOutlet weak var stateField: UITextField!
@@ -151,7 +158,18 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let key : String = keyForSection as String
         let setionDataArray : NSArray = sectionData.valueForKey(key) as! NSArray ;
         
-        postTableViewCell.propertyMetricLabel?.text = setionDataArray[indexPath.row] as? String;
+        let rowLabel : String = (setionDataArray[indexPath.row] as? String)!
+        postTableViewCell.propertyMetricLabel?.text = rowLabel;
+        
+        if(rowLabel == "No Of Rooms"){
+            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagRoom.rawValue
+        } else if (rowLabel == "No Of Baths") {
+            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagBath.rawValue
+        }else if(rowLabel == "Rent"){
+           postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagRent.rawValue
+        }else if(rowLabel == "Property Type") {
+            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
+        }
         postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String) as? String;
 
         return postTableViewCell;
@@ -166,6 +184,16 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let allKeys : NSArray = sectionData.allKeys as NSArray
         let sectionHeader : NSString = allKeys[0] as! NSString
         return sectionHeader as String;
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField.tag == TextFieldTag.TextFieldTypeHouse.rawValue {
+            
+            
+        } else if (textField.tag == TextFieldTag.TextFieldTagRoom.rawValue){
+            
+        }
+        return false;
     }
     
 }

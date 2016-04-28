@@ -47,7 +47,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-   
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }

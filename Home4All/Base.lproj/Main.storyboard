@@ -292,6 +292,9 @@
                                     <outlet property="delegate" destination="dXD-oQ-rGa" id="o2T-tc-iti"/>
                                 </connections>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuB-Fc-aLb">
+                                <rect key="frame" x="0.0" y="406" width="600" height="145"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
