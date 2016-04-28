@@ -20,8 +20,10 @@ class TSignInViewController: UIViewController,GIDSignInUIDelegate {
        
             print("Going towards the T_AfterSignInVC")
             let storyboard:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("T_AfterSignInVC") as UIViewController
-            self.presentViewController(vc, animated: true , completion: nil )
+            let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("TTabBarController") as UIViewController
+        
+        
+        self.presentViewController(vc, animated: true , completion: nil )
             
         
         
