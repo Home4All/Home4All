@@ -18,14 +18,9 @@ class TSignInViewController: UIViewController,GIDSignInUIDelegate {
         // Uncomment to automatically sign in the user.
         GIDSignIn.sharedInstance().signInSilently()
        
-        
-        
-       
-             print("Going towards the T_AfterSignInVC")
+            print("Going towards the T_AfterSignInVC")
             let storyboard:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-            
             let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("T_AfterSignInVC") as UIViewController
-            
             self.presentViewController(vc, animated: true , completion: nil )
             
         
