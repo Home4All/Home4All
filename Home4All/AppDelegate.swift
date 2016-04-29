@@ -61,12 +61,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             NSUserDefaults.standardUserDefaults().setValue(fullName, forKey: "username");
             
+            let userType : String = NSUserDefaults.standardUserDefaults().valueForKey("usertype") as! String
+            
+            if userType == UserType.UserTypeLandlord.rawValue {
+            
             let myStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
             
             let afterSignInTabbarController : UITabBarController=myStoryBoard.instantiateViewControllerWithIdentifier("aftersignintabbar") as! UITabBarController
             afterSignInTabbarController.selectedIndex = 0;
             
             self.window?.rootViewController = afterSignInTabbarController
+            }
+            else {
+                
+                print("Going towards the T_AfterSignInVC")
+                let storyboard:UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                let vc: UITabBarController = storyboard.instantiateViewControllerWithIdentifier("TTabBarController") as! UITabBarController
+                self.window?.rootViewController = vc
+
+            }
 
         } else {
             print("\(error.localizedDescription)")

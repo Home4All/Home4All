@@ -6,6 +6,11 @@
 //  Copyright © 2016 Home4All. All rights reserved.
 //
 
+enum UserType: String {
+    case UserTypeLandlord = "LandLord"
+    case UserTypeTenant = "Tenant"
+}
+
 import UIKit
 
 class ViewController: UIViewController,GIDSignInUIDelegate {
@@ -19,7 +24,13 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func landLordLoginClicked() {
+        NSUserDefaults.standardUserDefaults().setValue(UserType.UserTypeLandlord.rawValue, forKey: "usertype")
+    }
+    
+    @IBAction func TenantLoginClicked() {
+        NSUserDefaults.standardUserDefaults().setValue(UserType.UserTypeTenant.rawValue, forKey: "usertype")
+    }
 }
 
