@@ -546,7 +546,7 @@
         <!--Search-->
         <scene sceneID="SDe-mb-n6R">
             <objects>
-                <viewController storyboardIdentifier="T_SearchVC" title="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lpN-ti-IAD" customClass="T_SearchVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="T_SearchVC" title="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lpN-ti-IAD" customClass="T_SearchVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e3R-Pv-GTf"/>
                         <viewControllerLayoutGuide type="bottom" id="G2M-Ui-Zuf"/>
@@ -584,9 +584,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FT5-Og-fYO">
-                                <rect key="frame" x="20" y="346" width="499" height="216"/>
-                            </pickerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Max" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4MO-F3-fec">
                                 <rect key="frame" x="429" y="250" width="90" height="30"/>
                                 <constraints>
@@ -596,6 +593,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FT5-Og-fYO" customClass="T_Sear">
+                                <rect key="frame" x="20" y="346" width="499" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lpN-ti-IAD" id="tdj-0S-erq"/>
+                                    <outlet property="delegate" destination="lpN-ti-IAD" id="dXb-7y-83e"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -625,6 +629,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="bUU-mC-56e"/>
                     <navigationItem key="navigationItem" title="TenantSearchView" id="SWC-Qo-cHV"/>
+                    <connections>
+                        <outlet property="apartmentTypePickerView" destination="FT5-Og-fYO" id="Fx2-8m-Z1G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSj-Ob-wQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

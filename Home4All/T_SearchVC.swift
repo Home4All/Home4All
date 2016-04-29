@@ -8,9 +8,9 @@
 
 import UIKit
 
-class T_AfterSignInVC: UIViewController{
+class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
 
-    
+    var chosenApartmentType : String = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,6 +44,35 @@ class T_AfterSignInVC: UIViewController{
         
     }
     
+    
+    @IBOutlet weak var apartmentTypePickerView: UIPickerView!
+    
+    
+    var apartmentType = ["Apartment","House","Condo"]
+    
+     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+     {
+        return 1;
+    }
+    
+   
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return apartmentType.count
+        }
+    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        
+        return apartmentType[row]
+        
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        self.chosenApartmentType = apartmentType[row]
+        NSLog(self.chosenApartmentType);
+    
+    }
     
     
 }
