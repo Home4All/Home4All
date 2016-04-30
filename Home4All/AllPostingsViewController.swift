@@ -62,9 +62,15 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         let row = indexPath.row as Int;
         let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
         let stateText = postingObject.objectForKey("state") as? String
-        let zipCode = postingObject.objectForKey("zipcode") as? String
-        allpostingTableCell.state.text = stateText! + zipCode!;
-        allpostingTableCell.propertyType.text = postingObject.objectForKey("propertytype") as? String;
+        let zipCode = postingObject.objectForKey("zip") as? String
+        if stateText != nil && zipCode != nil {
+            allpostingTableCell.state.text = stateText! + zipCode!;
+        }
+        let houseType = postingObject.objectForKey("housetype") as? String;
+        if houseType != nil {
+              allpostingTableCell.propertyType.text = houseType;
+        }
+      
         postingObject.image.getDataInBackgroundWithBlock { (data, error) in
             if let data = data {
                 if let image = UIImage(data: data) {

@@ -9,22 +9,34 @@
 import UIKit
 
 enum TextFieldTag : NSInteger {
-    case TextFieldTagRent = 0
-      case TextFieldTagBath
-       case TextFieldTagRoom
-       case TextFieldTypeHouse
+    case TextFieldTagBath = 1
+    case TextFieldTagRoom
+    case TextFieldTypeHouse
+    case TextFieldTypeArea
+    case TextFieldTypeStreet
+    case TextFieldTypeCityName
+    case TextFieldTypeState
+    case TextFieldTypeRent
+    case TextFieldTypeContactInfo
+    case TextFieldTypeZip
+
 };
 
-class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    
-    @IBOutlet weak var propertyType: UITextField!
-    @IBOutlet weak var zipCodeField: UITextField!
-    @IBOutlet weak var stateField: UITextField!
+class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+
+    @IBOutlet weak var propertyPickerView: UIPickerView!
     var imagesToUpload : NSMutableArray = NSMutableArray();
     var imageToUpload: UIImageView = UIImageView();
     @IBOutlet weak var thumbnailCollectionView : UICollectionView!
     @IBOutlet weak var postTableView : UITableView!
     var tableViewData : NSMutableArray = []
+    var propertyTypes = ["House","Townhose","Condo", "Apartment"];
+    var availableNumberOfRooms = ["1","2","3", "4","5","6"];
+    var availableNumberOfBaths = ["1","1.5","2", "2.5","3"];
+    var currentTextField : UITextField = UITextField()
+
+    var pickerDataSource : NSArray = NSArray()
+    let placePost : PlacePost = PlacePost();
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +45,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         // Do any additional setup after loading the view.
     }
     
+    
     override func viewDidAppear(animated: Bool) {
         self.thumbnailCollectionView.reloadData()
+        self.propertyPickerView.reloadAllComponents()
     }
     
     func arrangeTableView() {
@@ -79,24 +93,19 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 
     }
     
-    
      @IBAction func postProperty(sender: AnyObject) {
-        
-        let zipCode : NSString = self.zipCodeField.text!;
-        let stateField : NSString = self.stateField.text!
-        let propertyType : NSString = self.propertyType.text!
+//        
+//        let zipCode : NSString = self.zipCodeField.text!;
+//        let stateField : NSString = self.stateField.text!
+//        let propertyType : NSString = self.propertyType.text!
         
         let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
 
-        let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
-        let file = PFFile(name: "image", data: pictureData!)
+//        let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
+//        let file = PFFile(name: "image", data: pictureData!)
         
-        let placePost = PlacePost(image: file!);
-        placePost.setObject(zipCode, forKey: "zipcode")
-        placePost.setObject(stateField, forKey: "state")
-        placePost.setObject(propertyType, forKey: "propertytype")
+
         placePost.setObject(username, forKey: "postedby")
-        
         placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
                 NSLog("Object Uploaded")
@@ -162,13 +171,28 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         postTableViewCell.propertyMetricLabel?.text = rowLabel;
         
         if(rowLabel == "No Of Rooms"){
-            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagRoom.rawValue
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
         } else if (rowLabel == "No Of Baths") {
-            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagBath.rawValue
-        }else if(rowLabel == "Rent"){
-           postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTagRent.rawValue
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
         }else if(rowLabel == "Property Type") {
-            postTableViewCell.propertyMetricLabel?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
+        } else if (rowLabel == "Area(Sq Foot)") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
+        }
+        else if (rowLabel == "Street") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeStreet.rawValue
+        }else if (rowLabel == "CityName") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeCityName.rawValue
+        }else if (rowLabel == "State") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeState.rawValue
+        }else if (rowLabel == "ContactInfo") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
+        }else if (rowLabel == "ZipCode") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
+        }
+            
+        else if (rowLabel == "Rent($)") {
+            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
         }
         postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String) as? String;
 
@@ -186,36 +210,108 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         return sectionHeader as String;
     }
     
+//PickerView Methods
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        
+//        self.placePost.setObject(zipCode, forKey: "zipcode")
+//        self.placePost.setObject(stateField, forKey: "state")
+//        self.placePost.setObject(propertyType, forKey: "propertytype")
         if textField.tag == TextFieldTag.TextFieldTypeHouse.rawValue {
-            
-            
+            self.propertyPickerView.hidden = false
+            self.pickerDataSource = self.propertyTypes
+            self.propertyPickerView.reloadAllComponents()
+            self.propertyPickerView.tag = textField.tag
+            currentTextField = textField;
+
+            return false;
         } else if (textField.tag == TextFieldTag.TextFieldTagRoom.rawValue){
-            
+            self.propertyPickerView.hidden = false
+            self.pickerDataSource = self.availableNumberOfRooms
+            self.propertyPickerView.reloadAllComponents()
+            self.propertyPickerView.tag = textField.tag
+            currentTextField = textField;
+
+            return false;
+        }else if (textField.tag == TextFieldTag.TextFieldTagBath.rawValue){
+            self.propertyPickerView.hidden = false
+            self.pickerDataSource = self.availableNumberOfBaths
+            self.propertyPickerView.reloadAllComponents()
+            self.propertyPickerView.tag = textField.tag
+            currentTextField = textField;
+
+            return false;
         }
-        return false;
+        return true;
     }
     
+    func textFieldDidEndEditing(textField: UITextField) {
+        if (textField.tag == TextFieldTag.TextFieldTypeArea.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "area");
+        }else if (textField.tag == TextFieldTag.TextFieldTypeRent.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "rent");
+
+        }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "contact");
+
+        }else if (textField.tag == TextFieldTag.TextFieldTypeState.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "state");
+
+        }else if (textField.tag == TextFieldTag.TextFieldTypeCityName.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "city");
+
+        }else if (textField.tag == TextFieldTag.TextFieldTypeStreet.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "street");
+        }else if (textField.tag == TextFieldTag.TextFieldTypeZip.rawValue){
+            self.placePost.setObject(textField.text!, forKey: "zip");
+        }
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerDataSource.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.pickerDataSource[row] as! String
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView.tag == TextFieldTag.TextFieldTagBath.rawValue) {
+            self.placePost.setObject(self.pickerDataSource[row], forKey: "noofbath");
+            currentTextField.text = self.pickerDataSource[row] as! String;
+
+        }else if (pickerView.tag == TextFieldTag.TextFieldTagRoom.rawValue) {
+            self.placePost.setObject(self.pickerDataSource[row], forKey: "noofroom");
+            currentTextField.text = self.pickerDataSource[row] as! String;
+
+        } else if (pickerView.tag == TextFieldTag.TextFieldTypeHouse.rawValue) {
+            self.placePost.setObject(self.pickerDataSource[row], forKey: "housetype");
+            currentTextField.text = self.pickerDataSource[row] as! String;
+
+        }
+        pickerView.hidden = true;
+    }
 }
 
 extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        //Place the image in the imageview
-//        self.imageToUpload.image = image
-        if(self.imagesToUpload.count >= 5) {
-          showAlert()
-        }
         self.imagesToUpload.addObject(image);
         picker.dismissViewControllerAnimated(true, completion: nil)
+        if(self.imagesToUpload.count == 3 ) {
+            showAlert()
+        }
 }
     
      func showAlert() {
-        let alertController = UIAlertController(title: "HEllo", message: "Exceeding limit", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Limit Reached", message: "You can not add more photos", preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

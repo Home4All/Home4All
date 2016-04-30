@@ -8,14 +8,37 @@
 
 import UIKit
 
+struct PlacePostKey {
+    static let placePostStreetKey = "area";
+    static let placePostCityKey = "city";
+    static let placePostStateKey = "state";
+    static let placePostZipKey = "zip";
+}
+
 class PlacePost: PFObject, PFSubclassing {
     
     @NSManaged var image: PFFile
-    @NSManaged var zipcode: NSString
-    @NSManaged var state: NSString
+   
     @NSManaged var propertytype: NSString
     @NSManaged var postedby: NSString
+    @NSManaged var cityName: NSString
+    @NSManaged var streetName: NSString
+    @NSManaged var zipcode: NSString
+    @NSManaged var state: NSString
+    @NSManaged var noOfRooms: NSString
+    @NSManaged var noOfBaths: NSString
+    @NSManaged var area: NSString
+    @NSManaged var rent: NSString
+    @NSManaged var contactInfo: NSString
     //1
+    
+    
+    var totalSteps: Int = 0 {
+        willSet(newTotalSteps) {
+            
+        }
+    }
+    
     class func parseClassName() -> String {
         return "PlacePost"
     }

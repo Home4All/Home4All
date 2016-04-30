@@ -178,7 +178,9 @@
                                     <constraint firstAttribute="width" constant="95" id="5qr-XG-Xf3"/>
                                     <constraint firstAttribute="height" constant="30" id="Uic-jU-s1H"/>
                                 </constraints>
-                                <state key="normal" title="Upload Image"/>
+                                <state key="normal" title="Upload Image">
+                                    <color key="titleColor" red="1" green="0.31655410119999999" blue="0.1101954294" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="selectPicturePressed:" destination="dXD-oQ-rGa" eventType="touchUpInside" id="9zx-ny-sga"/>
                                 </connections>
@@ -265,7 +267,7 @@
                                                         <constraint firstAttribute="width" priority="750" constant="62" id="kxi-gQ-v2Z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="1" green="0.31655410119999999" blue="0.1101954294" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -294,8 +296,14 @@
                                     <outlet property="delegate" destination="dXD-oQ-rGa" id="o2T-tc-iti"/>
                                 </connections>
                             </tableView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kuB-Fc-aLb">
-                                <rect key="frame" x="0.0" y="406" width="600" height="145"/>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuB-Fc-aLb">
+                                <rect key="frame" x="0.0" y="513" width="600" height="38"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="1" green="0.31655410119999999" blue="0.1101954294" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dXD-oQ-rGa" id="aaz-Wa-ClS"/>
+                                    <outlet property="delegate" destination="dXD-oQ-rGa" id="rJa-Lo-15P"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,11 +313,15 @@
                             <constraint firstItem="sFd-tB-HVr" firstAttribute="leading" secondItem="kEs-nQ-ZZa" secondAttribute="leadingMargin" constant="-20" id="HQL-oO-RS3"/>
                             <constraint firstItem="XS2-e8-tE5" firstAttribute="leading" secondItem="kEs-nQ-ZZa" secondAttribute="leadingMargin" constant="24" id="SVL-5t-Cfh"/>
                             <constraint firstItem="sFd-tB-HVr" firstAttribute="top" secondItem="G2e-vV-idN" secondAttribute="bottom" id="VH5-do-Myh"/>
+                            <constraint firstItem="kuB-Fc-aLb" firstAttribute="leading" secondItem="kEs-nQ-ZZa" secondAttribute="leadingMargin" constant="-20" id="XmN-Q9-B3C"/>
                             <constraint firstItem="XS2-e8-tE5" firstAttribute="top" secondItem="aGy-yG-auB" secondAttribute="bottom" constant="21" id="bHl-wV-2Th"/>
                             <constraint firstItem="aGy-yG-auB" firstAttribute="top" secondItem="sFd-tB-HVr" secondAttribute="bottom" constant="13" id="cny-JE-2Tp"/>
                             <constraint firstItem="aGy-yG-auB" firstAttribute="top" secondItem="sFd-tB-HVr" secondAttribute="bottom" constant="13" id="fcR-wa-qiU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kuB-Fc-aLb" secondAttribute="trailing" constant="-20" id="kWN-Yf-6TU"/>
+                            <constraint firstItem="yCE-ET-6wa" firstAttribute="top" secondItem="kuB-Fc-aLb" secondAttribute="bottom" id="lSR-AE-JS8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aGy-yG-auB" secondAttribute="trailing" id="mTY-vF-c2E"/>
                             <constraint firstItem="yCE-ET-6wa" firstAttribute="top" secondItem="XS2-e8-tE5" secondAttribute="bottom" constant="8" id="nPR-Rt-zMl"/>
+                            <constraint firstItem="kuB-Fc-aLb" firstAttribute="top" secondItem="G2e-vV-idN" secondAttribute="bottom" constant="449" id="wrD-Fs-SNy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -319,6 +331,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Post Ad" id="4sB-5c-Fpk">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="seJ-8a-oXo">
+                            <color key="tintColor" red="1" green="0.31655410119999999" blue="0.1101954294" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="postProperty:" destination="dXD-oQ-rGa" id="fhN-xq-s6c"/>
                             </connections>
@@ -326,6 +339,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="postTableView" destination="sFd-tB-HVr" id="PKw-0E-4Rx"/>
+                        <outlet property="propertyPickerView" destination="kuB-Fc-aLb" id="mAl-lw-v5f"/>
                         <outlet property="thumbnailCollectionView" destination="aGy-yG-auB" id="QKE-Ma-6D3"/>
                     </connections>
                 </viewController>

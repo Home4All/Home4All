@@ -99,6 +99,7 @@
 		6A077D291CC487BD0097915C /* Home4All */ = {
 			isa = PBXGroup;
 			children = (
+				7537BC0B1CD361000098C1B6 /* LandLordModule */,
 				7510FAC61CCB846C00A0C05A /* Images */,
 				7510FAC51CCB843800A0C05A /* Supporting Files */,
 				7510FAC41CCB840E00A0C05A /* Model */,
@@ -112,12 +113,6 @@
 				6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */,
 				6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */,
 				6A2EBF9C1CCDB9DF00743491 /* LL_AfterSignInVC.swift */,
-				75E583631CC87E33008682D0 /* LandLordPostViewController.swift */,
-				75E583651CC88D57008682D0 /* AllPostingsViewController.swift */,
-				751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */,
-				75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */,
-				75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */,
-				75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */,
 			);
 			path = Home4All;
 			sourceTree = "<group>";
@@ -146,6 +141,19 @@
 				6A077D3C1CC494470097915C /* Home_Start_Page.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		7537BC0B1CD361000098C1B6 /* LandLordModule */ = {
+			isa = PBXGroup;
+			children = (
+				75E583631CC87E33008682D0 /* LandLordPostViewController.swift */,
+				75E583651CC88D57008682D0 /* AllPostingsViewController.swift */,
+				751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */,
+				75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */,
+				75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */,
+				75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */,
+			);
+			name = LandLordModule;
 			sourceTree = "<group>";
 		};
 		BA81D9BC3F9832C35E693103 /* Frameworks */ = {
