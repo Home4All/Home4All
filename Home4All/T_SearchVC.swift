@@ -7,24 +7,76 @@
 //
 
 import UIKit
+import CoreLocation
 
-class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate{
 
+    let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
 //        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
     
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    
-    
     }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
+            
+            if (error != nil)
+            {
+                print("Error: " + error!.localizedDescription)
+                return
+            }
+            
+            if placemarks!.count > 0
+            {
+                let pm = placemarks![0] as! CLPlacemark
+                self.displayLocationInfo(pm)
+            }
+            else
+            {
+                print("Error with the data.")
+            }
+        })
+    }
+    
+    func displayLocationInfo(placemark: CLPlacemark)
+    {
+        
+        self.locationManager.stopUpdatingLocation()
+        print(placemark.locality)
+        print(placemark.postalCode)
+        print(placemark.administrativeArea)
+        print(placemark.country)
+        
+    }
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
+    {
+        print("Error: " + error.localizedDescription)
+    }
+    
+    
+    
+    
+    
     
     @IBAction func signOutButtonPressed(sender: AnyObject) {
         
@@ -43,6 +95,9 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print("Sign Out Pressed")
         
     }
+    
+    
+    
     
     
     @IBOutlet weak var apartmentTypePickerView: UIPickerView!
