@@ -18,6 +18,8 @@ struct PlacePostKey {
 class PlacePost: PFObject, PFSubclassing {
     
     @NSManaged var image: PFFile
+    
+    @NSManaged var propertyImages : NSArray
    
     @NSManaged var propertytype: NSString
     @NSManaged var postedby: NSString
