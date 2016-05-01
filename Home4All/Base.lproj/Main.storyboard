@@ -645,6 +645,10 @@
                     <navigationItem key="navigationItem" title="TenantSearchView" id="SWC-Qo-cHV"/>
                     <connections>
                         <outlet property="apartmentTypePickerView" destination="FT5-Og-fYO" id="Fx2-8m-Z1G"/>
+                        <outlet property="city" destination="2dw-AB-6Zk" id="GLK-hg-5UO"/>
+                        <outlet property="maxPrice" destination="4MO-F3-fec" id="qNj-zP-K8Q"/>
+                        <outlet property="minPrice" destination="fcY-yP-y7q" id="Lcl-du-NsM"/>
+                        <outlet property="zipCode" destination="4VD-JR-Upg" id="gga-sG-AkQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSj-Ob-wQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>

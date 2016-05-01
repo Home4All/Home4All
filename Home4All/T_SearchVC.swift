@@ -10,7 +10,14 @@ import UIKit
 import CoreLocation
 
 class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate{
-
+ 
+    @IBOutlet weak var city : UITextField!
+    @IBOutlet weak var zipCode: UITextField!
+    
+    @IBOutlet weak var minPrice: UITextField!
+    @IBOutlet weak var maxPrice: UITextField!
+    
+    
     let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
     override func viewDidLoad() {
@@ -63,6 +70,9 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print(placemark.postalCode)
         print(placemark.administrativeArea)
         print(placemark.country)
+        
+        city.text = placemark.locality
+        zipCode.text = placemark.postalCode
         
     }
     
@@ -128,6 +138,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         NSLog(self.chosenApartmentType);
     
     }
+    
+    
     
     
 }
