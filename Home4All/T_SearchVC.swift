@@ -140,6 +140,35 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     
+    @IBAction func searchProperty(sender: AnyObject) {
+        
+         let cityValue = city.text
+         let zipCodeValue = zipCode.text
+        let minValue:Int? = (Int(minPrice.text!)! - 1)
+        let maxValue:Int? = (Int(maxPrice.text!)! + 1)
+        
+        print(cityValue!)
+        print(zipCodeValue!)
+        
+        
+        let query = PFQuery(className: "PlacePost")
+        // 2
+        query.whereKey("city", equalTo: cityValue!)
+        query.whereKey("zip", equalTo: zipCodeValue!)
+        query.whereKey("minprice", greaterThan: minValue!)
+        query.whereKey("maxprice", lessThan: maxValue!)
+        
+        // 3
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                print("Successfully retrieved: \(objects)")
+            } else {
+                print("Error: ")
+            }
+        }
+        
+        
+    }
     
     
 }
