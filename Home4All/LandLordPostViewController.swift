@@ -36,12 +36,14 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     var currentTextField : UITextField = UITextField()
 
     var pickerDataSource : NSArray = NSArray()
-    let placePost : PlacePost = PlacePost();
+    var placePost : PlacePost = PlacePost()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem?.action = #selector(LandLordPostViewController.postProperty);
         self.arrangeTableView();
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
         // Do any additional setup after loading the view.
     }
     
@@ -50,6 +52,9 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
     }
+    
+    
+    
     
     func arrangeTableView() {
         
@@ -92,19 +97,59 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         tableViewData.addObject(contactInfoDic);
 
     }
+    - (void)registerForKeyboardNotifications
+    {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(keyboardWasShown:)
+    name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(keyboardWillBeHidden:)
+    name:UIKeyboardWillHideNotification object:nil];
+    
+    }
+    
+    // Called when the UIKeyboardDidShowNotification is sent.
+    - (void)keyboardWasShown:(NSNotification*)aNotification
+    {
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+    [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
+    }
+    
+    // Called when the UIKeyboardWillHideNotification is sent
+    - (void)keyboardWillBeHidden:(NSNotification*)aNotification
+    {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    }
     
      @IBAction func postProperty(sender: AnyObject) {
-//        
-//        let zipCode : NSString = self.zipCodeField.text!;
-//        let stateField : NSString = self.stateField.text!
-//        let propertyType : NSString = self.propertyType.text!
-        
         let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
-
-//        let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
-//        let file = PFFile(name: "image", data: pictureData!)
         
-
+//        let imagesToUpload : NSMutableArray = NSMutableArray()
+//        for image in self.imagesToUpload {
+//        let pictureData = UIImagePNGRepresentation(image as! UIImage)
+//        let file = PFFile(name: "image", data: pictureData!)
+//            imagesToUpload.addObject(file!);
+//        }
+        
+        let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
+        let file = PFFile(name: "image", data: pictureData!)
+        
+        self.placePost = PlacePost(image: file!)
         placePost.setObject(username, forKey: "postedby")
         placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
@@ -194,7 +239,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         else if (rowLabel == "Rent($)") {
             postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
         }
-        postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String) as? String;
+        postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
 
         return postTableViewCell;
     }
@@ -276,21 +321,21 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.pickerDataSource[row] as! String
+        return self.pickerDataSource[row] as? String
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag == TextFieldTag.TextFieldTagBath.rawValue) {
             self.placePost.setObject(self.pickerDataSource[row], forKey: "noofbath");
-            currentTextField.text = self.pickerDataSource[row] as! String;
+            currentTextField.text = self.pickerDataSource[row] as? String;
 
         }else if (pickerView.tag == TextFieldTag.TextFieldTagRoom.rawValue) {
             self.placePost.setObject(self.pickerDataSource[row], forKey: "noofroom");
-            currentTextField.text = self.pickerDataSource[row] as! String;
+            currentTextField.text = self.pickerDataSource[row] as? String;
 
         } else if (pickerView.tag == TextFieldTag.TextFieldTypeHouse.rawValue) {
             self.placePost.setObject(self.pickerDataSource[row], forKey: "housetype");
-            currentTextField.text = self.pickerDataSource[row] as! String;
+            currentTextField.text = self.pickerDataSource[row] as? String;
 
         }
         pickerView.hidden = true;
@@ -300,6 +345,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        self.imageToUpload.image = image;
         self.imagesToUpload.addObject(image);
         picker.dismissViewControllerAnimated(true, completion: nil)
         if(self.imagesToUpload.count == 3 ) {
