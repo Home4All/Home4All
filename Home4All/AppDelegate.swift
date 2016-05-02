@@ -43,8 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let idToken = user.authentication.idToken // Safe to send to the server
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
-            let email = user.profile.email
             */
+            let email = user.profile.email
             let fullName = user.userID
             print("User Name \(fullName)")
             
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 if pfObjects.count > 0 && error == nil {
                     NSLog("Successfully retrieved: \(objects)")
                 } else {
-                    self.registerUser(fullName);
+                    self.registerUser(fullName,email: email);
                 }
             }
             
@@ -86,9 +86,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
-    func registerUser(userName : NSString) {
+    func registerUser(userName : NSString, email : NSString) {
         let user = PFObject(className: "AppUser")
         user.setObject(userName, forKey: "username")
+        user.setObject(email, forKey: "emailid")
         user.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
                 NSLog("Object Uploaded")

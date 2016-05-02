@@ -21,5 +21,5 @@ class PostTableViewCell: UITableViewCell {
     func setPropertyLabelValue(propertyLabelvalue : NSString) {
         self.propertyMetricLabelValue.text = propertyLabelvalue  as String
     }
-
+    
 }

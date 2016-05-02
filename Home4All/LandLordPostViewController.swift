@@ -9,7 +9,7 @@
 import UIKit
 
 enum TextFieldTag : NSInteger {
-    case TextFieldTagBath = 1
+    case TextFieldTagBath = 100
     case TextFieldTagRoom
     case TextFieldTypeHouse
     case TextFieldTypeArea
@@ -23,7 +23,8 @@ enum TextFieldTag : NSInteger {
 };
 
 class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
-
+    
+    @IBOutlet weak var uploadImage: UIButton!
     @IBOutlet weak var propertyPickerView: UIPickerView!
     var imagesToUpload : NSMutableArray = NSMutableArray();
     var imageToUpload: UIImageView = UIImageView();
@@ -38,13 +39,14 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     var pickerDataSource : NSArray = NSArray()
     var placePost : PlacePost = PlacePost()
 
+    // MARK- View Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem?.action = #selector(LandLordPostViewController.postProperty);
         self.arrangeTableView();
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -52,9 +54,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
     }
-    
-    
-    
     
     func arrangeTableView() {
         
@@ -72,7 +71,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         propertyTypeArray.addObject("Property Type");
         propertyTypeData.setValue(propertyTypeArray, forKey: "Property Type")
         tableViewData.addObject(propertyTypeData);
-
+        
         
         let homeinfoData : NSMutableDictionary = NSMutableDictionary();
         let homeinfoArray : NSMutableArray = NSMutableArray();
@@ -81,82 +80,65 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         homeinfoArray.addObject("Area(Sq Foot)");
         homeinfoData.setValue(homeinfoArray, forKey: "Home Info")
         tableViewData.addObject(homeinfoData);
-
+        
         
         let rentInfo : NSMutableDictionary = NSMutableDictionary();
         let rentArray : NSMutableArray = NSMutableArray();
         rentArray.addObject("Rent($)");
         rentInfo.setValue(rentArray, forKey: "Rent")
         tableViewData.addObject(rentInfo);
-
+        
         
         let contactInfoDic : NSMutableDictionary = NSMutableDictionary();
         let contactInfo : NSMutableArray = NSMutableArray();
         contactInfo.addObject("Contact Info");
         contactInfoDic.setValue(contactInfo, forKey: "Contact Info")
         tableViewData.addObject(contactInfoDic);
-
-    }
-    - (void)registerForKeyboardNotifications
-    {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(keyboardWasShown:)
-    name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(keyboardWillBeHidden:)
-    name:UIKeyboardWillHideNotification object:nil];
-    
+        
     }
     
-    // Called when the UIKeyboardDidShowNotification is sent.
-    - (void)keyboardWasShown:(NSNotification*)aNotification
-    {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    //MARK - Keyboard Notification Delegate
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-    [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
-    }
+    func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        
+        
+        var contentInset:UIEdgeInsets = self.postTableView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.postTableView.contentInset = contentInset
     }
     
-    // Called when the UIKeyboardWillHideNotification is sent
-    - (void)keyboardWillBeHidden:(NSNotification*)aNotification
-    {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
+    func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+        self.postTableView.contentInset = contentInset
     }
     
+    // Post property
      @IBAction func postProperty(sender: AnyObject) {
         let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
-        
-//        let imagesToUpload : NSMutableArray = NSMutableArray()
-//        for image in self.imagesToUpload {
-//        let pictureData = UIImagePNGRepresentation(image as! UIImage)
-//        let file = PFFile(name: "image", data: pictureData!)
-//            imagesToUpload.addObject(file!);
-//        }
-        
-        let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
-        let file = PFFile(name: "image", data: pictureData!)
-        
-        self.placePost = PlacePost(image: file!)
-        placePost.setObject(username, forKey: "postedby")
-        placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-            if succeeded {
-                NSLog("Object Uploaded")
-            } else {
-                NSLog("Error: \(error) \(error!.userInfo)")
-            }
+        if(self.imageToUpload.image != nil){
+            
+            let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
+            let file = PFFile(name: "image", data: pictureData!)
+            
+            file?.saveInBackgroundWithBlock({ (success, error) in
+                if((error == nil)){
+                    self.placePost.setObject(username, forKey: "postedby")
+                    self.placePost.setObject(file!, forKey: "image")
+                    self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                        if succeeded {
+                            NSLog("Object Uploaded")
+                            
+                        } else {
+                            NSLog("Error: \(error) \(error!.userInfo)")
+                        }
+                    }
+                }
+            })
         }
     }
     
@@ -167,6 +149,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    //MARK - CollectionView Delegate
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
@@ -193,6 +177,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         return 1
     }
     
+    //MARK - TableViewDelegate
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let sectionData : NSMutableDictionary = self.tableViewData[section] as! NSMutableDictionary
@@ -204,43 +190,46 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let postTableViewCell : PostTableViewCell = tableView.dequeueReusableCellWithIdentifier("PostTableViewCell", forIndexPath: indexPath) as! PostTableViewCell
-        
-        let sectionData : NSMutableDictionary = self.tableViewData[indexPath.section] as! NSMutableDictionary
-        let allKeys : NSArray = sectionData.allKeys as NSArray
-        let keyForSection : NSString = allKeys[0] as! NSString
-        let key : String = keyForSection as String
-        let setionDataArray : NSArray = sectionData.valueForKey(key) as! NSArray ;
-        
-        let rowLabel : String = (setionDataArray[indexPath.row] as? String)!
-        postTableViewCell.propertyMetricLabel?.text = rowLabel;
-        
-        if(rowLabel == "No Of Rooms"){
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
-        } else if (rowLabel == "No Of Baths") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
-        }else if(rowLabel == "Property Type") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
-        } else if (rowLabel == "Area(Sq Foot)") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
-        }
-        else if (rowLabel == "Street") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeStreet.rawValue
-        }else if (rowLabel == "CityName") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeCityName.rawValue
-        }else if (rowLabel == "State") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeState.rawValue
-        }else if (rowLabel == "ContactInfo") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
-        }else if (rowLabel == "ZipCode") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
-        }
-            
-        else if (rowLabel == "Rent($)") {
-            postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
-        }
-        postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
+         let postTableViewCell : PostTableViewCell = (tableView.dequeueReusableCellWithIdentifier("PostTableViewCell", forIndexPath: indexPath) as? PostTableViewCell)!
 
+            
+            let sectionData : NSMutableDictionary = self.tableViewData[indexPath.section] as! NSMutableDictionary
+            let allKeys : NSArray = sectionData.allKeys as NSArray
+            let keyForSection : NSString = allKeys[0] as! NSString
+            let key : String = keyForSection as String
+            let setionDataArray : NSArray = sectionData.valueForKey(key) as! NSArray ;
+            
+            let rowLabel : String = (setionDataArray[indexPath.row] as? String)!
+            postTableViewCell.propertyMetricLabel?.text = rowLabel;
+            
+            if(rowLabel == "No Of Rooms"){
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
+            } else if (rowLabel == "No Of Baths") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
+            }else if(rowLabel == "Property Type") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
+            } else if (rowLabel == "Area(Sq Foot)") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
+            }
+            else if (rowLabel == "Street") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeStreet.rawValue
+            }else if (rowLabel == "CityName") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeCityName.rawValue
+            }else if (rowLabel == "State") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeState.rawValue
+            }else if (rowLabel == "ContactInfo") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
+            }else if (rowLabel == "ZipCode") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
+            }
+                
+            else if (rowLabel == "Rent($)") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeRent.rawValue
+            }
+            
+            postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
+
+        
         return postTableViewCell;
     }
     
@@ -255,37 +244,48 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         return sectionHeader as String;
     }
     
-//PickerView Methods
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+    }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        
-//        self.placePost.setObject(zipCode, forKey: "zipcode")
-//        self.placePost.setObject(stateField, forKey: "state")
-//        self.placePost.setObject(propertyType, forKey: "propertytype")
         if textField.tag == TextFieldTag.TextFieldTypeHouse.rawValue {
             self.propertyPickerView.hidden = false
+            self.propertyPickerView.becomeFirstResponder()
             self.pickerDataSource = self.propertyTypes
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-
+            textField.resignFirstResponder()
             return false;
+
         } else if (textField.tag == TextFieldTag.TextFieldTagRoom.rawValue){
             self.propertyPickerView.hidden = false
+            self.propertyPickerView.becomeFirstResponder()
+
             self.pickerDataSource = self.availableNumberOfRooms
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-
+            textField.resignFirstResponder()
             return false;
+
         }else if (textField.tag == TextFieldTag.TextFieldTagBath.rawValue){
             self.propertyPickerView.hidden = false
+            self.propertyPickerView.becomeFirstResponder()
+
             self.pickerDataSource = self.availableNumberOfBaths
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-
+            textField.resignFirstResponder()
             return false;
+
         }
         return true;
     }
@@ -311,6 +311,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             self.placePost.setObject(textField.text!, forKey: "zip");
         }
     }
+    
+    //MARK - PickerView Methods
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1;
@@ -348,8 +350,9 @@ extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigat
         self.imageToUpload.image = image;
         self.imagesToUpload.addObject(image);
         picker.dismissViewControllerAnimated(true, completion: nil)
-        if(self.imagesToUpload.count == 3 ) {
+        if(self.imagesToUpload.count == 1 ) {
             showAlert()
+            self.uploadImage.enabled = false
         }
 }
     
