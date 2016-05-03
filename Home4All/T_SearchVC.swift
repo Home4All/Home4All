@@ -22,6 +22,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
+    var apartmentTypeValue = "Any"
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -137,12 +138,15 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         return apartmentType[row]
         
     }
+    
+    
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         self.chosenApartmentType = apartmentType[row]
         NSLog(self.chosenApartmentType);
+        apartmentTypeValue = apartmentType[row]
         
-    
     }
     
     
@@ -150,15 +154,15 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
 // Setting up Keywords & City for search
         
-        let keywordValue:String = (keyword.text)!
-        let cityValue:String = (city.text)!
+        let keywordValue:String = (keyword.text?.lowercaseString)!
+        let cityValue:String = (city.text?.lowercaseString)!
         
         
 // Setting up Price Range Values for search
         
         let minTemp:Int? = Int(minPrice.text!)
         let maxTemp:Int? = Int(maxPrice.text!)
-        var minValue = 0
+        var minValue = -1
         var maxValue = 10000000000
         
         
@@ -178,8 +182,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         
         if zipCodeValue ==  nil{
-             zipCodeMinValue = 0
-             zipCodeMaxValue = 999999
+             zipCodeMinValue = -1
+             zipCodeMaxValue = 1000000
         } else {
             zipCodeMinValue = (zipCodeValue!-1)
             zipCodeMaxValue = (zipCodeValue!+1)
@@ -187,21 +191,15 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
 // Setting up Apartment Type for search
         
-        
-        var apartmentTypeValue:String = "Any"
-        
-
-        
-       
-        
-        
+        if apartmentTypeValue == "Any"{
+            apartmentTypeValue = ""
+        }
         
         
         print("Keyword: \(keywordValue)")
         print("City: \(cityValue)")
-        print("ZipCode: \(zipCodeMinValue+1)")
-        print("Min: \(minValue)")
-        print("Max: \(maxValue)")
+        print("ZipCode: \(zipCodeMinValue+1)-\(zipCodeMaxValue-1)")
+        print("Price Range: \(minValue+1)-\(maxValue-1)")
         print("Property Type: \(apartmentTypeValue)")
         
         
@@ -210,14 +208,14 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         let query = PFQuery(className: "PlacePost")
         // 2
-        query.whereKey("title", containsString: keywordValue)
+        query.whereKey("title", containsString : keywordValue)
+        //query.whereKey("description", containsString : keywordValue)
         query.whereKey("city", containsString: cityValue)
         query.whereKey("zipcode", greaterThan: zipCodeMinValue)
         query.whereKey("zipcode", lessThan: zipCodeMaxValue)
         query.whereKey("price", greaterThan: minValue)
         query.whereKey("price", lessThan: maxValue)
-        
-        
+        query.whereKey("housetype", containsString: apartmentTypeValue)
 //        
         // 3
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
