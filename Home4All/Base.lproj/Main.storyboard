@@ -656,6 +656,7 @@
                     <connections>
                         <outlet property="apartmentTypePickerView" destination="FT5-Og-fYO" id="Fx2-8m-Z1G"/>
                         <outlet property="city" destination="2dw-AB-6Zk" id="GLK-hg-5UO"/>
+                        <outlet property="keyword" destination="3mG-3f-WS1" id="4st-pH-uIW"/>
                         <outlet property="maxPrice" destination="4MO-F3-fec" id="qNj-zP-K8Q"/>
                         <outlet property="minPrice" destination="fcY-yP-y7q" id="Lcl-du-NsM"/>
                         <outlet property="zipCode" destination="4VD-JR-Upg" id="gga-sG-AkQ"/>
@@ -706,7 +707,7 @@
         <!--Sign Out-->
         <scene sceneID="H5t-3m-MMa">
             <objects>
-                <viewController title="Sign Out" id="UXx-Pg-aEb" sceneMemberID="viewController">
+                <viewController title="Sign Out" id="UXx-Pg-aEb" customClass="T_SearchVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V4M-01-MRV"/>
                         <viewControllerLayoutGuide type="bottom" id="EsI-kH-FD2"/>
@@ -719,7 +720,7 @@
                                 <rect key="frame" x="270" y="285" width="60" height="30"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
-                                    <action selector="signOutButtonPressed:" destination="fhv-bG-yEx" eventType="touchUpInside" id="bu6-bp-oEt"/>
+                                    <action selector="signOutButtonPressed:" destination="UXx-Pg-aEb" eventType="touchUpInside" id="Yit-Xb-XH4"/>
                                 </connections>
                             </button>
                         </subviews>

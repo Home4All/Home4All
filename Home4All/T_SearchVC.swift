@@ -11,11 +11,13 @@ import CoreLocation
 
 class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate{
  
+    @IBOutlet weak var keyword: UITextField!
     @IBOutlet weak var city : UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
     @IBOutlet weak var minPrice: UITextField!
     @IBOutlet weak var maxPrice: UITextField!
+    
     
     
     let locationManager = CLLocationManager()
@@ -30,6 +32,9 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        
+        
+        
         
     
     }
@@ -113,7 +118,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var apartmentTypePickerView: UIPickerView!
     
     
-    var apartmentType = ["Apartment","House","Condo"]
+    var apartmentType = ["Any","Apartment","House","Condo"]
     
      func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
      {
@@ -136,28 +141,84 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         self.chosenApartmentType = apartmentType[row]
         NSLog(self.chosenApartmentType);
+        
     
     }
     
     
     @IBAction func searchProperty(sender: AnyObject) {
+    
+// Setting up Keywords & City for search
         
-         let cityValue = city.text
-         let zipCodeValue = zipCode.text
-        let minValue:Int? = (Int(minPrice.text!)! - 1)
-        let maxValue:Int? = (Int(maxPrice.text!)! + 1)
+        let keywordValue:String = (keyword.text)!
+        let cityValue:String = (city.text)!
         
-        print(cityValue!)
-        print(zipCodeValue!)
+        
+// Setting up Price Range Values for search
+        
+        let minTemp:Int? = Int(minPrice.text!)
+        let maxTemp:Int? = Int(maxPrice.text!)
+        var minValue = 0
+        var maxValue = 10000000000
+        
+        
+        if minTemp != nil {
+            minValue = (minTemp! - 1)
+        }
+        if maxTemp != nil {
+            maxValue = (maxTemp! + 1)
+        }
+        
+        
+// Setting ZipCode Values for search
+        
+        let zipCodeValue:Int? = Int(zipCode.text!)
+        var zipCodeMinValue:Int
+        var zipCodeMaxValue:Int
+        
+        
+        if zipCodeValue ==  nil{
+             zipCodeMinValue = 0
+             zipCodeMaxValue = 999999
+        } else {
+            zipCodeMinValue = (zipCodeValue!-1)
+            zipCodeMaxValue = (zipCodeValue!+1)
+        }
+        
+// Setting up Apartment Type for search
+        
+        
+        var apartmentTypeValue:String = "Any"
+        
+
+        
+       
+        
+        
+        
+        
+        print("Keyword: \(keywordValue)")
+        print("City: \(cityValue)")
+        print("ZipCode: \(zipCodeMinValue+1)")
+        print("Min: \(minValue)")
+        print("Max: \(maxValue)")
+        print("Property Type: \(apartmentTypeValue)")
+        
+        
+        
         
         
         let query = PFQuery(className: "PlacePost")
         // 2
-        query.whereKey("city", equalTo: cityValue!)
-        query.whereKey("zip", equalTo: zipCodeValue!)
-        query.whereKey("minprice", greaterThan: minValue!)
-        query.whereKey("maxprice", lessThan: maxValue!)
+        query.whereKey("title", containsString: keywordValue)
+        query.whereKey("city", containsString: cityValue)
+        query.whereKey("zipcode", greaterThan: zipCodeMinValue)
+        query.whereKey("zipcode", lessThan: zipCodeMaxValue)
+        query.whereKey("price", greaterThan: minValue)
+        query.whereKey("price", lessThan: maxValue)
         
+        
+//        
         // 3
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
