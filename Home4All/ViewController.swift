@@ -27,10 +27,22 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
     
     @IBAction func landLordLoginClicked() {
         NSUserDefaults.standardUserDefaults().setValue(UserType.UserTypeLandlord.rawValue, forKey: "usertype")
+        
+        let LL_LoginViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("LLSignInViewController") as? LLSignInViewController
+        
+        self.presentViewController(LL_LoginViewControllerObj!, animated: true, completion: nil)
+        
     }
     
     @IBAction func TenantLoginClicked() {
         NSUserDefaults.standardUserDefaults().setValue(UserType.UserTypeTenant.rawValue, forKey: "usertype")
+        
+       let T_LoginViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("TSignInViewController") as? TSignInViewController
+        
+       self.presentViewController(T_LoginViewControllerObj!, animated: true, completion: nil)
+
+   
+        
     }
 }
 

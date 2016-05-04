@@ -10,6 +10,8 @@ import UIKit
 
 class TSignInViewController: UIViewController,GIDSignInUIDelegate {
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,7 @@ class TSignInViewController: UIViewController,GIDSignInUIDelegate {
         // TODO(developer) Configure the sign-in button look/feel
         // ...
     }
+    
     
     
     // Implement these methods only if the GIDSignInUIDelegate is not a subclass of

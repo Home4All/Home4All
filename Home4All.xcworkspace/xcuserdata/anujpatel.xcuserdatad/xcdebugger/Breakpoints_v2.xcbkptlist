@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TSignInViewController.swift"
-            timestampString = "483571300.951052"
+            timestampString = "484037982.409413"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "signIn(_:presentViewController:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "131"
             endingLineNumber = "131"
-            landmarkName = "pickerView(_:numberOfRowsInComponent:)"
+            landmarkName = "pickerView(_:titleForRow:forComponent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            landmarkName = "searchProperty(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
