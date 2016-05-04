@@ -99,22 +99,28 @@
 		6A077D291CC487BD0097915C /* Home4All */ = {
 			isa = PBXGroup;
 			children = (
+				6AE5830E1CD9DCA100391F6C /* TenantModule */,
 				7537BC0B1CD361000098C1B6 /* LandLordModule */,
 				7510FAC61CCB846C00A0C05A /* Images */,
 				7510FAC51CCB843800A0C05A /* Supporting Files */,
 				7510FAC41CCB840E00A0C05A /* Model */,
 				6A077D2A1CC487BD0097915C /* AppDelegate.swift */,
-				6A84AD7F1CD2B4C30063092E /* TTabBarController.swift */,
 				6A077D2C1CC487BD0097915C /* ViewController.swift */,
 				6A077D2E1CC487BD0097915C /* Main.storyboard */,
 				6A077D311CC487BD0097915C /* Assets.xcassets */,
 				6A077D331CC487BD0097915C /* LaunchScreen.storyboard */,
-				6A841ED41CC5E85F0077C14F /* LLSignInViewController.swift */,
-				6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */,
-				6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */,
-				6A2EBF9C1CCDB9DF00743491 /* LL_AfterSignInVC.swift */,
 			);
 			path = Home4All;
+			sourceTree = "<group>";
+		};
+		6AE5830E1CD9DCA100391F6C /* TenantModule */ = {
+			isa = PBXGroup;
+			children = (
+				6A84AD7F1CD2B4C30063092E /* TTabBarController.swift */,
+				6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */,
+				6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */,
+			);
+			name = TenantModule;
 			sourceTree = "<group>";
 		};
 		7510FAC41CCB840E00A0C05A /* Model */ = {
@@ -146,6 +152,8 @@
 		7537BC0B1CD361000098C1B6 /* LandLordModule */ = {
 			isa = PBXGroup;
 			children = (
+				6A841ED41CC5E85F0077C14F /* LLSignInViewController.swift */,
+				6A2EBF9C1CCDB9DF00743491 /* LL_AfterSignInVC.swift */,
 				75E583631CC87E33008682D0 /* LandLordPostViewController.swift */,
 				75E583651CC88D57008682D0 /* AllPostingsViewController.swift */,
 				751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */,
