@@ -32,6 +32,8 @@ class PlacePost: PFObject, PFSubclassing {
     @NSManaged var area: NSString
     @NSManaged var rent: NSString
     @NSManaged var contactInfo: NSString
+    
+    var imageProperty : UIImage = UIImage()
     //1
     
     

@@ -83,15 +83,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     
-    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
     {
         print("Error: " + error.localizedDescription)
     }
-    
-    
-    
-    
     
     
     @IBAction func signOutButtonPressed(sender: AnyObject) {
@@ -111,10 +106,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print("Sign Out Pressed")
         
     }
-    
-    
-    
-    
     
     @IBOutlet weak var apartmentTypePickerView: UIPickerView!
     
@@ -201,11 +192,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print("ZipCode: \(zipCodeMinValue+1)-\(zipCodeMaxValue-1)")
         print("Price Range: \(minValue+1)-\(maxValue-1)")
         print("Property Type: \(apartmentTypeValue)")
-        
-        
-        
-        
-        
+
         let query = PFQuery(className: "PlacePost")
         // 2
         query.whereKey("title", containsString : keywordValue)
@@ -216,8 +203,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         query.whereKey("price", greaterThan: minValue)
         query.whereKey("price", lessThan: maxValue)
         query.whereKey("housetype", containsString: apartmentTypeValue)
-//        
-        // 3
+//
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 print("Successfully retrieved: \(objects)")
@@ -225,10 +211,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 print("Error: ")
             }
         }
-        
-        
     }
-    
-    
 }
 

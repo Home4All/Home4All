@@ -39,6 +39,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 
     var pickerDataSource : NSArray = NSArray()
     var placePost : PlacePost = PlacePost()
+    var editInAction : Bool = false
 
     // MARK- View Cycle
     
@@ -48,12 +49,18 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         self.arrangeTableView();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        
+        if editInAction {
+            self.imageToUpload.image = placePost.imageProperty
+            self.imagesToUpload.addObject(self.imageToUpload.image!)
+            self.thumbnailCollectionView.reloadData()
+        }
     }
-    
     
     override func viewDidAppear(animated: Bool) {
         self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
+        
     }
     
     func arrangeTableView() {
@@ -229,27 +236,57 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             
             if(rowLabel == "No Of Rooms"){
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofroom") as? String
+                }
             } else if (rowLabel == "No Of Baths") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofbath") as? String
+                }
             }else if(rowLabel == "Property Type") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("housetype") as? String
+                }
             } else if (rowLabel == "Area(Sq Foot)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("area") as? String
+                }
             }
             else if (rowLabel == "Street") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeStreet.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("street") as? String
+                }
             }else if (rowLabel == "CityName") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeCityName.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("city") as? String
+                }
             }else if (rowLabel == "State") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeState.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("state") as? String
+                }
             }else if (rowLabel == "ContactInfo") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofroom") as? String
+                }
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("zip") as? String
+                }
             }
                 
             else if (rowLabel == "Rent($)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeRent.rawValue
+                if editInAction == true {
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("rent") as? String
+                }
             }
             
             postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
@@ -383,6 +420,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        if self.imagesToUpload.count > 0 {
+            self.imagesToUpload = []
+        }
+        
         self.imageToUpload.image = image;
         self.imagesToUpload.addObject(image);
         picker.dismissViewControllerAnimated(true, completion: nil)

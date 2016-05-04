@@ -75,6 +75,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             if let data = data {
                 if let image = UIImage(data: data) {
                     allpostingTableCell.propertyImageView.image = image;
+                    postingObject.imageProperty = image
                         }
             }
             }
@@ -92,14 +93,24 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         delete.backgroundColor = UIColor.lightGrayColor()
         
         let edit = UITableViewRowAction(style: .Normal, title: "Edit") { action, index in
-            let row = indexPath.row as Int;
-            let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
             
-            
+            self.performSegueWithIdentifier("PostAdViewController", sender: indexPath)
             
         }
         edit.backgroundColor = UIColor.orangeColor()
         
         return [delete, edit]
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "PostAdViewController"){
+            let indexPath = sender as! NSIndexPath
+            let row = indexPath.row as Int;
+            let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+            let destinationViewController : LandLordPostViewController = segue.destinationViewController as! LandLordPostViewController
+            destinationViewController.editInAction = true;
+            destinationViewController.placePost = postingObject;
+        }
+    }
+
 }
