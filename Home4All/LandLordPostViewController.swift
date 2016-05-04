@@ -35,6 +35,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     var availableNumberOfRooms = ["1","2","3", "4","5","6"];
     var availableNumberOfBaths = ["1","1.5","2", "2.5","3"];
     var currentTextField : UITextField = UITextField()
+    var allTextFields : NSMutableArray = NSMutableArray()
 
     var pickerDataSource : NSArray = NSArray()
     var placePost : PlacePost = PlacePost()
@@ -132,6 +133,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                     self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                         if succeeded {
                             NSLog("Object Uploaded")
+                            let title : NSString = "Successful"
+                            let message : NSString = "your post has been uploaded"
+                            self.emptyAllTextFileds()
+                            self.showAlert(title, message: message)
                             
                         } else {
                             NSLog("Error: \(error) \(error!.userInfo)")
@@ -140,6 +145,18 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                 }
             })
         }
+    }
+    
+    func emptyAllTextFileds() {
+        for textfield in self.allTextFields {
+            var tempTextField : UITextField;
+            tempTextField = textfield as! UITextField;
+            tempTextField.text = ""
+    }
+        self.imageToUpload.image = nil;
+        self.imagesToUpload = [];
+        self.thumbnailCollectionView.reloadData()
+        self.uploadImage.enabled = true;
     }
     
     @IBAction func selectPicturePressed(sender: AnyObject) {
@@ -178,6 +195,12 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     //MARK - TableViewDelegate
+
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // the cells you would like the actions to appear needs to be editable
+        return true
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -190,9 +213,11 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
          let postTableViewCell : PostTableViewCell = (tableView.dequeueReusableCellWithIdentifier("PostTableViewCell", forIndexPath: indexPath) as? PostTableViewCell)!
-
-            
+        
+//         let postTableViewCell : PostTableViewCell = PostTableViewCell(style:UITableViewCellStyle.Default , reuseIdentifier: "PostTableViewCell")
+//        
             let sectionData : NSMutableDictionary = self.tableViewData[indexPath.section] as! NSMutableDictionary
             let allKeys : NSArray = sectionData.allKeys as NSArray
             let keyForSection : NSString = allKeys[0] as! NSString
@@ -250,10 +275,21 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-    }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        var alreadyPresented = false;
+
+        for textFieldObj in self.allTextFields {
+            if(textFieldObj.tag == textField.tag) {
+                alreadyPresented = true;
+                break;
+            }
+        }
+        if alreadyPresented == false {
+            self.allTextFields.addObject(textField);
+        }
+        
+        self.allTextFields.addObject(textField);
         if textField.tag == TextFieldTag.TextFieldTypeHouse.rawValue {
             self.propertyPickerView.hidden = false
             self.propertyPickerView.becomeFirstResponder()
@@ -351,13 +387,15 @@ extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigat
         self.imagesToUpload.addObject(image);
         picker.dismissViewControllerAnimated(true, completion: nil)
         if(self.imagesToUpload.count == 1 ) {
-            showAlert()
+            let title : NSString = "Limit Reached";
+            let message : NSString = "You can not add more photos";
+            showAlert(title, message: message)
             self.uploadImage.enabled = false
         }
 }
     
-     func showAlert() {
-        let alertController = UIAlertController(title: "Limit Reached", message: "You can not add more photos", preferredStyle: .Alert)
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)

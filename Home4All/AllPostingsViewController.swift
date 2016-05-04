@@ -80,4 +80,26 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         return allpostingTableCell;
         }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // you need to implement this method too or you can't swipe to display the actions
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+        }
+        delete.backgroundColor = UIColor.lightGrayColor()
+        
+        let edit = UITableViewRowAction(style: .Normal, title: "Edit") { action, index in
+            let row = indexPath.row as Int;
+            let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+            
+            
+            
+        }
+        edit.backgroundColor = UIColor.orangeColor()
+        
+        return [delete, edit]
+    }
 }
