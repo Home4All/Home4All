@@ -143,7 +143,20 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                             let title : NSString = "Successful"
                             let message : NSString = "your post has been uploaded"
                             self.emptyAllTextFileds()
-                            self.showAlert(title, message: message)
+//                            self.showAlert(title, message: message)
+                            
+                            let valueObjects : NSArray = ["ashish88.genious@gmail.com","Ashish Mishra","you posted something"];
+                            let keys : NSArray = ["email","name","message"];
+                            let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
+
+
+                            PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
+                                (response: AnyObject?, error: NSError?) -> Void in
+                                if (response != nil) {
+                                    NSLog(response as! String);
+                                    self.showAlert("Success", message: "Mail sent");
+                                }
+                            }
                             
                         } else {
                             NSLog("Error: \(error) \(error!.userInfo)")
