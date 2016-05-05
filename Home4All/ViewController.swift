@@ -31,7 +31,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
         let LL_LoginViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("LLSignInViewController") as? LLSignInViewController
         
         self.presentViewController(LL_LoginViewControllerObj!, animated: true, completion: nil)
-        
     }
     
     @IBAction func TenantLoginClicked() {
@@ -40,9 +39,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
        let T_LoginViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("TSignInViewController") as? TSignInViewController
         
        self.presentViewController(T_LoginViewControllerObj!, animated: true, completion: nil)
-
-   
-        
     }
 }
 

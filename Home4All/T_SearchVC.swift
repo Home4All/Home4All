@@ -34,10 +34,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
-        
-        
-        
-    
     }
     
     override func didReceiveMemoryWarning() {
@@ -154,7 +150,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         let minTemp:Int? = Int(minPrice.text!)
         let maxTemp:Int? = Int(maxPrice.text!)
         var minValue = -1
-        var maxValue = 10000000000
+        var maxValue = 1000
         
         
         if minTemp != nil {

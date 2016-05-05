@@ -38,7 +38,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         query.whereKey("postedby", equalTo: username)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             let pfObjects : NSArray = objects!;
-            if pfObjects.count > 0 && error == nil {
+            if pfObjects.count >= 0 && error == nil {
                 NSLog("Successfully retrieved: \(objects)")
             self.allPostings = objects!;
             self.allpostingsTableView.reloadData()
@@ -89,6 +89,8 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            
+            self.deleteCurrentpost(indexPath)
         }
         delete.backgroundColor = UIColor.lightGrayColor()
         
@@ -100,6 +102,25 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         edit.backgroundColor = UIColor.orangeColor()
         
         return [delete, edit]
+    }
+    
+    func deleteCurrentpost(indexPath : NSIndexPath) {
+        let row = indexPath.row as Int;
+        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+        postingObject.deleteInBackgroundWithBlock { (success, errors) in
+            if(success){
+                self.showAlert("Successful", message: "Posting Deleted.")
+                self.retrieveAllPostings()
+            }
+        }
+    }
+    
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
