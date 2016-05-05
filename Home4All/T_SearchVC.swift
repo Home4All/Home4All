@@ -20,7 +20,9 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     
     var cityArray:[String] = [String]()
-    
+    var streetArray:[String] = [String]()
+    var priceArray:[Int] = [Int]()
+    var imageArray:[UIImage] = [UIImage]()
     
     
     
@@ -209,8 +211,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             (objects: [PFObject]?, error: NSError?) -> Void in
         
             
-            if error == nil{
-                
+            if error != nil{
+                print(error)
                 
                 
             }else{
@@ -219,14 +221,37 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             
             print(objects)
             self.cityArray = [String]()
+            self.streetArray = [String]()
+            self.priceArray = [Int]()
+            self.imageArray = [UIImage]()
             
-            for city in objects!{
-                let cityText:String! = (city as PFObject)["city"] as? String
+            for object in objects!{
+                let cityText:String! = (object as PFObject)["city"] as? String
+                let streetText:String! = (object as PFObject)["street"] as? String
+                let priceText:Int! = (object as PFObject)["price"] as? Int
+                let imageText:UIImage! = (object as PFObject)["image"] as? UIImage
             
                 if cityText != nil{
                     print("City is \(cityText)")
                     self.cityArray.append(cityText!)
                 }
+                
+                if streetText != nil{
+                    print("Street is \(streetText)")
+                    self.streetArray.append(streetText!)
+                }
+                
+                if priceText != nil{
+                    print("Price is \(priceText)")
+                    self.priceArray.append(priceText!)
+                }
+                
+                if imageText != nil{
+                    print("Image is \(imageText)")
+                    self.imageArray.append(imageText!)
+                }
+                
+                
             }
             
             }
