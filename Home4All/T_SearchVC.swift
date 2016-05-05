@@ -19,6 +19,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var maxPrice: UITextField!
     
     
+    var cityArray:[String] = [String]()
+    
+    
+    
     
     let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
@@ -150,7 +154,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         let minTemp:Int? = Int(minPrice.text!)
         let maxTemp:Int? = Int(maxPrice.text!)
         var minValue = -1
-        var maxValue = 1000
+        var maxValue = 10000000
         
         
         if minTemp != nil {
@@ -200,13 +204,41 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         query.whereKey("price", lessThan: maxValue)
         query.whereKey("housetype", containsString: apartmentTypeValue)
 //
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if error == nil {
-                print("Successfully retrieved: \(objects)")
-            } else {
-                print("Error: ")
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+        
+            
+            if error == nil{
+                
+                
+                
+            }else{
+                
+            
+            
+            print(objects)
+            self.cityArray = [String]()
+            
+            for city in objects!{
+                let cityText:String! = (city as PFObject)["city"] as? String
+            
+                if cityText != nil{
+                    print("City is \(cityText)")
+                    self.cityArray.append(cityText!)
+                }
             }
-        }
+            
+            }
+            
+            
+            
+        
     }
+
+    
+    
+    }
+
 }
 
