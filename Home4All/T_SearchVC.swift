@@ -195,7 +195,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print("Price Range: \(minValue+1)-\(maxValue-1)")
         print("Property Type: \(apartmentTypeValue)")
 
-        let query = PFQuery(className: "PlacePost")
+//        let query = PFQuery(className: "PlacePost")
+        
+        let query = PlacePost.query()! as PFQuery
+
         // 2
         query.whereKey("title", containsString : keywordValue)
         //query.whereKey("description", containsString : keywordValue)
@@ -208,7 +211,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //
         
         query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
+            (objects, error) -> Void in
         
             
             if error != nil{
@@ -226,10 +229,27 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             self.imageArray = [UIImage]()
             
             for object in objects!{
-                let cityText:String! = (object as PFObject)["city"] as? String
-                let streetText:String! = (object as PFObject)["street"] as? String
-                let priceText:Int! = (object as PFObject)["price"] as? Int
-                let imageText:UIImage! = (object as PFObject)["image"] as? UIImage
+                var placePost : PlacePost = object as! PlacePost;
+                let cityText:String! = placePost.objectForKey("city") as? String
+                let streetText:String! = placePost.objectForKey("street") as? String
+                let priceText:Int! = placePost.objectForKey("price") as? Int
+                let x: PFFile=placePost.objectForKey("image") as! PFFile
+//                let imageText:UIImage! = (object as! PlacePost)["image"] as! UIImage
+                
+                
+                (object as! PlacePost).image.getDataInBackgroundWithBlock { (data, error) in
+                    if let data = data {
+                        if let image = UIImage(data: data) {
+//                            allpostingTableCell.propertyImageView.image = image;
+                           print("City is \(image)")
+                            //postingObject.imageProperty = image
+
+                        }
+                    }
+                }
+                
+                
+                
             
                 if cityText != nil{
                     print("City is \(cityText)")
@@ -245,11 +265,11 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     print("Price is \(priceText)")
                     self.priceArray.append(priceText!)
                 }
-                
-                if imageText != nil{
-                    print("Image is \(imageText)")
-                    self.imageArray.append(imageText!)
-                }
+//                
+//                if x != nil{
+//                    print("Image is \(x)")
+//                 //   self.imageArray.append(x!)
+//                }
                 
                 
             }
