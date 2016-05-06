@@ -156,7 +156,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         let minTemp:Int? = Int(minPrice.text!)
         let maxTemp:Int? = Int(maxPrice.text!)
         var minValue = -1
-        var maxValue = 10000000
+        var maxValue = NSIntegerMax
         
         
         if minTemp != nil {
@@ -176,7 +176,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         if zipCodeValue ==  nil{
              zipCodeMinValue = -1
-             zipCodeMaxValue = 1000000
+             zipCodeMaxValue = NSIntegerMax
         } else {
             zipCodeMinValue = (zipCodeValue!-1)
             zipCodeMaxValue = (zipCodeValue!+1)
