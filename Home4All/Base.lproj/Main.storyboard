@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -585,6 +585,7 @@
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchProperty:" destination="lpN-ti-IAD" eventType="touchUpInside" id="htM-gG-nja"/>
+                                    <segue destination="isi-4h-b9k" kind="show" id="arx-bU-2th"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4VD-JR-Upg">
@@ -665,23 +666,80 @@
             </objects>
             <point key="canvasLocation" x="3372" y="-2827"/>
         </scene>
-        <!--Tenant Search Detail-->
-        <scene sceneID="J56-1O-0cU">
+        <!--Tenant Response Master View Controller-->
+        <scene sceneID="wT0-cN-CdY">
             <objects>
-                <viewController title="Tenant Search Detail" id="bwx-kJ-jzg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TenantResponseMasterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="isi-4h-b9k" customClass="TenantResponseMasterViewController" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rRn-Ag-6II"/>
-                        <viewControllerLayoutGuide type="bottom" id="jBu-aV-voK"/>
+                        <viewControllerLayoutGuide type="top" id="tuE-YS-d76"/>
+                        <viewControllerLayoutGuide type="bottom" id="zx4-wy-1P8"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="uBc-5J-Xcm">
+                    <view key="view" contentMode="scaleToFill" id="uTF-d3-Ba5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5el-Hl-gSv">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="137" id="jB7-So-AKJ" customClass="CustomCell" customModule="Home4All" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="137"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jB7-So-AKJ" id="cDN-Yj-hMf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="136.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIV-5k-e4I">
+                                                    <rect key="frame" x="311" y="90" width="39" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-Kd-9Jm">
+                                                    <rect key="frame" x="311" y="49" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Street Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SL2-1b-hmO">
+                                                    <rect key="frame" x="311" y="8" width="96" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dIV-5k-e4I" firstAttribute="top" secondItem="qcF-Kd-9Jm" secondAttribute="bottom" constant="20" id="29L-iW-Zx6"/>
+                                                <constraint firstItem="qcF-Kd-9Jm" firstAttribute="leading" secondItem="dIV-5k-e4I" secondAttribute="leading" id="3em-pq-dzJ"/>
+                                                <constraint firstItem="SL2-1b-hmO" firstAttribute="top" secondItem="cDN-Yj-hMf" secondAttribute="topMargin" id="68Q-DW-dlG"/>
+                                                <constraint firstItem="qcF-Kd-9Jm" firstAttribute="top" secondItem="SL2-1b-hmO" secondAttribute="bottom" constant="20" id="F9W-34-FsC"/>
+                                                <constraint firstItem="SL2-1b-hmO" firstAttribute="leading" secondItem="qcF-Kd-9Jm" secondAttribute="leading" id="ZLc-zo-GLg"/>
+                                                <constraint firstAttribute="trailing" secondItem="SL2-1b-hmO" secondAttribute="trailing" constant="193" id="jgo-34-gxD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="city" destination="qcF-Kd-9Jm" id="fj9-fj-AXu"/>
+                                            <outlet property="price" destination="dIV-5k-e4I" id="1AN-FL-FPT"/>
+                                            <outlet property="street" destination="SL2-1b-hmO" id="fys-4X-PRf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="isi-4h-b9k" id="W2i-wb-vhe"/>
+                                    <outlet property="delegate" destination="isi-4h-b9k" id="b9J-St-3r1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="5el-Hl-gSv" id="aZ3-jF-XGZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="moc-Z4-ptZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tgv-LN-ZmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4924" y="-2498"/>
+            <point key="canvasLocation" x="4164" y="-2827"/>
         </scene>
         <!--Tenant Search Master Table-->
         <scene sceneID="Kym-3z-Xga">
@@ -693,7 +751,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fIy-Rl-BOi">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fIy-Rl-BOi" id="11w-pU-PeX">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -710,36 +768,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3DF-iM-RkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5744" y="-3158"/>
-        </scene>
-        <!--Tenant Search Master Navigation-->
-        <scene sceneID="yId-aE-05e">
-            <objects>
-                <navigationController title="Tenant Search Master Navigation" id="UTB-OK-Znr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O7K-4r-IWD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="NWW-kb-z7U" kind="relationship" relationship="rootViewController" id="xu6-zX-Phl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8H5-pg-KIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4924" y="-3159"/>
-        </scene>
-        <!--Tenant Search SplitView Controller-->
-        <scene sceneID="EDo-nT-amc">
-            <objects>
-                <splitViewController title="Tenant Search SplitView Controller" id="lqY-2E-UKU" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="UTB-OK-Znr" kind="relationship" relationship="masterViewController" id="hjG-0z-u4M"/>
-                        <segue destination="bwx-kJ-jzg" kind="relationship" relationship="detailViewController" id="Am9-3G-g39"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fu2-ac-OfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4100" y="-2827"/>
+            <point key="canvasLocation" x="6556" y="-3158"/>
         </scene>
         <!--Search Favourites-->
         <scene sceneID="edx-34-5nf">
