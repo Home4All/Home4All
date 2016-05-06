@@ -127,7 +127,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     // Post property
      @IBAction func postProperty(sender: AnyObject) {
+        let userid = NSUserDefaults.standardUserDefaults().objectForKey("userid") as! NSString;
         let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
+        let emailid = NSUserDefaults.standardUserDefaults().objectForKey("emailid") as! NSString;
+
         if(self.imageToUpload.image != nil){
             
             let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
@@ -137,24 +140,30 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                 if((error == nil)){
                     self.placePost.setObject(username, forKey: "postedby")
                     self.placePost.setObject(file!, forKey: "image")
+                    
                     self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
                         if succeeded {
                             NSLog("Object Uploaded")
-                            let title : NSString = "Successful"
-                            let message : NSString = "your post has been uploaded"
+//                            let title : NSString = "Successful"
+//                            let message : NSString = "your post has been uploaded"
                             self.emptyAllTextFileds()
 //                            self.showAlert(title, message: message)
                             
-                            let valueObjects : NSArray = ["ashish88.genious@gmail.com","Ashish Mishra","you posted something"];
+                            let place = self.placePost.valueForKey("city")!
+                            let price = self.placePost.valueForKey("rent")!
+
+                            
+                            let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                            
+                            let valueObjects : NSArray = [emailid,username,postInfo];
                             let keys : NSArray = ["email","name","message"];
                             let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
-
 
                             PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
                                 (response: AnyObject?, error: NSError?) -> Void in
                                 if (response != nil) {
                                     NSLog(response as! String);
-                                    self.showAlert("Success", message: "Mail sent");
+                                    self.showAlert("Success", message: "Post saved and Mail sent");
                                 }
                             }
                             

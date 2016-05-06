@@ -32,7 +32,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func retrieveAllPostings() {
         
-        let username : NSString = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
+        let username : NSString = NSUserDefaults.standardUserDefaults().objectForKey("userid") as! NSString;
         
         let query = PlacePost.query()! as PFQuery
         query.whereKey("postedby", equalTo: username)

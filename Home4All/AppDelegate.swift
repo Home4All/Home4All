@@ -41,25 +41,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             /* Perform any operations on signed in user here.
             let userId = user.userID                  // For client-side use only!
             let idToken = user.authentication.idToken // Safe to send to the server
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
+            
             */
             let email = user.profile.email
-            let fullName = user.userID
-            print("User Name \(fullName)")
+            let userid = user.userID
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let fullname = givenName + familyName
             
             let query = PFQuery(className: "AppUser")
-            query.whereKey("username", equalTo: fullName)
+            query.whereKey("userid", equalTo: userid)
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
                 let pfObjects : NSArray = objects!;
                 if pfObjects.count > 0 && error == nil {
                     NSLog("Successfully retrieved: \(objects)")
                 } else {
-                    self.registerUser(fullName,email: email);
+                    self.registerUser(fullname,email: email, userid:userid );
                 }
             }
             
-            NSUserDefaults.standardUserDefaults().setValue(fullName, forKey: "username");
+            NSUserDefaults.standardUserDefaults().setValue(userid, forKey: "userid");
+            NSUserDefaults.standardUserDefaults().setValue(fullname, forKey: "username");
+            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "emailid");
             
             let userType : String = NSUserDefaults.standardUserDefaults().valueForKey("usertype") as! String
             
@@ -86,10 +89,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
-    func registerUser(userName : NSString, email : NSString) {
+    func registerUser(userName : NSString, email : NSString, userid: NSString) {
         let user = PFObject(className: "AppUser")
-        user.setObject(userName, forKey: "username")
+        user.setObject(userid, forKey: "userid")
         user.setObject(email, forKey: "emailid")
+        user.setObject(userName, forKey: "username")
         user.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
                 NSLog("Object Uploaded")
