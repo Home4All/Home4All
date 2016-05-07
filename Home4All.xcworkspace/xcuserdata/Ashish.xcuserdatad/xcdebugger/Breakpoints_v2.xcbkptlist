@@ -121,8 +121,8 @@
                   symbolName = "Home4All.LandLordPostViewController.postProperty (Swift.AnyObject) -&gt; ()"
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ashish/Documents/Home4All/Home4All/LandLordPostViewController.swift"
-                  timestampString = "484283829.179587"
+                  urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/LandLordPostViewController.swift"
+                  timestampString = "484316913.763992"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
@@ -136,8 +136,8 @@
                   symbolName = "Home4All.LandLordPostViewController.(postProperty (Swift.AnyObject) -&gt; ()).(closure #1)"
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ashish/Documents/Home4All/Home4All/LandLordPostViewController.swift"
-                  timestampString = "484283829.179692"
+                  urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/LandLordPostViewController.swift"
+                  timestampString = "484316913.764105"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
@@ -273,6 +273,54 @@
             endingLineNumber = "430"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/T_SearchVC.swift"
+            timestampString = "484316895.208781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.T_SearchVC.locationManager (__ObjC.CLLocationManager, didUpdateLocations : Swift.Array&lt;__ObjC.CLLocation&gt;) -&gt; ()"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
+                  timestampString = "484316913.770663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.T_SearchVC.(locationManager (__ObjC.CLLocationManager, didUpdateLocations : Swift.Array&lt;__ObjC.CLLocation&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
+                  timestampString = "484316913.77085"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

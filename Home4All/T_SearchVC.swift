@@ -60,7 +60,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        self.locationManager.stopUpdatingLocation()
+//        self.locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
             
@@ -216,7 +216,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                                         if let image = UIImage(data: data) {
                                             //                            allpostingTableCell.propertyImageView.image = image;
                                             print("image  check is is \(image)")
-                                            //postingObject.imageProperty = image
+                                            placePost.imageProperty = image
                                             cell.photo.image=image
                                         }
                                     }
@@ -236,10 +236,22 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 print("Price is \(priceText)")
                 cell.price.text="\(priceText)"
         }
-        
         return cell
     }
     
-
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("pushDetailViewController", sender: indexPath)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "pushDetailViewController"){
+            let indexPath = sender as! NSIndexPath
+            let row = indexPath.row as Int;
+            let postingObject : PlacePost = self.searchResults[row] as! PlacePost;
+            let destinationViewController : TenantPostDetailViewController = segue.destinationViewController as! TenantPostDetailViewController
+            destinationViewController.placePost = postingObject;
+        }
+    }
+    
 }
 
