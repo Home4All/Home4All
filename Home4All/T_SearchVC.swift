@@ -37,7 +37,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     var cityArray:[String] = [String]()
     var streetArray:[String] = [String]()
-    var priceArray:[Int] = [Int]()
+    var priceArray :NSMutableArray? = NSMutableArray()
     var imageArray:[UIImage] = [UIImage]()
     
     
@@ -56,13 +56,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
-        cityArray.append("San Jose")
-        streetArray.append("190 Ryland Street")
-        priceArray.append(1000)
-
-        cityArray.append("San Jose")
-        streetArray.append("1 Ryland Street")
-        priceArray.append(2000)
+        
         
         
     }
@@ -346,7 +340,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         // 2
         query.whereKey("city", containsString: cityValue!)
-        query.whereKey("zipcode", equalTo: zipCodeValue!)
+        query.whereKey("zip", equalTo: zipCodeValue!)
         
         //
         
@@ -365,7 +359,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 print(objects)
                 self.cityArray = [String]()
                 self.streetArray = [String]()
-                self.priceArray = [Int]()
+//                self.priceArray = [Int]()
                 self.imageArray = [UIImage]()
                 
                 for object in objects!{
@@ -403,7 +397,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     
                     if priceText != nil{
                         print("Price is \(priceText)")
-                        self.priceArray.append(priceText!)
+                        self.priceArray?.addObject(priceText!)
                     }
                     //                
                     //                if x != nil{
@@ -413,6 +407,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     
                     
                 }
+            self.tableView.reloadData()
                 
             }
             
@@ -445,7 +440,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         cell.street.text=streetArray[indexPath.row]
         cell.city.text=cityArray[indexPath.row]
-        cell.price.text = String(priceArray[indexPath.row])
+//        cell.price.text = priceArray[indexPath.row] as? String
         print(cell.price.text!)
         print(cell.street.text!)
         return cell
