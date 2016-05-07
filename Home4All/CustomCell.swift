@@ -16,6 +16,7 @@ class CustomCell: UITableViewCell {
   
     @IBOutlet weak var city: UILabel!
   
+    @IBOutlet weak var photo: UIImageView!
   
     @IBOutlet weak var price: UILabel!
   

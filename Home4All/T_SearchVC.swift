@@ -26,11 +26,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var zipCodeValue:Int? = 0
     
     
-  
-    
-    
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -39,6 +34,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var streetArray:[String] = [String]()
     var priceArray :NSMutableArray? = NSMutableArray()
     var imageArray:[UIImage] = [UIImage]()
+    
+    var searchResults : NSArray = NSArray()
     
     
     
@@ -49,17 +46,12 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
-//        GIDSignIn.sharedInstance().uiDelegate = self
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        
-        
-        
-        
-    }
+}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,9 +93,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print(placemark.postalCode)
         print(placemark.administrativeArea)
         print(placemark.country)
-        
-        //city.text = placemark.locality
-        //zipCode.text = placemark.postalCode
         
         cityValue = placemark.locality
         zipCodeValue = Int(placemark.postalCode!)
@@ -167,174 +156,11 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         apartmentTypeValue = apartmentType[row]
         
     }
-    
-    /*
-    @IBAction func searchProperty(sender: AnyObject) {
-    
-// Setting up Keywords & City for search
-        
-        let keywordValue:String = (keyword.text?.lowercaseString)!
-        let cityValue:String = (city.text?.lowercaseString)!
-        
-        
-// Setting up Price Range Values for search
-        
-        let minTemp:Int? = Int(minPrice.text!)
-        let maxTemp:Int? = Int(maxPrice.text!)
-        var minValue = -1
-        var maxValue = NSIntegerMax
-        
-        
-        if minTemp != nil {
-            minValue = (minTemp! - 1)
-        }
-        if maxTemp != nil {
-            maxValue = (maxTemp! + 1)
-        }
-        
-        
-// Setting ZipCode Values for search
-        
-        let zipCodeValue:Int? = Int(zipCode.text!)
-        var zipCodeMinValue:Int
-        var zipCodeMaxValue:Int
-        
-        
-        if zipCodeValue ==  nil{
-             zipCodeMinValue = -1
-             zipCodeMaxValue = NSIntegerMax
-        } else {
-            zipCodeMinValue = (zipCodeValue!-1)
-            zipCodeMaxValue = (zipCodeValue!+1)
-        }
-        
-// Setting up Apartment Type for search
-        
-        if apartmentTypeValue == "Any"{
-            apartmentTypeValue = ""
-        }
-        
-        
-        print("Keyword: \(keywordValue)")
-        print("City: \(cityValue)")
-        print("ZipCode: \(zipCodeMinValue+1)-\(zipCodeMaxValue-1)")
-        print("Price Range: \(minValue+1)-\(maxValue-1)")
-        print("Property Type: \(apartmentTypeValue)")
 
-//        let query = PFQuery(className: "PlacePost")
-        
-        let query = PlacePost.query()! as PFQuery
-
-        // 2
-        query.whereKey("title", containsString : keywordValue)
-        //query.whereKey("description", containsString : keywordValue)
-        query.whereKey("city", containsString: cityValue)
-        query.whereKey("zipcode", greaterThan: zipCodeMinValue)
-        query.whereKey("zipcode", lessThan: zipCodeMaxValue)
-        query.whereKey("price", greaterThan: minValue)
-        query.whereKey("price", lessThan: maxValue)
-        query.whereKey("housetype", containsString: apartmentTypeValue)
-//
-        
-        query.findObjectsInBackgroundWithBlock {
-            (objects, error) -> Void in
-        
-            
-                if error != nil{
-                print(error)
-                
-                
-            }else{
-                
-            
-            
-            print(objects)
-            self.cityArray = [String]()
-            self.streetArray = [String]()
-            self.priceArray = [Int]()
-            self.imageArray = [UIImage]()
-            
-            for object in objects!{
-                var placePost : PlacePost = object as! PlacePost;
-                let cityText:String! = placePost.objectForKey("city") as? String
-                let streetText:String! = placePost.objectForKey("street") as? String
-                let priceText:Int! = placePost.objectForKey("price") as? Int
-                let x: PFFile=placePost.objectForKey("image") as! PFFile
-//                let imageText:UIImage! = (object as! PlacePost)["image"] as! UIImage
-                
-                
-                (object as! PlacePost).image.getDataInBackgroundWithBlock { (data, error) in
-                    if let data = data {
-                        if let image = UIImage(data: data) {
-//                            allpostingTableCell.propertyImageView.image = image;
-                           print("City is \(image)")
-                            //postingObject.imageProperty = image
-
-                        }
-                    }
-                }
-                
-                
-                
-            
-                if cityText != nil{
-                    print("City is \(cityText)")
-                    self.cityArray.append(cityText!)
-                }
-                
-                if streetText != nil{
-                    print("Street is \(streetText)")
-                    self.streetArray.append(streetText!)
-                }
-                
-                if priceText != nil{
-                    print("Price is \(priceText)")
-                    self.priceArray.append(priceText!)
-                }
-//                
-//                if x != nil{
-//                    print("Image is \(x)")
-//                 //   self.imageArray.append(x!)
-//                }
-                
-                
-            }
-            
-            }
-            
-        
-    }
-
-        
-        
-    
-    
-    }
- 
- */
-    
-  
-    
      func defaultSearch() {
-        
-        // Setting up Keywords & City for search
-        
-       
-        
-        // Setting up Price Range Values for search
-        
-        
-        
-        // Setting ZipCode Values for search
-        
-        
         
         print("City: \(cityValue!)")
         print("ZipCode: \(zipCodeValue!)")
-        
-        
-        
-      
         
         let query = PlacePost.query()! as PFQuery
         
@@ -411,43 +237,60 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 
             }
             
-            
         }
-        
-        
-        
-        
         
     }
     
     
-    
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return streetArray.count
+        return searchResults.count
     }
 
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
-        
-        
         let cell=self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
         
-        //       cell.photo.image=images[indexPath.row]
         
-        cell.street.text=streetArray[indexPath.row]
-        cell.city.text=cityArray[indexPath.row]
-//        cell.price.text = priceArray[indexPath.row] as? String
-        print(cell.price.text!)
-        print(cell.street.text!)
-        return cell
-    }
-    
+            let placePost : PlacePost = self.searchResults[indexPath.row] as! PlacePost;
+            let cityText:String! = placePost.objectForKey("city") as? String
+            let streetText:String! = placePost.objectForKey("street") as? String
+            let priceText:Int! = placePost.objectForKey("rent") as? Int
 
     
+                                placePost.image.getDataInBackgroundWithBlock { (data, error) in
+                                    
+                                    if((error) != nil){
+                                        NSLog((error?.description)!);
+                                    }
+                                    if let data = data {
+                                        if let image = UIImage(data: data) {
+                                            //                            allpostingTableCell.propertyImageView.image = image;
+                                            print("image  check is is \(image)")
+                                            //postingObject.imageProperty = image
+                                            cell.photo.image=image
+                                        }
+                                    }
+                                }
+        
+            if cityText != nil{
+                print("City is \(cityText)")
+                cell.city.text=cityText
+            }
+        
+        
+            if streetText != nil{
+                cell.street.text=streetText
+            }
+        
+            if priceText != nil{
+                print("Price is \(priceText)")
+                cell.price.text="\(priceText)"
+        }
+        
+        return cell
+    }
     
 
 }
