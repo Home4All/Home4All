@@ -149,7 +149,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 //                            self.showAlert(title, message: message)
                             
                             let place = self.placePost.valueForKey("city") as! NSString
-                            let price = self.placePost.valueForKey("rent") as! NSInteger
+                            let price = self.placePost.valueForKey("rent") as! NSNumber
 
                             
                             let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
