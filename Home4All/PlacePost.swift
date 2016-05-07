@@ -25,12 +25,12 @@ class PlacePost: PFObject, PFSubclassing {
     @NSManaged var postedby: NSString
     @NSManaged var cityName: NSString
     @NSManaged var streetName: NSString
-    @NSManaged var zipcode: NSString
+    @NSManaged var zipcode: NSNumber
     @NSManaged var state: NSString
-    @NSManaged var noOfRooms: NSString
-    @NSManaged var noOfBaths: NSString
+    @NSManaged var noOfRooms: NSNumber
+    @NSManaged var noOfBaths: NSNumber
     @NSManaged var area: NSString
-    @NSManaged var rent: NSString
+    @NSManaged var rent: NSNumber
     @NSManaged var contactInfo: NSString
     
     var imageProperty : UIImage = UIImage()
