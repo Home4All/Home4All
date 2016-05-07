@@ -180,7 +180,59 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 
             }else{
                 
-            self.searchResults = objects!;
+                
+                
+                print(objects)
+                self.cityArray = [String]()
+                self.streetArray = [String]()
+//                self.priceArray = [Int]()
+                self.imageArray = [UIImage]()
+                
+                for object in objects!{
+                    var placePost : PlacePost = object as! PlacePost;
+                    let cityText:String! = placePost.objectForKey("city") as? String
+                    let streetText:String! = placePost.objectForKey("street") as? String
+                    let priceText:Int! = placePost.objectForKey("price") as? Int
+           //         let x: PFFile=placePost.objectForKey("image") as! PFFile
+                    //                let imageText:UIImage! = (object as! PlacePost)["image"] as! UIImage
+                    
+                    
+                    (object as! PlacePost).image.getDataInBackgroundWithBlock { (data, error) in
+                        if let data = data {
+                            if let image = UIImage(data: data) {
+                                //                            allpostingTableCell.propertyImageView.image = image;
+                                print("City is \(image)")
+                                //postingObject.imageProperty = image
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    if cityText != nil{
+                        print("City is \(cityText)")
+                        self.cityArray.append(cityText!)
+                    }
+                    
+                    if streetText != nil{
+                        print("Street is \(streetText)")
+                        self.streetArray.append(streetText!)
+                    }
+                    
+                    if priceText != nil{
+                        print("Price is \(priceText)")
+                        self.priceArray?.addObject(priceText!)
+                    }
+                    //                
+                    //                if x != nil{
+                    //                    print("Image is \(x)")
+                    //                 //   self.imageArray.append(x!)
+                    //                }
+                    
+                    
+                }
             self.tableView.reloadData()
                 
             }
