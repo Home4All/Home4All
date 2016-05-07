@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TenantResponseMasterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TenantResponseMasterViewController: UITableView, UITableViewDataSource, UITableViewDelegate {
     
     
-    @IBOutlet weak var tableView: UITableView!
+    
 
     
     
@@ -23,16 +23,7 @@ class TenantResponseMasterViewController: UIViewController, UITableViewDataSourc
     var city = ["City1","City2","City3"]
     var price = [100,200,300]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("This is Tenant Response Master VC")
-        // Do any additional setup after loading the view.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

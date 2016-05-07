@@ -13,9 +13,12 @@ class CustomCell: UITableViewCell {
   
     @IBOutlet weak var street: UILabel!
   
+  
     @IBOutlet weak var city: UILabel!
   
+  
     @IBOutlet weak var price: UILabel!
+  
     
     
     

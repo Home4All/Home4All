@@ -27,7 +27,6 @@
 		75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E583631CC87E33008682D0 /* LandLordPostViewController.swift */; };
 		75E583661CC88D57008682D0 /* AllPostingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E583651CC88D57008682D0 /* AllPostingsViewController.swift */; };
 		75F597001CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */; };
-		D47CF4251CDC0FED006D194A /* TenantResponseMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CF4241CDC0FED006D194A /* TenantResponseMasterViewController.swift */; };
 		D47CF4271CDC1023006D194A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CF4261CDC1023006D194A /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostingsTableViewCell.swift; sourceTree = "<group>"; };
 		9118A40865A923609850A045 /* libPods-Home4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Home4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3917CDABA139206AA78A63 /* Pods-Home4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.release.xcconfig"; sourceTree = "<group>"; };
-		D47CF4241CDC0FED006D194A /* TenantResponseMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenantResponseMasterViewController.swift; sourceTree = "<group>"; };
 		D47CF4261CDC1023006D194A /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		E6418A5695982DBD9212C9B7 /* Pods-Home4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +109,6 @@
 				6A077D2A1CC487BD0097915C /* AppDelegate.swift */,
 				6A077D2C1CC487BD0097915C /* ViewController.swift */,
 				6A077D2E1CC487BD0097915C /* Main.storyboard */,
-				D47CF4241CDC0FED006D194A /* TenantResponseMasterViewController.swift */,
 				D47CF4261CDC1023006D194A /* CustomCell.swift */,
 				6A077D311CC487BD0097915C /* Assets.xcassets */,
 				6A077D331CC487BD0097915C /* LaunchScreen.storyboard */,
@@ -303,7 +300,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D47CF4251CDC0FED006D194A /* TenantResponseMasterViewController.swift in Sources */,
 				75F597001CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift in Sources */,
 				6A841ED51CC5E85F0077C14F /* LLSignInViewController.swift in Sources */,
 				6A2EBF9D1CCDB9DF00743491 /* LL_AfterSignInVC.swift in Sources */,
@@ -433,10 +429,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Home4All/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home4all.Home4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Home4All/Home4All-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -449,10 +448,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Home4All/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.home4all.Home4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Home4All/Home4All-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
