@@ -367,7 +367,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     let cityText:String! = placePost.objectForKey("city") as? String
                     let streetText:String! = placePost.objectForKey("street") as? String
                     let priceText:Int! = placePost.objectForKey("price") as? Int
-                    let x: PFFile=placePost.objectForKey("image") as! PFFile
+           //         let x: PFFile=placePost.objectForKey("image") as! PFFile
                     //                let imageText:UIImage! = (object as! PlacePost)["image"] as! UIImage
                     
                     
