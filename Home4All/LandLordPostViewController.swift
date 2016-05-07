@@ -19,7 +19,6 @@ enum TextFieldTag : NSInteger {
     case TextFieldTypeRent
     case TextFieldTypeContactInfo
     case TextFieldTypeZip
-
 };
 
 class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
@@ -138,7 +137,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             
             file?.saveInBackgroundWithBlock({ (success, error) in
                 if((error == nil)){
-                    self.placePost.setObject(username, forKey: "postedby")
+                    self.placePost.setObject(userid, forKey: "postedby")
                     self.placePost.setObject(file!, forKey: "image")
                     
                     self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
@@ -149,8 +148,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                             self.emptyAllTextFileds()
 //                            self.showAlert(title, message: message)
                             
-                            let place = self.placePost.valueForKey("city")!
-                            let price = self.placePost.valueForKey("rent")!
+                            let place = self.placePost.valueForKey("city") as! NSString
+                            let price = self.placePost.valueForKey("rent") as! NSInteger
 
                             
                             let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
@@ -386,10 +385,14 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        
+        let numberFormatter : NSNumberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         if (textField.tag == TextFieldTag.TextFieldTypeArea.rawValue){
             self.placePost.setObject(textField.text!, forKey: "area");
         }else if (textField.tag == TextFieldTag.TextFieldTypeRent.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "rent");
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.placePost.setObject(numberFromString!, forKey: "rent");
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
             self.placePost.setObject(textField.text!, forKey: "contact");
@@ -403,7 +406,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         }else if (textField.tag == TextFieldTag.TextFieldTypeStreet.rawValue){
             self.placePost.setObject(textField.text!, forKey: "street");
         }else if (textField.tag == TextFieldTag.TextFieldTypeZip.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "zip");
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.placePost.setObject(numberFromString!, forKey: "zip");
         }
     }
     
@@ -422,18 +426,22 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let numberFormatter : NSNumberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        
         if (pickerView.tag == TextFieldTag.TextFieldTagBath.rawValue) {
-            self.placePost.setObject(self.pickerDataSource[row], forKey: "noofbath");
+            let numberFromString = numberFormatter.numberFromString((self.pickerDataSource[row] as? String)!)
+            self.placePost.setObject(numberFromString!, forKey: "noofbath");
             currentTextField.text = self.pickerDataSource[row] as? String;
 
         }else if (pickerView.tag == TextFieldTag.TextFieldTagRoom.rawValue) {
-            self.placePost.setObject(self.pickerDataSource[row], forKey: "noofroom");
+            let numberFromString = numberFormatter.numberFromString((self.pickerDataSource[row] as? String)!)
+            self.placePost.setObject(numberFromString!, forKey: "noofroom");
             currentTextField.text = self.pickerDataSource[row] as? String;
 
         } else if (pickerView.tag == TextFieldTag.TextFieldTypeHouse.rawValue) {
             self.placePost.setObject(self.pickerDataSource[row], forKey: "housetype");
             currentTextField.text = self.pickerDataSource[row] as? String;
-
         }
         pickerView.hidden = true;
     }

@@ -62,9 +62,9 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         let row = indexPath.row as Int;
         let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
         let stateText = postingObject.objectForKey("state") as? String
-        let zipCode = postingObject.objectForKey("zip") as? String
+        let zipCode = postingObject.objectForKey("zip") as? NSInteger
         if stateText != nil && zipCode != nil {
-            allpostingTableCell.state.text = stateText! + zipCode!;
+            allpostingTableCell.state.text = stateText! + "\(zipCode!)";
         }
         let houseType = postingObject.objectForKey("housetype") as? String;
         if houseType != nil {
