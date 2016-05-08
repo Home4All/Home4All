@@ -22,6 +22,10 @@
 		6ABC5C861CC5F21600F85AE4 /* T_SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */; };
 		75048F4F1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */; };
 		75048F511CCF36D70040D9C9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */; };
+		750B75881CDF25350029A766 /* SavedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750B75871CDF25350029A766 /* SavedSearch.swift */; };
+		750B758A1CDF26890029A766 /* TenantSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750B75891CDF26890029A766 /* TenantSearchFilterOptionsViewController.swift */; };
+		750B758C1CDF42FD0029A766 /* TenantSavedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750B758B1CDF42FD0029A766 /* TenantSavedSearchViewController.swift */; };
+		750B758E1CDF45660029A766 /* SavedSearchCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750B758D1CDF45660029A766 /* SavedSearchCustomCell.swift */; };
 		7510FAC31CCB840700A0C05A /* PlacePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7510FAC21CCB840700A0C05A /* PlacePost.swift */; };
 		751E9CC31CCB6C9C00B95508 /* ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */; };
 		7536E5F21CDE0FFA00C842DE /* TenantPostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7536E5F11CDE0FFA00C842DE /* TenantPostDetailViewController.swift */; };
@@ -50,6 +54,10 @@
 		6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = T_SearchVC.swift; sourceTree = "<group>"; };
 		75048F4E1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUploadThumbnailCell.swift; sourceTree = "<group>"; };
 		75048F501CCF36D70040D9C9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		750B75871CDF25350029A766 /* SavedSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearch.swift; sourceTree = "<group>"; };
+		750B75891CDF26890029A766 /* TenantSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenantSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
+		750B758B1CDF42FD0029A766 /* TenantSavedSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenantSavedSearchViewController.swift; sourceTree = "<group>"; };
+		750B758D1CDF45660029A766 /* SavedSearchCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearchCustomCell.swift; sourceTree = "<group>"; };
 		7510FAC21CCB840700A0C05A /* PlacePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePost.swift; sourceTree = "<group>"; };
 		751E9CC21CCB6C9C00B95508 /* ImageUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadViewController.swift; sourceTree = "<group>"; };
 		7536E5F11CDE0FFA00C842DE /* TenantPostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenantPostDetailViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +136,9 @@
 				6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */,
 				7536E5F11CDE0FFA00C842DE /* TenantPostDetailViewController.swift */,
 				75F67B361CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift */,
+				750B75891CDF26890029A766 /* TenantSearchFilterOptionsViewController.swift */,
+				750B758B1CDF42FD0029A766 /* TenantSavedSearchViewController.swift */,
+				750B758D1CDF45660029A766 /* SavedSearchCustomCell.swift */,
 			);
 			name = TenantModule;
 			sourceTree = "<group>";
@@ -136,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				7510FAC21CCB840700A0C05A /* PlacePost.swift */,
+				750B75871CDF25350029A766 /* SavedSearch.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -311,10 +323,13 @@
 				6A841ED51CC5E85F0077C14F /* LLSignInViewController.swift in Sources */,
 				6A2EBF9D1CCDB9DF00743491 /* LL_AfterSignInVC.swift in Sources */,
 				751E9CC31CCB6C9C00B95508 /* ImageUploadViewController.swift in Sources */,
+				750B758E1CDF45660029A766 /* SavedSearchCustomCell.swift in Sources */,
 				6A841ED71CC5EAA80077C14F /* TSignInViewController.swift in Sources */,
 				D47CF4271CDC1023006D194A /* CustomCell.swift in Sources */,
 				75048F4F1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift in Sources */,
 				75F67B371CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift in Sources */,
+				750B758A1CDF26890029A766 /* TenantSearchFilterOptionsViewController.swift in Sources */,
+				750B75881CDF25350029A766 /* SavedSearch.swift in Sources */,
 				6A84AD801CD2B4C30063092E /* TTabBarController.swift in Sources */,
 				75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */,
 				75E583661CC88D57008682D0 /* AllPostingsViewController.swift in Sources */,
@@ -322,6 +337,7 @@
 				6A077D2D1CC487BD0097915C /* ViewController.swift in Sources */,
 				6ABC5C861CC5F21600F85AE4 /* T_SearchVC.swift in Sources */,
 				6A077D2B1CC487BD0097915C /* AppDelegate.swift in Sources */,
+				750B758C1CDF42FD0029A766 /* TenantSavedSearchViewController.swift in Sources */,
 				75048F511CCF36D70040D9C9 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
