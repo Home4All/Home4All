@@ -19,9 +19,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //    @IBOutlet weak var minPrice: UITextField!
 //    @IBOutlet weak var maxPrice: UITextField!
 //
-    
-    
-    
+        
     var cityValue:String? = ""
     var zipCodeValue:Int? = 0
     
@@ -81,8 +79,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 print("Error with the data.")
             }
         })
-     
-    
     }
     
     func displayLocationInfo(placemark: CLPlacemark)
@@ -147,8 +143,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
     }
     
-    
-    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         self.chosenApartmentType = apartmentType[row]
@@ -186,20 +180,16 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             }
             
         }
-        
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
 
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell=self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
-        
         
             let placePost : PlacePost = self.searchResults[indexPath.row] as! PlacePost;
             let cityText:String! = placePost.objectForKey("city") as? String
@@ -227,7 +217,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 cell.city.text=cityText
             }
         
-        
             if streetText != nil{
                 cell.street.text=streetText
             }
@@ -252,6 +241,5 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             destinationViewController.placePost = postingObject;
         }
     }
-    
 }
 
