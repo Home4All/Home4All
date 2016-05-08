@@ -28,6 +28,7 @@
 		75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E583631CC87E33008682D0 /* LandLordPostViewController.swift */; };
 		75E583661CC88D57008682D0 /* AllPostingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E583651CC88D57008682D0 /* AllPostingsViewController.swift */; };
 		75F597001CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */; };
+		75F67B371CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F67B361CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift */; };
 		D47CF4271CDC1023006D194A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CF4261CDC1023006D194A /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		75E583631CC87E33008682D0 /* LandLordPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandLordPostViewController.swift; sourceTree = "<group>"; };
 		75E583651CC88D57008682D0 /* AllPostingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostingsViewController.swift; sourceTree = "<group>"; };
 		75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostingsTableViewCell.swift; sourceTree = "<group>"; };
+		75F67B361CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TenantFavoriteSearchViewController.swift; sourceTree = "<group>"; };
 		9118A40865A923609850A045 /* libPods-Home4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Home4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3917CDABA139206AA78A63 /* Pods-Home4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.release.xcconfig"; sourceTree = "<group>"; };
 		D47CF4261CDC1023006D194A /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				6A841ED61CC5EAA80077C14F /* TSignInViewController.swift */,
 				6ABC5C851CC5F21600F85AE4 /* T_SearchVC.swift */,
 				7536E5F11CDE0FFA00C842DE /* TenantPostDetailViewController.swift */,
+				75F67B361CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift */,
 			);
 			name = TenantModule;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				6A841ED71CC5EAA80077C14F /* TSignInViewController.swift in Sources */,
 				D47CF4271CDC1023006D194A /* CustomCell.swift in Sources */,
 				75048F4F1CCE02810040D9C9 /* PhotoUploadThumbnailCell.swift in Sources */,
+				75F67B371CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift in Sources */,
 				6A84AD801CD2B4C30063092E /* TTabBarController.swift in Sources */,
 				75E583641CC87E33008682D0 /* LandLordPostViewController.swift in Sources */,
 				75E583661CC88D57008682D0 /* AllPostingsViewController.swift in Sources */,
