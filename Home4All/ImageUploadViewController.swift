@@ -20,28 +20,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-//    // MARK: - Actions
-//    @IBAction func selectPicturePressed(sender: AnyObject) {
-//        //Open a UIImagePickerController to select the picture
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self
-//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//        presentViewController(imagePicker, animated: true, completion: nil)
-//    }
-//    
-//    @IBAction func sendPressed(sender: AnyObject) {
-//
-//    }
-//    
-//    func saveWallPost(file: PFFile)
-//    {
-//}
-    
-    //MARK - CollectionView Delegate
+            }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
@@ -96,51 +75,43 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
             let file = PFFile(name: "image", data: pictureData!)
             imageFiles.addObject(file!)
         }
-        
-        
-        
-        
+                
         self.placePost.setObject(imageFiles.copy() as! NSArray,forKey: "images");
-                self.placePost.setObject(userid, forKey: "postedby")        
-                    self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                        if succeeded {
-                            NSLog("Object Uploaded")
-//                            self.emptyAllTextFileds()
-                            
-                            let place = self.placePost.valueForKey("city") as! NSString
-                            let price = self.placePost.valueForKey("rent") as! NSNumber
-                            
-                            
-                            let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
-                            
-                            let valueObjects : NSArray = [emailid,username,postInfo];
-                            let keys : NSArray = ["email","name","message"];
-                            let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
-                            
-                            PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
-                                (response: AnyObject?, error: NSError?) -> Void in
-                                if (response != nil) {
-                                    NSLog(response as! String);
-                                    self.showAlert("Success", message: "Post saved and Mail sent");
-                                }
-                            }
-                            
-                        } else {
-                            NSLog("Error: \(error) \(error!.userInfo)")
-                        }
+        self.placePost.setObject(userid, forKey: "postedby")
+        self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+            if succeeded {
+                NSLog("Object Uploaded")
+                //                            self.emptyAllTextFileds()
+                
+                let place = self.placePost.valueForKey("city") as! NSString
+                let price = self.placePost.valueForKey("rent") as! NSNumber
+                
+                
+                let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                
+                let valueObjects : NSArray = [emailid,username,postInfo];
+                let keys : NSArray = ["email","name","message"];
+                let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
+                
+                PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
+                    (response: AnyObject?, error: NSError?) -> Void in
+                    if (response != nil) {
+                        NSLog(response as! String);
+                        self.showAlert("Success", message: "Post saved and Mail sent");
                     }
                 }
+                
+            } else {
+                NSLog("Error: \(error) \(error!.userInfo)")
+            }
+        }
+    }
 }
 
 extension ImageUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        
-//        if self.imagesToUpload.count > 0 {
-//            self.imagesToUpload = []
-//        }
-        
-//        self.imageToUpload.image = image;
+
         self.imagesToUpload.addObject(image);
         self.imageCollectionView.reloadData()
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -148,7 +119,6 @@ extension ImageUploadViewController: UIImagePickerControllerDelegate, UINavigati
             let title : NSString = "Limit Reached";
             let message : NSString = "You can not add more photos";
             showAlert(title, message: message)
-//            self.uploadImage.enabled = false
         }
  
     }
