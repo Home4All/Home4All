@@ -16,9 +16,12 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.fetchSavedSearchResults()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.fetchSavedSearchResults()
     }
     
     func fetchSavedSearchResults() {

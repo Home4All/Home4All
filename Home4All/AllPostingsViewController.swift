@@ -72,15 +72,20 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         if houseType != nil {
               allpostingTableCell.propertyType.text = houseType;
         }
+        
+        if let images = postingObject.valueForKey("images") {
+            let imageFiles = images as! NSArray
+            let firstImageFile = imageFiles[0]
+            firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
+                if let data = data {
+                    if let image = UIImage(data: data) {
+                        allpostingTableCell.propertyImageView.image = image;
+                        postingObject.imageProperty = image
+                    }
+                }
+            })
+        }
       
-        postingObject.image.getDataInBackgroundWithBlock { (data, error) in
-            if let data = data {
-                if let image = UIImage(data: data) {
-                    allpostingTableCell.propertyImageView.image = image;
-                    postingObject.imageProperty = image
-                        }
-            }
-            }
         return allpostingTableCell;
         }
     

@@ -23,14 +23,7 @@ class TenantSearchFilterOptionsViewController: UIViewController {
         savedSearch.setObject("San Francisco", forKey: "city")
         savedSearch.setObject(NSNumber(int:1000), forKey: "minrent")
         savedSearch.setObject(NSNumber(int:10000), forKey: "maxrent")
-        
-//        savedSearch.saveInBackgroundWithBlock { (success, error) in
-//            if(success){
-//                
-//            }
-//        }
-        
-        
+                
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
         let query = PFQuery(className: "AppUser")
         query.whereKey("userid", equalTo: userId!);

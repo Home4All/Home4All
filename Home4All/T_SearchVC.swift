@@ -196,21 +196,18 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             let streetText:String! = placePost.objectForKey("street") as? String
             let priceText:Int! = placePost.objectForKey("rent") as? Int
 
-    
-                                placePost.image.getDataInBackgroundWithBlock { (data, error) in
-                                    
-                                    if((error) != nil){
-                                        NSLog((error?.description)!);
-                                    }
-                                    if let data = data {
-                                        if let image = UIImage(data: data) {
-                                            //                            allpostingTableCell.propertyImageView.image = image;
-                                            print("image  check is is \(image)")
-                                            placePost.imageProperty = image
-                                            cell.photo.image=image
-                                        }
-                                    }
-                                }
+        if let images = placePost.valueForKey("images") {
+            let imageFiles = images as! NSArray
+            let firstImageFile = imageFiles[0]
+            firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
+                if let data = data {
+                    if let image = UIImage(data: data) {
+                        cell.photo.image=image
+                        placePost.imageProperty = image
+                    }
+                }
+            })
+        }
         
             if cityText != nil{
                 print("City is \(cityText)")

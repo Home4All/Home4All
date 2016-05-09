@@ -8,10 +8,7 @@
 
 import UIKit
 
-class TenantPostDetailViewController: UIViewController {
-
-    @IBOutlet weak var detailImageView: UIImageView!
-
+class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var contactLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -27,17 +24,38 @@ class TenantPostDetailViewController: UIViewController {
     @IBOutlet weak var areaLabel: UILabel!
     
     var placePost : PlacePost = PlacePost()
+    var imageFiles : NSArray = NSArray()
     
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var detailImageCollectionView: UICollectionView!
+    var imagesArray : NSMutableArray = NSMutableArray()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.retrieveImagesForCurrentPost()
         self.streetLabel.text = placePost.valueForKey("street") as? String
-        self.detailImageView.image = placePost.imageProperty
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    func retrieveImagesForCurrentPost() {
+        if let images = self.placePost.valueForKey("images") {
+        self.imageFiles = images as! NSArray
+        let counter : Int = 0;
+        for imageFile in self.imageFiles {
+            imageFile.getDataInBackgroundWithBlock({ (data, error) in
+                if error == nil {
+                    if counter == self.imageFiles.count {
+                        self.detailImageCollectionView.reloadData()
+                    } else {
+                        self.imagesArray.addObject(UIImage(data: data!)!)
+                        self.detailImageCollectionView.reloadData()
+                        
+                    }
+                }
+            })
+        }
+        }
+    }
+    
     @IBAction func markfavoriteproperty(sender: AnyObject) {
         
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
@@ -92,9 +110,31 @@ class TenantPostDetailViewController: UIViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK - CollectionView Delegate
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1;
+    }
+    
+    
+    //UICollectionViewDataSource Methods (Remove the "!" on variables in the function prototype)
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return self.imagesArray.count;
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        let cell: PhotoUploadThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("detailcell", forIndexPath: indexPath) as! PhotoUploadThumbnailCell
+        let image = self.imagesArray[indexPath.item] as! UIImage
+        cell.imgView.image = image;
+        return cell
+    }
+    
+    //UICollectionViewDelegateFlowLayout methods
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat{
+        return 1
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat{
+        return 1
     }
     
     func showAlert(title : NSString, message : NSString) {

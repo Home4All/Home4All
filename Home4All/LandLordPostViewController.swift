@@ -44,7 +44,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem?.action = #selector(LandLordPostViewController.postProperty);
+//        self.navigationItem.rightBarButtonItem?.action = #selector(LandLordPostViewController.postProperty);
         self.arrangeTableView();
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LandLordPostViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
@@ -52,12 +52,12 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         if editInAction {
             self.imageToUpload.image = placePost.imageProperty
             self.imagesToUpload.addObject(self.imageToUpload.image!)
-            self.thumbnailCollectionView.reloadData()
+           // self.thumbnailCollectionView.reloadData()
         }
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.thumbnailCollectionView.reloadData()
+     // self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
         
     }
@@ -120,60 +120,60 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     func keyboardWillHide(notification:NSNotification){
         
-        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
-        self.postTableView.contentInset = contentInset
+//        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+//        self.postTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     // Post property
-     @IBAction func postProperty(sender: AnyObject) {
-        let userid = NSUserDefaults.standardUserDefaults().objectForKey("userid") as! NSString;
-        let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
-        let emailid = NSUserDefaults.standardUserDefaults().objectForKey("emailid") as! NSString;
-
-        if(self.imageToUpload.image != nil){
-            
-            let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
-            let file = PFFile(name: "image", data: pictureData!)
-            
-            file?.saveInBackgroundWithBlock({ (success, error) in
-                if((error == nil)){
-                    self.placePost.setObject(userid, forKey: "postedby")
-                    self.placePost.setObject(file!, forKey: "image")
-                    
-                    self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-                        if succeeded {
-                            NSLog("Object Uploaded")
-//                            let title : NSString = "Successful"
-//                            let message : NSString = "your post has been uploaded"
-                            self.emptyAllTextFileds()
-//                            self.showAlert(title, message: message)
-                            
-                            let place = self.placePost.valueForKey("city") as! NSString
-                            let price = self.placePost.valueForKey("rent") as! NSNumber
-
-                            
-                            let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
-                            
-                            let valueObjects : NSArray = [emailid,username,postInfo];
-                            let keys : NSArray = ["email","name","message"];
-                            let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
-
-                            PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
-                                (response: AnyObject?, error: NSError?) -> Void in
-                                if (response != nil) {
-                                    NSLog(response as! String);
-                                    self.showAlert("Success", message: "Post saved and Mail sent");
-                                }
-                            }
-                            
-                        } else {
-                            NSLog("Error: \(error) \(error!.userInfo)")
-                        }
-                    }
-                }
-            })
-        }
-    }
+//     @IBAction func postProperty(sender: AnyObject) {
+//        let userid = NSUserDefaults.standardUserDefaults().objectForKey("userid") as! NSString;
+//        let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
+//        let emailid = NSUserDefaults.standardUserDefaults().objectForKey("emailid") as! NSString;
+//
+//        if(self.imageToUpload.image != nil){
+//            
+//            let pictureData = UIImagePNGRepresentation(self.imageToUpload.image!)
+//            let file = PFFile(name: "image", data: pictureData!)
+//            
+//            file?.saveInBackgroundWithBlock({ (success, error) in
+//                if((error == nil)){
+//                    self.placePost.setObject(userid, forKey: "postedby")
+//                    self.placePost.setObject(file!, forKey: "image")
+//                    
+//                    self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+//                        if succeeded {
+//                            NSLog("Object Uploaded")
+////                            let title : NSString = "Successful"
+////                            let message : NSString = "your post has been uploaded"
+//                            self.emptyAllTextFileds()
+////                            self.showAlert(title, message: message)
+//                            
+//                            let place = self.placePost.valueForKey("city") as! NSString
+//                            let price = self.placePost.valueForKey("rent") as! NSNumber
+//
+//                            
+//                            let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+//                            
+//                            let valueObjects : NSArray = [emailid,username,postInfo];
+//                            let keys : NSArray = ["email","name","message"];
+//                            let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
+//
+//                            PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
+//                                (response: AnyObject?, error: NSError?) -> Void in
+//                                if (response != nil) {
+//                                    NSLog(response as! String);
+//                                    self.showAlert("Success", message: "Post saved and Mail sent");
+//                                }
+//                            }
+//                            
+//                        } else {
+//                            NSLog("Error: \(error) \(error!.userInfo)")
+//                        }
+//                    }
+//                }
+//            })
+//        }
+//    }
     
     func emptyAllTextFileds() {
         for textfield in self.allTextFields {
@@ -183,7 +183,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
         self.imageToUpload.image = nil;
         self.imagesToUpload = [];
-        self.thumbnailCollectionView.reloadData()
+
         self.uploadImage.enabled = true;
     }
     
@@ -330,6 +330,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+//        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+//        self.postTableView.contentInset = contentInset
         return true
     }
     
@@ -355,7 +357,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-            textField.resignFirstResponder()
             return false;
 
         } else if (textField.tag == TextFieldTag.TextFieldTagRoom.rawValue){
@@ -366,7 +367,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-            textField.resignFirstResponder()
             return false;
 
         }else if (textField.tag == TextFieldTag.TextFieldTagBath.rawValue){
@@ -377,7 +377,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             self.propertyPickerView.reloadAllComponents()
             self.propertyPickerView.tag = textField.tag
             currentTextField = textField;
-            textField.resignFirstResponder()
             return false;
 
         }
@@ -445,7 +444,15 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         }
         pickerView.hidden = true;
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "PhotoUpload"){
+            let destinationViewController : ImageUploadViewController = segue.destinationViewController as! ImageUploadViewController
+            destinationViewController.placePost = self.placePost;
+        }
+    }
 }
+
 
 extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -456,6 +463,7 @@ extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigat
         
         self.imageToUpload.image = image;
         self.imagesToUpload.addObject(image);
+//        self.thumbnailCollectionView.reloadData()
         picker.dismissViewControllerAnimated(true, completion: nil)
         if(self.imagesToUpload.count == 1 ) {
             let title : NSString = "Limit Reached";

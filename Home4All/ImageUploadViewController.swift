@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ImageUploadViewController: UIViewController {
+class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
 
-    @IBOutlet weak var imageToUpload: UIImageView!
-    @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var descriptiontextView: UITextView!
+    @IBOutlet weak var imageCollectionView : UICollectionView!;
+    var imagesToUpload : NSMutableArray = NSMutableArray();
+    var placePost : PlacePost = PlacePost()
     
     var username: String?
     
@@ -23,7 +24,58 @@ class ImageUploadViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK: - Actions
+//    // MARK: - Actions
+//    @IBAction func selectPicturePressed(sender: AnyObject) {
+//        //Open a UIImagePickerController to select the picture
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+//        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        presentViewController(imagePicker, animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func sendPressed(sender: AnyObject) {
+//
+//    }
+//    
+//    func saveWallPost(file: PFFile)
+//    {
+//}
+    
+    //MARK - CollectionView Delegate
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1;
+    }
+    
+    
+    //UICollectionViewDataSource Methods (Remove the "!" on variables in the function prototype)
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return self.imagesToUpload.count;
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+        let cell: PhotoUploadThumbnailCell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoThumbnailCell", forIndexPath: indexPath) as! PhotoUploadThumbnailCell
+        let image = self.imagesToUpload[indexPath.item] as! UIImage
+        cell.imgView.image = image;
+        return cell
+    }
+    
+    //UICollectionViewDelegateFlowLayout methods
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat{
+        return 1
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat{
+        return 1
+    }
+    
+      func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
     @IBAction func selectPicturePressed(sender: AnyObject) {
         //Open a UIImagePickerController to select the picture
         let imagePicker = UIImagePickerController()
@@ -32,20 +84,80 @@ class ImageUploadViewController: UIViewController {
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func sendPressed(sender: AnyObject) {
-
-    }
-    
-    func saveWallPost(file: PFFile)
-    {
-}
+    @IBAction func postProperty(sender: AnyObject) {
+        let userid = NSUserDefaults.standardUserDefaults().objectForKey("userid") as! NSString;
+        let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
+        let emailid = NSUserDefaults.standardUserDefaults().objectForKey("emailid") as! NSString;
+        
+        var imageFiles : NSMutableArray = NSMutableArray()
+        
+        for anImage in self.imagesToUpload {
+            let pictureData = UIImagePNGRepresentation(anImage as! UIImage)
+            let file = PFFile(name: "image", data: pictureData!)
+            imageFiles.addObject(file!)
+        }
+        
+        
+        
+        
+        self.placePost.setObject(imageFiles.copy() as! NSArray,forKey: "images");
+                self.placePost.setObject(userid, forKey: "postedby")        
+                    self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+                        if succeeded {
+                            NSLog("Object Uploaded")
+//                            self.emptyAllTextFileds()
+                            
+                            let place = self.placePost.valueForKey("city") as! NSString
+                            let price = self.placePost.valueForKey("rent") as! NSNumber
+                            
+                            
+                            let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                            
+                            let valueObjects : NSArray = [emailid,username,postInfo];
+                            let keys : NSArray = ["email","name","message"];
+                            let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
+                            
+                            PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
+                                (response: AnyObject?, error: NSError?) -> Void in
+                                if (response != nil) {
+                                    NSLog(response as! String);
+                                    self.showAlert("Success", message: "Post saved and Mail sent");
+                                }
+                            }
+                            
+                        } else {
+                            NSLog("Error: \(error) \(error!.userInfo)")
+                        }
+                    }
+                }
 }
 
 extension ImageUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        //Place the image in the imageview
-        imageToUpload.image = image
-//        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+//        if self.imagesToUpload.count > 0 {
+//            self.imagesToUpload = []
+//        }
+        
+//        self.imageToUpload.image = image;
+        self.imagesToUpload.addObject(image);
+        self.imageCollectionView.reloadData()
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        if(self.imagesToUpload.count == 5 ) {
+            let title : NSString = "Limit Reached";
+            let message : NSString = "You can not add more photos";
+            showAlert(title, message: message)
+//            self.uploadImage.enabled = false
+        }
+ 
+    }
+    
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
