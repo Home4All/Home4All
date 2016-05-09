@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         GIDSignIn.sharedInstance().delegate = self
         
+        SavedSearch.registerSubclass()
+        PlacePost.registerSubclass()
+        
         return true
     }
     
@@ -52,12 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let query = PFQuery(className: "AppUser")
             query.whereKey("userid", equalTo: userid)
             query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-                let pfObjects : NSArray = objects!;
+                if let pfObjects : NSArray = objects {
                 if pfObjects.count > 0 && error == nil {
                     NSLog("Successfully retrieved: \(objects)")
                 } else {
                     self.registerUser(fullname,email: email, userid:userid );
                 }
+            }
             }
             
             NSUserDefaults.standardUserDefaults().setValue(userid, forKey: "userid");

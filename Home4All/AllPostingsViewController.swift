@@ -37,6 +37,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         let query = PlacePost.query()! as PFQuery
         query.whereKey("postedby", equalTo: username)
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
             let pfObjects : NSArray = objects!;
             if pfObjects.count >= 0 && error == nil {
                 NSLog("Successfully retrieved: \(objects)")
@@ -45,6 +46,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             } else {
                 NSLog("Call failed");
             }
+        }
         }
     }
 

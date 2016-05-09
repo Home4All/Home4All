@@ -27,6 +27,7 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         query.whereKey("userid", equalTo: userId!);
         query.includeKey("savedsearches")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
             let pfObjects : NSArray = objects!;
             if pfObjects.count > 0 && error == nil {
                 
@@ -39,6 +40,7 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
             } else {
                 NSLog("Error Retrieving user for favorite");
             }
+        }
         }
     }
 

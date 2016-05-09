@@ -26,6 +26,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         query.whereKey("userid", equalTo: userId!);
         query.includeKey("favorite")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
             let pfObjects : NSArray = objects!;
             if pfObjects.count > 0 && error == nil {
                 
@@ -40,6 +41,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
                 NSLog("Error Retrieving user for favorite");
             }
         }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +55,6 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         let cityText : String! = placePost.objectForKey("city") as? String
         let streetText: String! = placePost.objectForKey("street") as? String
         let priceText: Int! = placePost.objectForKey("rent") as? Int
-        
         
         placePost.image.getDataInBackgroundWithBlock { (data, error) in
             
