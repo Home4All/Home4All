@@ -20,10 +20,14 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     
     @IBOutlet weak var noOfBath: UILabel!
     
+  
     @IBOutlet weak var rentLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
     
+   
     var placePost : PlacePost = PlacePost()
+    
+  
     var imageFiles : NSArray = NSArray()
     
     @IBOutlet weak var favoriteButton: UIButton!
@@ -32,8 +36,33 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(placePost)
+        
         self.retrieveImagesForCurrentPost()
         self.streetLabel.text = placePost.valueForKey("street") as? String
+        self.cityLabel.text = placePost.valueForKey("city") as? String
+        self.stateLabel.text = placePost.valueForKey("state") as? String
+        self.contactLabel.text = placePost.valueForKey("contact") as? String
+        //self.descriptionText.text = placePost.valueForKey("city") as? String
+        self.apartmanetTypeLabel.text = placePost.valueForKey("housetype") as? String
+     
+        self.areaLabel.text = placePost.valueForKey("area") as? String
+    
+        let noOfRoomsString = String(placePost.valueForKey("noofroom")!)
+        self.noOfBedLabel.text = noOfRoomsString
+        
+        
+        let noOfBathsString = String(placePost.valueForKey("noofbath")!)
+        self.noOfBath.text = noOfBathsString
+
+        let areaLabelString = String("\(placePost.valueForKey("area")!) sqft")
+        self.areaLabel.text = areaLabelString
+
+        let rentLabelString = String("$ \(placePost.valueForKey("area")!)")
+        self.rentLabel.text = rentLabelString
+        
+        
     }
     
     func retrieveImagesForCurrentPost() {

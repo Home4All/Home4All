@@ -895,16 +895,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-OX-jd0">
-                                <rect key="frame" x="9" y="292" width="571" height="112"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="112" id="vGH-cI-jf5"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O9F-PF-e69">
                                 <rect key="frame" x="9" y="114" width="579" height="170"/>
                                 <constraints>
@@ -953,6 +943,16 @@
                                     <action selector="markfavoriteproperty:" destination="UAX-aG-cYL" eventType="touchUpInside" id="5QU-Wa-IeJ"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-OX-jd0">
+                                <rect key="frame" x="9" y="292" width="571" height="112"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="vGH-cI-jf5"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1054,9 +1054,9 @@
                         <outlet property="descriptionText" destination="cpM-OX-jd0" id="LOJ-Fm-ySQ"/>
                         <outlet property="detailImageCollectionView" destination="O9F-PF-e69" id="dIU-6B-hC6"/>
                         <outlet property="favoriteButton" destination="5U6-tx-mCW" id="Z6d-HW-nT2"/>
-                        <outlet property="noOfBath" destination="gih-v5-D9Y" id="QLZ-4q-4qS"/>
-                        <outlet property="noOfBedLabel" destination="86x-wp-OW0" id="HTT-wK-TvJ"/>
-                        <outlet property="rentLabel" destination="InJ-OK-IIj" id="80D-k9-ibt"/>
+                        <outlet property="noOfBath" destination="gih-v5-D9Y" id="1Bf-x1-ZcY"/>
+                        <outlet property="noOfBedLabel" destination="86x-wp-OW0" id="EPq-7h-Q9k"/>
+                        <outlet property="rentLabel" destination="InJ-OK-IIj" id="GC6-23-ZlD"/>
                         <outlet property="stateLabel" destination="yGi-Ac-HOA" id="xNe-CL-Wfv"/>
                         <outlet property="streetLabel" destination="few-5X-FjD" id="0JT-BQ-LHF"/>
                     </connections>
