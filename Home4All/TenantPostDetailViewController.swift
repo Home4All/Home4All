@@ -20,6 +20,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     
     @IBOutlet weak var noOfBath: UILabel!
     
+    @IBOutlet weak var zipCodeLabel: UILabel!
   
     @IBOutlet weak var rentLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
@@ -56,12 +57,14 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         let noOfBathsString = String(placePost.valueForKey("noofbath")!)
         self.noOfBath.text = noOfBathsString
 
-        let areaLabelString = String("\(placePost.valueForKey("area")!) sqft")
+        let areaLabelString = String("\(placePost.valueForKey("area")!)")
         self.areaLabel.text = areaLabelString
 
-        let rentLabelString = String("$ \(placePost.valueForKey("area")!)")
+        let rentLabelString = String("$ \(placePost.valueForKey("rent")!) /mo")
         self.rentLabel.text = rentLabelString
         
+        let zipCodeLabelString = String("\(placePost.valueForKey("zip")!)")
+        self.zipCodeLabel.text = zipCodeLabelString
         
     }
     
