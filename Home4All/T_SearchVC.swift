@@ -23,6 +23,18 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var cityValue:String? = ""
     var zipCodeValue:Int? = 0
     
+    // following parameters are  coming from filter search
+    
+    var location1:String?="a"
+    var area_max:String?="a"
+    var area_min:String?=""
+    var price_max:Int?
+    var price_min:Int?
+    
+    var zipcode1:Int?=0
+    
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -43,7 +55,18 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+ 
+        
+        print (location1)
+        print (area_max)
+        print(zipcode1)
+        print(price_max)
+        print(price_min)
+        print(area_min)
+        
+        
+        
+        
         
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -89,10 +112,15 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         print(placemark.postalCode)
         print(placemark.administrativeArea)
         print(placemark.country)
-        
+//        
+//        if(location1==nil && zipcode1==0)
+//        {
         cityValue = placemark.locality
         zipCodeValue = Int(placemark.postalCode!)
        defaultSearch()
+        
+    
+    
     }
     
     
