@@ -250,7 +250,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
             if priceText != nil{
                 print("Price is \(priceText)")
-                cell.price.text="\(priceText)"
+                cell.price.text="$ \(priceText) /mo"
         }
         return cell
     }
