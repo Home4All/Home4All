@@ -12,8 +12,8 @@ class TenantSearchFilterOptionsViewController: UIViewController {
 
     @IBOutlet weak var location: UITextField!
     
-    @IBOutlet weak var area_min: UITextField!
-    @IBOutlet weak var area_max: UITextField!
+//    @IBOutlet weak var area_min: UITextField!
+//    @IBOutlet weak var area_max: UITextField!
     @IBOutlet weak var price_max: UITextField!
     @IBOutlet weak var price_min: UITextField!
     @IBOutlet weak var zipcode: UITextField!
@@ -22,24 +22,24 @@ class TenantSearchFilterOptionsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @IBAction func searchFilter(sender: AnyObject) {
-        self.performSegueWithIdentifier("filterSearchResult", sender: nil)
-
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-         if(segue.identifier == "filterSearchResult"){
-        let destinationViewController : T_SearchVC = segue.destinationViewController as! T_SearchVC
-            
-        destinationViewController.location1 = location.text!
-        destinationViewController.zipcode1 = Int(zipcode.text!)
-        destinationViewController.price_max = Int(price_max.text!)
-              destinationViewController.price_min = Int(price_min.text!)
-        destinationViewController.area_max = area_max.text!
-            destinationViewController.area_min = area_min.text!
-            
-        }
-        
-    }
+//    @IBAction func searchFilter(sender: AnyObject) {
+//        self.performSegueWithIdentifier("filterSearchResult", sender: nil)
+//
+//    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//         if(segue.identifier == "filterSearchResult"){
+//        let destinationViewController : T_SearchVC = segue.destinationViewController as! T_SearchVC
+//            
+//        destinationViewController.location1 = location.text!
+//        destinationViewController.zipcode1 = Int(zipcode.text!)
+//        destinationViewController.price_max = Int(price_max.text!)
+//              destinationViewController.price_min = Int(price_min.text!)
+//        destinationViewController.area_max = area_max.text!
+//            destinationViewController.area_min = area_min.text!
+//            
+//        }
+//        
+//    }
 
     @IBAction func saveThisSearch(sender: AnyObject) {
         
