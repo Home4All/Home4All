@@ -24,8 +24,8 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
   
     @IBOutlet weak var rentLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
-    
-   
+    var currentObject:String = "";
+    var count:Int=0;
     var placePost : PlacePost = PlacePost()
     
   
@@ -37,6 +37,68 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//            currentObject = (placePost.valueForKey("objectId") as? String)!
+//        print(" object id isssss \(currentObject)")
+       // let query = PFQuery(className: "PlacePost")
+        
+//        query.whereKey("objectId", equalTo: placePost.valueForKey("objectId")!)
+//       
+    
+         count =  Int(placePost.valueForKey("counter")! as! NSNumber)
+    
+        print ("dekhne k pehle \(count)")
+        count+=1
+        
+   
+        placePost.setObject(count, forKey:"counter")
+        placePost.saveInBackgroundWithBlock { (success, error) in
+            
+            if(success){
+             print ("dekhne k baad \(self.count)")
+            }
+            else{
+            print (error)
+        }
+        }
+        
+       
+        
+
+// 3
+//        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+//            if error == nil {
+//              print("Successfully bahaaaaaai   retrieved: \(objects)")
+//                
+//    //let thisQuestion: AnyObject! = objects!.valueForKey("question")
+//   // print (objects!["street"] as! String )
+//                
+//                
+//            }
+//            else {
+//                print("Error: \(error) \(error!.userInfo)")
+//            }
+//        }
+        
+        
+        
+//        
+//        let player = PFObject(className: "PlacePost")
+//        player.setObject("John", forKey: "counter")
+//        
+//        player.saveInBackgroundWithBlock { (succeeded, error) -> Void in
+//            if succeeded {
+//                print("Object Uploaded")
+//            } else {
+//                print("Error:")
+//            }
+//        }
+        
+        
+        
+        
+        
+        
+        
         
         print(placePost)
         
