@@ -15,7 +15,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
@@ -58,6 +58,9 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         let streetText: String! = placePost.objectForKey("street") as? String
         let priceText: Int! = placePost.objectForKey("rent") as? Int
         
+         let counterText: Int! = placePost.objectForKey("counter") as? Int
+
+        
         
         if let images = placePost.valueForKey("images") {
             let imageFiles = images as! NSArray
@@ -85,6 +88,12 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
             print("Price is \(priceText)")
             cell.price.text="$ \(priceText) /mo"
         }
+        
+        if counterText != nil{
+            print("View count is \(counterText)")
+            cell.viewCount.text="\(counterText) Views"
+        }
+        
         return cell
     }
 
