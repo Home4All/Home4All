@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -787,7 +787,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aej-X2-Rwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4635" y="-3559"/>
+            <point key="canvasLocation" x="5799" y="-3651"/>
         </scene>
         <!--Search-->
         <scene sceneID="SDe-mb-n6R">
@@ -905,7 +905,7 @@
                     <navigationItem key="navigationItem" title="Search" id="YLY-IF-U4f">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="qoT-ur-Ex6">
                             <connections>
-                                <segue destination="oQs-cU-qVm" kind="presentation" id="Vyd-ps-QT4"/>
+                                <segue destination="oQs-cU-qVm" kind="show" id="Vyd-ps-QT4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -917,7 +917,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xSj-Ob-wQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3858" y="-3559"/>
+            <point key="canvasLocation" x="4398" y="-3711"/>
         </scene>
         <!--Detail-->
         <scene sceneID="26i-xh-ryj">
@@ -1264,7 +1264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cpe-uj-XAr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3858" y="-2796"/>
+            <point key="canvasLocation" x="5335" y="-2064"/>
         </scene>
         <!--Search Favourites-->
         <scene sceneID="edx-34-5nf">
@@ -1392,11 +1392,12 @@
                     <navigationItem key="navigationItem" id="ZGk-4N-fvQ"/>
                     <connections>
                         <outlet property="tenantFavoriesTableView" destination="sfE-8U-n2C" id="kSy-yJ-RFO"/>
+                        <segue destination="UAX-aG-cYL" kind="show" identifier="FavoriteDetailsegue" id="Mfg-sc-GiS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fom-hO-W0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4627" y="-1753"/>
+            <point key="canvasLocation" x="4591" y="-2073"/>
         </scene>
         <!--Saved Searches-->
         <scene sceneID="UTf-a2-ae7">
@@ -1628,7 +1629,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwY-4q-YqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3858" y="-1753"/>
+            <point key="canvasLocation" x="3726" y="-2057"/>
         </scene>
         <!--Saved Search-->
         <scene sceneID="OEn-pK-upH">
@@ -1655,5 +1656,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1we-EJ-REM"/>
+        <segue reference="Mfg-sc-GiS"/>
     </inferredMetricsTieBreakers>
 </document>
