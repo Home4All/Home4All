@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
-            timestampString = "484635202.300727"
+            timestampString = "484697722.8787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
-            timestampString = "484635202.300727"
+            timestampString = "484698840.330953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "saveThisSearch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -360,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
-            timestampString = "484635202.300727"
+            timestampString = "484698840.330953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "saveThisSearch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -376,11 +376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
-            timestampString = "484635202.300727"
+            timestampString = "484698840.330953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "saveThisSearch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -520,11 +520,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/T_SearchVC.swift"
-            timestampString = "484469236.124849"
+            timestampString = "484696739.23436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "defaultSearch()"
             landmarkType = "5">
             <Locations>
@@ -536,11 +536,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.085587"
+                  timestampString = "484698228.066539"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "197"
-                  endingLineNumber = "197"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
                   offsetFromSymbolStart = "1837">
                </Location>
                <Location
@@ -551,11 +551,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.0857"
+                  timestampString = "484698228.067122"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "201"
-                  endingLineNumber = "201"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
                   offsetFromSymbolStart = "23">
                </Location>
             </Locations>
@@ -568,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/T_SearchVC.swift"
-            timestampString = "484469286.492457"
+            timestampString = "484696739.23436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "T_SearchVC"
             landmarkType = "3">
             <Locations>
@@ -584,11 +584,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.086419"
+                  timestampString = "484698228.08056"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
                   offsetFromSymbolStart = "35">
                </Location>
                <Location
@@ -599,11 +599,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.086519"
+                  timestampString = "484698228.080941"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
                   offsetFromSymbolStart = "65">
                </Location>
                <Location
@@ -614,11 +614,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.086607"
+                  timestampString = "484698228.081106"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
                   offsetFromSymbolStart = "898">
                </Location>
                <Location
@@ -629,11 +629,11 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/T_SearchVC.swift"
-                  timestampString = "484654825.08669"
+                  timestampString = "484698228.081252"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
                   offsetFromSymbolStart = "762">
                </Location>
             </Locations>
@@ -694,7 +694,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/ImageUploadViewController.swift"
-                  timestampString = "484654825.088868"
+                  timestampString = "484698228.120639"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -709,7 +709,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/ImageUploadViewController.swift"
-                  timestampString = "484654825.088963"
+                  timestampString = "484698228.12098"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
@@ -788,7 +788,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/TenantPostDetailViewController.swift"
-                  timestampString = "484654825.090785"
+                  timestampString = "484698228.17446"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -803,7 +803,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/TenantPostDetailViewController.swift"
-                  timestampString = "484654825.090931"
+                  timestampString = "484698228.174694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -818,7 +818,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/TenantPostDetailViewController.swift"
-                  timestampString = "484654825.091076"
+                  timestampString = "484698228.174839"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -833,7 +833,7 @@
                   moduleName = "Home4All"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Ashish/Documents/CMPE277/Home4All/Home4All/TenantPostDetailViewController.swift"
-                  timestampString = "484654825.091174"
+                  timestampString = "484698228.174991"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -952,6 +952,118 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "textViewDidChange(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantPostDetailViewController.swift"
+            timestampString = "484657771.702385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantPostDetailViewController.swift"
+            timestampString = "484658152.782382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
+            timestampString = "484698840.330953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "searchFilter(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
+            timestampString = "484698840.330953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "textFieldDidBeginEditing(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
+            timestampString = "484698840.330953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/T_SearchVC.swift"
+            timestampString = "484697980.572499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "didFinishSearch(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantSearchFilterOptionsViewController.swift"
+            timestampString = "484698840.330953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

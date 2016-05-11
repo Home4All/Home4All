@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate{
+class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, TenantSearchFilterOptionsViewControllerDelegate{
  
     
     @IBOutlet weak var keyword: UITextField!
@@ -120,9 +120,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         cityValue = placemark.locality
         zipCodeValue = Int(placemark.postalCode!)
        defaultSearch()
-        
-    
-    
     }
     
     
@@ -279,6 +276,14 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             let destinationViewController : TenantPostDetailViewController = segue.destinationViewController as! TenantPostDetailViewController
             destinationViewController.placePost = postingObject;
         }
+        if(segue.identifier == "SearchOptionSegue"){
+            let destinationViewController : TenantSearchFilterOptionsViewController = segue.destinationViewController as! TenantSearchFilterOptionsViewController
+            destinationViewController.tenantDelegate = self;
+        }
+    }
+    
+    func didFinishSearch(searchOption : SavedSearch) {
+        print(searchOption);
     }
 }
 
