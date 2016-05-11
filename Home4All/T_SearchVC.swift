@@ -225,7 +225,12 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             let cityText:String! = placePost.objectForKey("city") as? String
             let streetText:String! = placePost.objectForKey("street") as? String
             let priceText:Int! = placePost.objectForKey("rent") as? Int
-
+        
+  let countText:Int! = placePost.objectForKey("counter") as? Int
+        
+        
+        
+        
         if let images = placePost.valueForKey("images") {
             let imageFiles = images as! NSArray
             let firstImageFile = imageFiles[0]
@@ -239,6 +244,12 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             })
         }
         
+        if countText != nil{
+            print("Count is \(countText)")
+            cell.viewCount.text="\(countText) Views"
+        }
+        
+        
             if cityText != nil{
                 print("City is \(cityText)")
                 cell.city.text=cityText
@@ -247,6 +258,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             if streetText != nil{
                 cell.street.text=streetText
             }
+        
         
             if priceText != nil{
                 print("Price is \(priceText)")

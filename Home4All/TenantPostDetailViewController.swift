@@ -55,6 +55,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
             
             if(success){
              print ("dekhne k baad \(self.count)")
+            
             }
             else{
             print (error)
