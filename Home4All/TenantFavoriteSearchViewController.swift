@@ -83,7 +83,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         
         if priceText != nil{
             print("Price is \(priceText)")
-            cell.price.text="\(priceText)"
+            cell.price.text="$ \(priceText) /mo"
         }
         return cell
     }
