@@ -34,6 +34,8 @@
 		75F597001CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F596FF1CCB9BFA00C9BD09 /* AllPostingsTableViewCell.swift */; };
 		75F67B371CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F67B361CDEE78A00D246B0 /* TenantFavoriteSearchViewController.swift */; };
 		D47CF4271CDC1023006D194A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47CF4261CDC1023006D194A /* CustomCell.swift */; };
+		D4D452DC1CE3197F003A97CA /* fav.png in Resources */ = {isa = PBXBuildFile; fileRef = D4D452DA1CE3197F003A97CA /* fav.png */; };
+		D4D452DD1CE3197F003A97CA /* fav_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = D4D452DB1CE3197F003A97CA /* fav_filled.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		9118A40865A923609850A045 /* libPods-Home4All.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Home4All.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3917CDABA139206AA78A63 /* Pods-Home4All.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.release.xcconfig"; sourceTree = "<group>"; };
 		D47CF4261CDC1023006D194A /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		D4D452DA1CE3197F003A97CA /* fav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav.png; sourceTree = "<group>"; };
+		D4D452DB1CE3197F003A97CA /* fav_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav_filled.png; sourceTree = "<group>"; };
 		E6418A5695982DBD9212C9B7 /* Pods-Home4All.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home4All.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home4All/Pods-Home4All.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,6 +169,8 @@
 		7510FAC61CCB846C00A0C05A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D4D452DA1CE3197F003A97CA /* fav.png */,
+				D4D452DB1CE3197F003A97CA /* fav_filled.png */,
 				6A077D3C1CC494470097915C /* Home_Start_Page.png */,
 			);
 			name = Images;
@@ -255,9 +261,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D452DD1CE3197F003A97CA /* fav_filled.png in Resources */,
 				6A077D3D1CC494470097915C /* Home_Start_Page.png in Resources */,
 				6A077D351CC487BD0097915C /* LaunchScreen.storyboard in Resources */,
 				6A841ECF1CC5E4F70077C14F /* GoogleService-Info.plist in Resources */,
+				D4D452DC1CE3197F003A97CA /* fav.png in Resources */,
 				6A077D321CC487BD0097915C /* Assets.xcassets in Resources */,
 				6A077D301CC487BD0097915C /* Main.storyboard in Resources */,
 			);
