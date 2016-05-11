@@ -344,8 +344,9 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             if let textValue = textField.text {
                 if let numberFromString = numberFormatter.numberFromString(textValue) {
                 self.placePost.setObject(numberFromString, forKey: "rent");
+                } else {
+                    self.placePost.setObject(NSNumber(int : 0), forKey: "rent");
                 }
-            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
             if let textValue = textField.text {
@@ -356,6 +357,8 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             
             if let textValue = textField.text {
                 self.placePost.setObject(textValue, forKey: "state");
+            } else {
+                
             }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeCityName.rawValue){
@@ -376,6 +379,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                 }
             }
         }
+    }
     }
     
     //MARK - PickerView Methods
