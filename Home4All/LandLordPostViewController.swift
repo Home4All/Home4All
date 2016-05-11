@@ -336,25 +336,45 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let numberFormatter : NSNumberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         if (textField.tag == TextFieldTag.TextFieldTypeArea.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "area");
+            if let textValue = textField.text {
+                self.placePost.setObject(textValue, forKey: "area");
+            }
+            
         }else if (textField.tag == TextFieldTag.TextFieldTypeRent.rawValue){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.placePost.setObject(numberFromString!, forKey: "rent");
+            if let textValue = textField.text {
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                self.placePost.setObject(numberFromString, forKey: "rent");
+                }
+            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "contact");
+            if let textValue = textField.text {
+                self.placePost.setObject(textValue, forKey: "contact");
+            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeState.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "state");
+            
+            if let textValue = textField.text {
+                self.placePost.setObject(textValue, forKey: "state");
+            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeCityName.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "city");
+            
+            if let textValue = textField.text {
+                self.placePost.setObject(textValue, forKey: "city");
+            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeStreet.rawValue){
-            self.placePost.setObject(textField.text!, forKey: "street");
+            if let textValue = textField.text {
+                self.placePost.setObject(textValue, forKey: "street");
+            }
+            
         }else if (textField.tag == TextFieldTag.TextFieldTypeZip.rawValue){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.placePost.setObject(numberFromString!, forKey: "zip");
+            if let textValue = textField.text {
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                    self.placePost.setObject(numberFromString, forKey: "zip");
+                }
+            }
         }
     }
     

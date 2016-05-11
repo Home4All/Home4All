@@ -49,6 +49,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     
     
+    
+    
     let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
     var apartmentTypeValue = "Any"
