@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TenantSearchFilterOptionsViewController: UIViewController {
+class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var location: UITextField!
     
@@ -17,15 +17,48 @@ class TenantSearchFilterOptionsViewController: UIViewController {
     @IBOutlet weak var price_max: UITextField!
     @IBOutlet weak var price_min: UITextField!
     @IBOutlet weak var zipcode: UITextField!
+    @IBOutlet weak var propertyType: UITextField!
+    @IBOutlet weak var searchkeyword: UITextField!
+    
+    var savedSearch : SavedSearch = SavedSearch()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-//    @IBAction func searchFilter(sender: AnyObject) {
-//        self.performSegueWithIdentifier("filterSearchResult", sender: nil)
-//
-//    }
+    
+    @IBAction func searchFilter(sender: AnyObject) {
+
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        let numberFormatter : NSNumberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        if (textField.tag == 100){
+            
+            self.savedSearch.setObject(textField.text!, forKey: "keyword");
+        }else if (textField.tag == 200){
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.savedSearch.setObject(numberFromString!, forKey: "city");
+            
+        }else if (textField.tag == 300){
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.savedSearch.setObject(numberFromString!, forKey: "zipcode");
+            
+        }else if (textField.tag == 400){
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.savedSearch.setObject(numberFromString!, forKey: "minrent");
+            
+        }else if (textField.tag == 500){
+            let numberFromString = numberFormatter.numberFromString(textField.text!)
+            self.savedSearch.setObject(numberFromString!, forKey: "maxrent");
+            
+        }else if (textField.tag == 600){
+            self.savedSearch.setObject(textField.text!, forKey: "propertytype");
+        }
+    }
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //         if(segue.identifier == "filterSearchResult"){
 //        let destinationViewController : T_SearchVC = segue.destinationViewController as! T_SearchVC
@@ -74,7 +107,6 @@ class TenantSearchFilterOptionsViewController: UIViewController {
                        NSLog("Successfully saved searches")
                     } else {
                         NSLog("error in  saving searches")
-
                     }
                 })
             } else {
