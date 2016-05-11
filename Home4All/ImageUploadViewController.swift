@@ -1,4 +1,4 @@
-//
+ //
 //  ImageUploadViewController.swift
 //  Home4All
 //
@@ -55,10 +55,19 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
         return true
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+//    func textViewDidEndEditing(textView: UITextView) {
+//        if let descriptionText = textView.text {
+//        self.placePost.setObject(descriptionText, forKey: "description");
+//        }
+//    }
+//    
+    func textViewDidChange(textView: UITextView) {
         if let descriptionText = textView.text {
-        self.placePost.setObject(descriptionText, forKey: "description");
+            self.placePost.setObject(descriptionText, forKey: "description");
         }
+    }
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        return true
     }
     
     @IBAction func selectPicturePressed(sender: AnyObject) {
