@@ -24,7 +24,7 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     @IBOutlet weak var searchkeyword: UITextField!
     @IBOutlet weak var typePickerView: UIPickerView!
     weak var tenantDelegate : TenantSearchFilterOptionsViewControllerDelegate?
-    var pickerTextField : UITextField = UITextField()
+    var currentTextField: UITextField = UITextField()
     
     var savedSearch : SavedSearch = SavedSearch()
 
@@ -35,14 +35,15 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     }
     
     @IBAction func searchFilter(sender: AnyObject) {
+        self.currentTextField.resignFirstResponder()
         self.navigationController?.popViewControllerAnimated(true)
         self.tenantDelegate?.didFinishSearch(self.savedSearch)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        self.currentTextField = textField;
         if textField.tag == 600 {
             self.typePickerView.hidden = false
-            self.pickerTextField = textField;
         } else {
             self.typePickerView.hidden = true
         }
@@ -107,8 +108,8 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     
-        self.pickerTextField.text = apartmentType[row]
-        self.savedSearch.setObject(self.pickerTextField.text!, forKey: "propertytype");
+        self.currentTextField.text = apartmentType[row]
+        self.savedSearch.setObject(self.currentTextField.text!, forKey: "propertytype");
         self.typePickerView.hidden = true
     }
 
@@ -135,7 +136,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                     savedSearchesArray.addObject(savedSearch)
              
                     currentAppUser.setObject(savedSearchesArray.copy() as! NSArray, forKey: "savedsearches")
-                    
                 }
                 else {
                     let savedSearchArray = NSArray(objects: savedSearch)
