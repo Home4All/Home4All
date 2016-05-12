@@ -139,7 +139,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-qQ-izP">
-                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" textLabel="aip-QL-HZy" detailTextLabel="qNp-WT-q5E" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="3xH-NJ-6AN">
@@ -179,10 +179,10 @@
                             <constraint firstItem="4Im-qQ-izP" firstAttribute="leading" secondItem="Sh0-0g-Ltq" secondAttribute="leadingMargin" constant="-20" id="1Th-5X-bts"/>
                             <constraint firstItem="DMe-iC-WlG" firstAttribute="top" secondItem="4Im-qQ-izP" secondAttribute="bottom" id="ojt-3D-nHB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Im-qQ-izP" secondAttribute="trailing" constant="-20" id="sGV-0G-GXf"/>
-                            <constraint firstItem="4Im-qQ-izP" firstAttribute="top" secondItem="qNH-Bm-SM5" secondAttribute="bottom" constant="-20" id="sOt-uN-6h5"/>
+                            <constraint firstItem="4Im-qQ-izP" firstAttribute="top" secondItem="qNH-Bm-SM5" secondAttribute="bottom" constant="-64" id="sOt-uN-6h5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="his-wc-oF9"/>
+                    <navigationItem key="navigationItem" title="Profile" id="his-wc-oF9"/>
                     <connections>
                         <outlet property="profileTableView" destination="4Im-qQ-izP" id="nlH-u2-Umt"/>
                     </connections>
