@@ -169,5 +169,5 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         self.presentViewController(alertController, animated: true, completion: nil)
-    }    
+    }
 }

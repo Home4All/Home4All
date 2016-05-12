@@ -21,8 +21,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //    @IBOutlet weak var maxPrice: UITextField!
 //
         
-    var cityValue:String? = ""
-    var zipCodeValue:Int? = 0
+    var cityValue:String?
+    var zipCodeValue:Int?
     
     // following parameters are  coming from filter search
     
@@ -116,8 +116,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 //        
 //        if(location1==nil && zipcode1==0)
 //        {
-        cityValue = placemark.locality
-        zipCodeValue = Int(placemark.postalCode!)
+        self.cityValue = placemark.locality
+        self.zipCodeValue = Int(placemark.postalCode!)
        defaultSearch()
     }
     
@@ -293,7 +293,14 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         var minrent = searchOption.valueForKey("minrent") as? NSNumber
         var maxrent = searchOption.valueForKey("maxrent") as? NSNumber
         let propertType = searchOption.valueForKey("propertytype") as? String
+        
+        let query = PlacePost.query()! as PFQuery
 
+        if ((keyword == nil || (keyword?.isEmpty)!)  && minrent == nil && maxrent == nil  && (propertType == nil || (propertType?.isEmpty)!)) {
+            query.whereKey("citysearch", equalTo: (self.cityValue?.lowercaseString)!)
+            query.whereKey("zip", equalTo:self.zipCodeValue!)
+            
+        } else {
         
         if (minrent == nil) {
             minrent = NSNumber(int : 0)
@@ -303,16 +310,17 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             maxrent = NSIntegerMax
         }
         
-        
-        let query = PlacePost.query()! as PFQuery
         if (city == nil || (city?.isEmpty)!) {
             city = self.cityValue
+            query.whereKey("citysearch", equalTo:(self.cityValue?.lowercaseString)!)
         } else {
-            query.whereKey("citysearch", containsString: city?.lowercaseString)
+            query.whereKey("citysearch", equalTo: (city?.lowercaseString)!)
         }
         
         if (zipCode == nil) {
             zipCode = self.zipCodeValue
+            query.whereKey("zip", equalTo: self.zipCodeValue!)
+
         }
         else {
             query.whereKey("zip", equalTo: zipCode!)
@@ -326,10 +334,11 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         query.whereKey("rent", lessThan: maxrent!)
         query.whereKey("rent", greaterThan: minrent!)
         
-        if (propertType == nil || (propertType?.isEmpty)!) {
+        if (propertType == nil || (propertType?.isEmpty)! || propertType == "Any") {
             query.whereKey("housetype", containedIn: apartmentType )
         } else {
             query.whereKey("housetype", containsString: propertType)
+        }
         }
         
         query.findObjectsInBackgroundWithBlock {

@@ -32,8 +32,9 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.location.text = cityValue!
-        self.zipcode.text = "\(zipValue!)"
+            self.location.text = cityValue!
+            self.zipcode.text = "\(zipValue!)"
+    
 
         // Do any additional setup after loading the view.
     }
@@ -43,7 +44,7 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         
         let city = self.savedSearch.valueForKey("city") as? String
         let zipCode = self.savedSearch.valueForKey("zip") as? NSNumber
-        if (city == nil || (city?.isEmpty)!) && zipCode == nil {
+        if (city == nil || (city?.isEmpty)!) && zipCode == nil && (self.location.text == nil || (self.location.text?.isEmpty)!) && (self.zipcode.text == nil || (self.zipcode.text?.isEmpty)!) {
             self.showAlert("Location Missing", message: "Please enter city or zip code to search")
         }else {
         self.navigationController?.popViewControllerAnimated(true)
