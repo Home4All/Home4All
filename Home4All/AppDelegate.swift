@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             NSUserDefaults.standardUserDefaults().setValue(userid, forKey: "userid");
             NSUserDefaults.standardUserDefaults().setValue(fullname, forKey: "username");
             NSUserDefaults.standardUserDefaults().setValue(email, forKey: "emailid");
+
             
             let userType : String = NSUserDefaults.standardUserDefaults().valueForKey("usertype") as! String
             

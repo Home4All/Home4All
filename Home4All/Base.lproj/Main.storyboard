@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="850" y="2151"/>
         </scene>
-        <!--SignOut-->
+        <!--Profile-->
         <scene sceneID="gkO-2A-LyI">
             <objects>
-                <viewController storyboardIdentifier="LL_AfterSignInVC" title="SignOut" id="fhv-bG-yEx" customClass="LL_AfterSignInVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LL_AfterSignInVC" title="Profile" id="fhv-bG-yEx" customClass="LL_AfterSignInVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qNH-Bm-SM5"/>
                         <viewControllerLayoutGuide type="bottom" id="DMe-iC-WlG"/>
@@ -138,26 +138,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvk-D1-qIZ">
-                                <rect key="frame" x="270" y="285" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-qQ-izP">
+                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" textLabel="aip-QL-HZy" detailTextLabel="qNp-WT-q5E" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="3xH-NJ-6AN">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3xH-NJ-6AN" id="nwR-8y-z5h">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aip-QL-HZy">
+                                                    <rect key="frame" x="15" y="24" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qNp-WT-q5E">
+                                                    <rect key="frame" x="15" y="43.5" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
                                 <connections>
-                                    <action selector="signOutButtonPressed:" destination="fhv-bG-yEx" eventType="touchUpInside" id="8go-WF-fsg"/>
+                                    <outlet property="dataSource" destination="fhv-bG-yEx" id="A6x-eV-OT9"/>
+                                    <outlet property="delegate" destination="fhv-bG-yEx" id="vUj-GO-CiS"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rvk-D1-qIZ" firstAttribute="centerX" secondItem="Sh0-0g-Ltq" secondAttribute="centerX" id="eVZ-Oq-PVr"/>
-                            <constraint firstItem="rvk-D1-qIZ" firstAttribute="centerY" secondItem="Sh0-0g-Ltq" secondAttribute="centerY" id="hEB-8w-uDU"/>
+                            <constraint firstItem="4Im-qQ-izP" firstAttribute="leading" secondItem="Sh0-0g-Ltq" secondAttribute="leadingMargin" constant="-20" id="1Th-5X-bts"/>
+                            <constraint firstItem="DMe-iC-WlG" firstAttribute="top" secondItem="4Im-qQ-izP" secondAttribute="bottom" id="ojt-3D-nHB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Im-qQ-izP" secondAttribute="trailing" constant="-20" id="sGV-0G-GXf"/>
+                            <constraint firstItem="4Im-qQ-izP" firstAttribute="top" secondItem="qNH-Bm-SM5" secondAttribute="bottom" constant="-20" id="sOt-uN-6h5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Signout" id="4hX-kf-vh9"/>
                     <navigationItem key="navigationItem" id="his-wc-oF9"/>
+                    <connections>
+                        <outlet property="profileTableView" destination="4Im-qQ-izP" id="nlH-u2-Umt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SD8-mn-NZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2648" y="1733"/>
+            <point key="canvasLocation" x="3109" y="-1113"/>
         </scene>
         <!--Post-->
         <scene sceneID="fLP-pQ-2jq">
@@ -531,7 +563,7 @@
                     <connections>
                         <segue destination="5ci-Z6-V9Z" kind="relationship" relationship="viewControllers" id="dlt-it-hZu"/>
                         <segue destination="9I9-5o-XBJ" kind="relationship" relationship="viewControllers" id="VJu-Y1-8v0"/>
-                        <segue destination="fhv-bG-yEx" kind="relationship" relationship="viewControllers" id="r7w-UJ-7pz"/>
+                        <segue destination="vrW-Op-3aD" kind="relationship" relationship="viewControllers" id="r7w-UJ-7pz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keW-Hn-kop" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1611,39 +1643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiJ-Hp-6g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4622" y="-1512"/>
-        </scene>
-        <!--Sign Out-->
-        <scene sceneID="H5t-3m-MMa">
-            <objects>
-                <viewController title="Sign Out" id="UXx-Pg-aEb" customClass="T_SearchVC" customModule="Home4All" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V4M-01-MRV"/>
-                        <viewControllerLayoutGuide type="bottom" id="EsI-kH-FD2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="09l-Qd-xEE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oJ-Cr-Y9a">
-                                <rect key="frame" x="270" y="285" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutButtonPressed:" destination="UXx-Pg-aEb" eventType="touchUpInside" id="Yit-Xb-XH4"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7oJ-Cr-Y9a" firstAttribute="centerY" secondItem="09l-Qd-xEE" secondAttribute="centerY" id="cAY-hu-EkH"/>
-                            <constraint firstItem="7oJ-Cr-Y9a" firstAttribute="centerX" secondItem="09l-Qd-xEE" secondAttribute="centerX" id="gQF-p2-4JD"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Sign Out" id="0CZ-o0-Pon"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0DQ-oI-eeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3858" y="364"/>
+            <point key="canvasLocation" x="5434" y="-1512"/>
         </scene>
         <!--All Postings-->
         <scene sceneID="eia-dK-tzX">
@@ -1696,7 +1696,7 @@
                         <segue destination="cSS-lP-QDe" kind="relationship" relationship="viewControllers" id="SuK-zW-QMH"/>
                         <segue destination="9eb-U7-sRF" kind="relationship" relationship="viewControllers" id="giW-vr-UFB"/>
                         <segue destination="gS3-5p-ABT" kind="relationship" relationship="viewControllers" id="XeH-Tf-E29"/>
-                        <segue destination="UXx-Pg-aEb" kind="relationship" relationship="viewControllers" id="fmZ-J4-sNO"/>
+                        <segue destination="vrW-Op-3aD" kind="relationship" relationship="viewControllers" id="g6K-zH-piA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2I-hq-dJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1758,15 +1758,35 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLN-IE-UyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3606" y="-1512"/>
+            <point key="canvasLocation" x="4418" y="-1512"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Piw-sc-83k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vrW-Op-3aD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="4hX-kf-vh9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jUy-Vt-zFR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fhv-bG-yEx" kind="relationship" relationship="rootViewController" id="8Tn-Ro-e5j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J0a-XR-6n7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2297" y="-1113"/>
         </scene>
     </scenes>
     <resources>
         <image name="Home_Start_Page.png" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aoC-Xz-n4B"/>
         <segue reference="Ot5-Ck-8fN"/>
+        <segue reference="aoC-Xz-n4B"/>
+        <segue reference="r7w-UJ-7pz"/>
         <segue reference="SJ4-my-rE8"/>
     </inferredMetricsTieBreakers>
 </document>
