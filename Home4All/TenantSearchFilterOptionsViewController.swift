@@ -117,13 +117,24 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     @IBAction func saveThisSearch(sender: AnyObject) {
         
         let savedSearch : SavedSearch = SavedSearch()
-        savedSearch.setObject("Townhose", forKey: "propertytype")
-        savedSearch.setObject("San Francisco", forKey: "city")
-        savedSearch.setObject(NSNumber(int:1000), forKey: "minrent")
-        savedSearch.setObject(NSNumber(int:8500), forKey: "maxrent")
-                
+        savedSearch.setObject(propertyType.text!, forKey: "propertytype")
+        savedSearch.setObject(location.text!, forKey: "city")
+        savedSearch.setObject(searchkeyword.text!, forKey: "keywordsearch")
+     
+        
+        
+        let min:Int? = Int(price_min.text!)
+        let max:Int? = Int(price_max.text!)
+        let zip:Int? = Int(zipcode.text!)
+        
+        savedSearch.setObject(min!, forKey: "minrent")
+        savedSearch.setObject(max!, forKey: "maxrent")
+           savedSearch.setObject(zip!, forKey: "zipcode")
+       
+        
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
         let query = PFQuery(className: "AppUser")
+        
         query.whereKey("userid", equalTo: userId!);
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             let pfObjects : NSArray = objects!;
