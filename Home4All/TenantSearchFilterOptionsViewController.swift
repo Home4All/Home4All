@@ -45,7 +45,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         let zipCode = self.savedSearch.valueForKey("zip") as? NSNumber
         if (city == nil || (city?.isEmpty)!) && zipCode == nil {
             self.showAlert("Location Missing", message: "Please enter city or zip code to search")
-            
         }else {
         self.navigationController?.popViewControllerAnimated(true)
         self.tenantDelegate?.didFinishSearch(self.savedSearch)
@@ -152,8 +151,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         let savedSearch : SavedSearch = SavedSearch()
         savedSearch.setObject(propertyType.text!, forKey: "propertytype")
         savedSearch.setObject(location.text!, forKey: "city")
-      
-        
         
         var min:Int? = Int(price_min.text!)
         var max:Int? = Int(price_max.text!)
@@ -171,8 +168,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         if (max == nil) {
              max = NSIntegerMax
         }
-        
-      
         
         savedSearch.setObject(searchkeyword.text!, forKey: "keywordsearch")
         
@@ -211,7 +206,5 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                 NSLog("Error Retrieving user for favorite");
             }
         }
-        
     }
-
 }

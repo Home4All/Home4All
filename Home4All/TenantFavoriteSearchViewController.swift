@@ -126,22 +126,15 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
             query.whereKey("housetype", containsString: propertType)
         }
         
-        
-        
-        
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
-            
-            
             if error != nil{
                 print(error)
-                
                 
             }else{
                 print("aaaa gayaayyayayaya \(objects)")
                 self.favoriteSearches = objects!;
                 self.tenantFavoriesTableView.reloadData()
-                
             }
         }
     }

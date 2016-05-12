@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1494,7 +1494,7 @@
                     <navigationItem key="navigationItem" id="ZGk-4N-fvQ"/>
                     <connections>
                         <outlet property="tenantFavoriesTableView" destination="sfE-8U-n2C" id="kSy-yJ-RFO"/>
-                        <segue destination="UAX-aG-cYL" kind="show" id="Peq-Z9-8gG"/>
+                        <segue destination="UAX-aG-cYL" kind="show" identifier="FavoriteDetailsegue" id="Peq-Z9-8gG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fom-hO-W0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1642,7 +1642,9 @@
                             <constraint firstItem="1cA-g6-C4U" firstAttribute="leading" secondItem="R96-VG-joc" secondAttribute="leading" id="nfz-wd-e4d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="89F-z3-DHl"/>
+                    <navigationItem key="navigationItem" id="89F-z3-DHl">
+                        <barButtonItem key="backBarButtonItem" title="Saved Search" id="fuM-Sh-ZGO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="savedSearchTableView" destination="1cA-g6-C4U" id="pWd-J7-Got"/>
                         <segue destination="MK8-3g-fuq" kind="show" identifier="SavedSearchSegue" id="Ot5-Ck-8fN"/>
