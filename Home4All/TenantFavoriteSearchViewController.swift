@@ -31,17 +31,39 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         //            query.whereKey("zip", equalTo: zipCodeValue!)
         //
         //
-        let cityText:String! = savedSearchParameters.objectForKey("city") as? String
+        var cityText:String! = savedSearchParameters.objectForKey("city") as? String
         let max:Int! = savedSearchParameters.objectForKey("maxrent") as? Int
+        let zip:Int! = savedSearchParameters.objectForKey("zipcode") as? Int
         
         let min:Int! = savedSearchParameters.objectForKey("minrent") as? Int
         
         let propertytype:String! = savedSearchParameters.objectForKey("propertytype") as? String
         
-        query.whereKey("city", containsString: cityText!)
-        query.whereKey("rent", greaterThan: min!-1)
-        query.whereKey("rent", lessThan: max!+1)
+        let keywordesarch:String! = savedSearchParameters.objectForKey("keywordsearch") as? String
+       
+        if zip==nil
+        {
+        }
+        else
+        {
+            
+            query.whereKey("zipcode", equalTo: zip!)
+        }
+        
+        if cityText==nil {
+        }
+        else{
+            query.whereKey("city", containsString: cityText!)
+            
+        }
+        
+        
+        
+        query.whereKey("rent", greaterThanOrEqualTo: min!)
+        query.whereKey("rent", lessThanOrEqualTo: max!)
         query.whereKey("housetype", containsString: propertytype!)
+        query.whereKey("descriptionsearch", containsString: keywordesarch?.lowercaseString)
+        
         
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in
