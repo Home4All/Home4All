@@ -1415,7 +1415,7 @@
                     <navigationItem key="navigationItem" id="ZGk-4N-fvQ"/>
                     <connections>
                         <outlet property="tenantFavoriesTableView" destination="sfE-8U-n2C" id="kSy-yJ-RFO"/>
-                        <segue destination="UAX-aG-cYL" kind="show" identifier="FavoriteDetailsegue" id="Mfg-sc-GiS"/>
+                        <segue destination="UAX-aG-cYL" kind="show" id="Peq-Z9-8gG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fom-hO-W0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1520,11 +1520,12 @@
                     <navigationItem key="navigationItem" id="89F-z3-DHl"/>
                     <connections>
                         <outlet property="savedSearchTableView" destination="1cA-g6-C4U" id="pWd-J7-Got"/>
+                        <segue destination="MK8-3g-fuq" kind="show" identifier="SavedSearchSegue" id="Ot5-Ck-8fN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiJ-Hp-6g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4635" y="-454"/>
+            <point key="canvasLocation" x="4733" y="-970"/>
         </scene>
         <!--Sign Out-->
         <scene sceneID="H5t-3m-MMa">
@@ -1679,6 +1680,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1we-EJ-REM"/>
-        <segue reference="Mfg-sc-GiS"/>
+        <segue reference="Ot5-Ck-8fN"/>
+        <segue reference="Peq-Z9-8gG"/>
     </inferredMetricsTieBreakers>
 </document>
