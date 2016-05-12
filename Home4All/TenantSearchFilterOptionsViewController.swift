@@ -77,10 +77,10 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     @IBAction func saveThisSearch(sender: AnyObject) {
         
         let savedSearch : SavedSearch = SavedSearch()
-        savedSearch.setObject("House", forKey: "propertytype")
+        savedSearch.setObject("Townhose", forKey: "propertytype")
         savedSearch.setObject("San Francisco", forKey: "city")
         savedSearch.setObject(NSNumber(int:1000), forKey: "minrent")
-        savedSearch.setObject(NSNumber(int:10000), forKey: "maxrent")
+        savedSearch.setObject(NSNumber(int:8500), forKey: "maxrent")
                 
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
         let query = PFQuery(className: "AppUser")

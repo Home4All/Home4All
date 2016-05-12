@@ -116,5 +116,22 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         return cell
 
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("SavedSearchSegue", sender: indexPath)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "SavedSearchSegue"){
+           
+            
+            let indexPath = sender as! NSIndexPath
+            let row = indexPath.row as Int;
+            let postingObject : SavedSearch = self.savedSearchedResults[row] as! SavedSearch;
+            let destinationViewController : TenantFavoriteSearchViewController = segue.destinationViewController as! TenantFavoriteSearchViewController
+            destinationViewController.savedSearchParameters = postingObject;
+            destinationViewController.iSComingFrmSavedsearch = true;
+            
+        }
+    }
+    
     
 }

@@ -32,7 +32,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     var price_min:Int?
     
     var zipcode1:Int?=0
-    
+    //var savedSearchParameters:PlacePost?
+//      var savedSearchParameters : SavedSearch = SavedSearch()
     
     
     
@@ -57,7 +58,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
- 
+  
+        
+        
+     //   print ("Saved search parametersrsrsrsrsrsr,\(savedSearchParameters)")
         
         print (location1)
         print (area_max)

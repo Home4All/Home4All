@@ -12,14 +12,60 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
     
     @IBOutlet weak var tenantFavoriesTableView: UITableView!
     var favoriteSearches : NSArray = NSArray()
-
+ var savedSearchParameters : SavedSearch = SavedSearch()
+    var iSComingFrmSavedsearch = false
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        super.viewDidLoad()
+    
+    // Do any additional setup after loading the view.
+    }
+    
+    func fetchDataForsavedSearch () {
+        
+        print ("Saved search parametersrsrsrsrsrsr,\(savedSearchParameters)")
+        let query = PlacePost.query()! as PFQuery
+        
+        // 2
+        //            query.whereKey("city", containsString: cityValue!)
+        //            query.whereKey("zip", equalTo: zipCodeValue!)
+        //
+        //
+        let cityText:String! = savedSearchParameters.objectForKey("city") as? String
+        let max:Int! = savedSearchParameters.objectForKey("maxrent") as? Int
+        
+        let min:Int! = savedSearchParameters.objectForKey("minrent") as? Int
+        
+        let propertytype:String! = savedSearchParameters.objectForKey("propertytype") as? String
+        
+        query.whereKey("city", containsString: cityText!)
+        query.whereKey("rent", greaterThan: min!-1)
+        query.whereKey("rent", lessThan: max!+1)
+        query.whereKey("housetype", containsString: propertytype!)
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            
+            
+            if error != nil{
+                print(error)
+                
+                
+            }else{
+                print("aaaa gayaayyayayaya \(objects)")
+                self.favoriteSearches = objects!;
+                self.tenantFavoriesTableView.reloadData()
+                
+            }
+            
+        }
     }
     override func viewDidAppear(animated: Bool) {
-        self.fetchUserFavoritePost()
+        if iSComingFrmSavedsearch {
+            self.fetchDataForsavedSearch()
+        } else {
+            self.fetchUserFavoritePost()
+        }
     }
 
     func fetchUserFavoritePost() {
@@ -38,7 +84,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
                     self.favoriteSearches = favorites as! NSArray
                     self.tenantFavoriesTableView.reloadData()
                 }
- 
+
             } else {
                 NSLog("Error Retrieving user for favorite");
             }
