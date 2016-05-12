@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Foundation
 
 class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, TenantSearchFilterOptionsViewControllerDelegate{
  
@@ -279,6 +280,61 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     func didFinishSearch(searchOption : SavedSearch) {
         print(searchOption);
+        
+        var keyword = searchOption.valueForKey("keyword") as? String
+        var city = searchOption.valueForKey("city") as? String
+        var zipCode = searchOption.valueForKey("zip") as? NSNumber
+        var minrent = searchOption.valueForKey("minrent") as? NSNumber
+        var maxrent = searchOption.valueForKey("maxrent") as? NSNumber
+        let propertType = searchOption.valueForKey("propertytype") as? String
+
+        if (city == nil || (city?.isEmpty)!) {
+            city = self.cityValue
+        }
+       
+        
+        if (minrent == nil) {
+            minrent = NSNumber(int : 0)
+        }
+        
+        if (maxrent == nil) {
+            maxrent = NSIntegerMax
+        }
+        
+        let query = PlacePost.query()! as PFQuery
+        
+        if (zipCode == nil) {
+            zipCode = self.zipCodeValue
+        }
+        else {
+            query.whereKey("zip", equalTo: zipCode!)
+        }
+        
+        if (keyword == nil || (keyword?.isEmpty)!) {
+        } else {
+            query.whereKey("descriptionsearch", containsString: keyword?.lowercaseString)
+        }
+        
+        query.whereKey("citysearch", containsString: city?.lowercaseString)
+        query.whereKey("rent", lessThan: maxrent!)
+        query.whereKey("rent", greaterThan: minrent!)
+        
+        if (propertType == nil || (propertType?.isEmpty)!) {
+            query.whereKey("housetype", containedIn: apartmentType )
+        } else {
+            query.whereKey("housetype", containsString: propertType)
+        }
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects, error) -> Void in
+            
+            if error != nil{
+                print(error)
+            }else{
+                self.searchResults = objects!;
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 

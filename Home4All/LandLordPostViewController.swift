@@ -30,7 +30,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var thumbnailCollectionView : UICollectionView!
     @IBOutlet weak var postTableView : UITableView!
     var tableViewData : NSMutableArray = []
-    var propertyTypes = ["House","Townhose","Condo", "Apartment"];
+    var propertyTypes = ["Any","Apartment","House","Condo"];
     var availableNumberOfRooms = ["1","2","3", "4","5","6"];
     var availableNumberOfBaths = ["1","1.5","2", "2.5","3"];
     var currentTextField : UITextField = UITextField()
@@ -347,6 +347,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                 } else {
                     self.placePost.setObject(NSNumber(int : 0), forKey: "rent");
                 }
+            }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
             if let textValue = textField.text {
@@ -357,14 +358,13 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             
             if let textValue = textField.text {
                 self.placePost.setObject(textValue, forKey: "state");
-            } else {
-                
             }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeCityName.rawValue){
             
             if let textValue = textField.text {
                 self.placePost.setObject(textValue, forKey: "city");
+                self.placePost.setObject(textValue.lowercaseString, forKey: "citysearch");
             }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeStreet.rawValue){
@@ -379,7 +379,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                 }
             }
         }
-    }
     }
     
     //MARK - PickerView Methods

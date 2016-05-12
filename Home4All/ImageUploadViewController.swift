@@ -64,6 +64,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
     func textViewDidChange(textView: UITextView) {
         if let descriptionText = textView.text {
             self.placePost.setObject(descriptionText, forKey: "description");
+            self.placePost.setObject(descriptionText.lowercaseString, forKey: "descriptionsearch");
         }
     }
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
@@ -97,20 +98,22 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
             if succeeded {
                 NSLog("Object Uploaded")
                 
-                let place = self.placePost.valueForKey("city") as! NSString
-                let price = self.placePost.valueForKey("rent") as! NSNumber
-        
-                let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                let place = self.placePost.valueForKey("city") as? NSString
+                let price = self.placePost.valueForKey("rent") as? NSNumber
                 
-                let valueObjects : NSArray = [emailid,username,postInfo];
-                let keys : NSArray = ["email","name","message"];
-                let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
-                
-                PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
-                    (response: AnyObject?, error: NSError?) -> Void in
-                    if (response != nil) {
-                        NSLog(response as! String);
-                        self.showAlert("Success", message: "Post saved and Mail sent");
+                if place != nil && price != nil {
+                    let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                    
+                    let valueObjects : NSArray = [emailid,username,postInfo];
+                    let keys : NSArray = ["email","name","message"];
+                    let  parameters : NSDictionary = NSDictionary.init(objects: valueObjects as [AnyObject], forKeys: keys as! [NSCopying]);
+                    
+                    PFCloud.callFunctionInBackground("sendEmail", withParameters: parameters as [NSObject : AnyObject]) {
+                        (response: AnyObject?, error: NSError?) -> Void in
+                        if (response != nil) {
+                            NSLog(response as! String);
+                            self.showAlert("Success", message: "Post saved and Mail sent");
+                        }
                     }
                 }
                 
