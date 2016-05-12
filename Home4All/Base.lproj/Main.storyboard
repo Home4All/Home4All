@@ -245,7 +245,7 @@
                                                         <constraint firstAttribute="width" priority="750" constant="62" id="kxi-gQ-v2Z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.18561220169067383" green="0.55981463193893433" blue="0.92847675085067749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="1" green="0.7385857119" blue="0.25968105209999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -298,7 +298,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Post Ad" id="4sB-5c-Fpk">
                         <barButtonItem key="rightBarButtonItem" title="Add Images" id="seJ-8a-oXo">
-                            <color key="tintColor" red="0.18561220169067383" green="0.55981463193893433" blue="0.92847675085067749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="1" green="0.7385857119" blue="0.25968105209999998" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="LcC-hH-f95" kind="show" identifier="PhotoUpload" id="pot-Pq-cYv"/>
                             </connections>
@@ -311,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uL2-yh-8hQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016" y="3231"/>
+            <point key="canvasLocation" x="3858" y="3151"/>
         </scene>
         <!--Upload-->
         <scene sceneID="ef0-eq-VUf">
@@ -559,11 +559,12 @@
                     <connections>
                         <outlet property="allpostingsTableView" destination="eQn-vl-1oZ" id="kdX-46-XbN"/>
                         <segue destination="dXD-oQ-rGa" kind="show" identifier="PostAdViewController" id="SJ4-my-rE8"/>
+                        <segue destination="UAX-aG-cYL" kind="show" identifier="AllPostingDetail" id="YOt-Xo-jjg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91d-t6-JfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016" y="2336"/>
+            <point key="canvasLocation" x="4088" y="2310"/>
         </scene>
         <!--Landlord-->
         <scene sceneID="KBF-dN-lWe">
@@ -1411,7 +1412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cpe-uj-XAr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5495" y="-4011"/>
+            <point key="canvasLocation" x="4847" y="2336"/>
         </scene>
         <!--Search Favourites-->
         <scene sceneID="edx-34-5nf">
@@ -1699,7 +1700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiJ-Hp-6g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5434" y="-1512"/>
+            <point key="canvasLocation" x="5418" y="-1056"/>
         </scene>
         <!--All Postings-->
         <scene sceneID="eia-dK-tzX">
@@ -1814,7 +1815,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLN-IE-UyH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4418" y="-1512"/>
+            <point key="canvasLocation" x="4298" y="-848"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Piw-sc-83k">
@@ -1842,7 +1843,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="r7w-UJ-7pz"/>
         <segue reference="SJ4-my-rE8"/>
+        <segue reference="YOt-Xo-jjg"/>
         <segue reference="Ot5-Ck-8fN"/>
-        <segue reference="Peq-Z9-8gG"/>
     </inferredMetricsTieBreakers>
 </document>

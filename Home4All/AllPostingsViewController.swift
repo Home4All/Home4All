@@ -186,6 +186,10 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("AllPostingDetail", sender: indexPath)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "PostAdViewController"){
             let indexPath = sender as! NSIndexPath
@@ -194,6 +198,13 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             let destinationViewController : LandLordPostViewController = segue.destinationViewController as! LandLordPostViewController
             destinationViewController.editInAction = true;
             destinationViewController.placePost = postingObject;
+        } else if (segue.identifier == "AllPostingDetail") {
+            let indexPath = sender as! NSIndexPath
+            let row = indexPath.row as Int;
+            let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+            let destinationViewController : TenantPostDetailViewController = segue.destinationViewController as! TenantPostDetailViewController
+            destinationViewController.placePost = postingObject;
+            destinationViewController.navigationItem.rightBarButtonItem = nil
         }
     }
 
