@@ -20,7 +20,27 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageUploadViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageUploadViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
             }
+    
+    
+    func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        
+        self.view.frame.origin.y -= keyboardFrame.height
+    }
+    
+    func keyboardWillHide(notification:NSNotification){
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        
+        self.view.frame.origin.y += keyboardFrame.height
+    }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1;
