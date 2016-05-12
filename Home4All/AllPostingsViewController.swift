@@ -74,6 +74,9 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         if let images = postingObject.valueForKey("images") {
+            if images.count == 0 {
+                return allpostingTableCell
+            }
             let imageFiles = images as! NSArray
             let firstImageFile = imageFiles[0]
             firstImageFile.getDataInBackgroundWithBlock({ (data, error) in

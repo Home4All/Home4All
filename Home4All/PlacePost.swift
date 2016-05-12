@@ -29,9 +29,9 @@ class PlacePost: PFObject, PFSubclassing {
     @NSManaged var state: NSString
     @NSManaged var noOfRooms: NSNumber
     @NSManaged var noOfBaths: NSNumber
-    @NSManaged var area: NSString
+    @NSManaged var area: NSNumber
     @NSManaged var rent: NSNumber
-    @NSManaged var contactInfo: NSString
+    @NSManaged var contactInfo: NSNumber
     
     var imageProperty : UIImage = UIImage()
     //1

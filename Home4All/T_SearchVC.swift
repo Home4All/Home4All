@@ -40,18 +40,12 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
     var cityArray:[String] = [String]()
     var streetArray:[String] = [String]()
     var priceArray :NSMutableArray? = NSMutableArray()
     var imageArray:[UIImage] = [UIImage]()
     
     var searchResults : NSArray = NSArray()
-    
-    
-    
-    
     
     let locationManager = CLLocationManager()
     var chosenApartmentType : String = String()
@@ -223,6 +217,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         let cell=self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
         
+        if  searchResults.count == 0 {
+            return cell
+        }
+        
             let placePost : PlacePost = self.searchResults[indexPath.row] as! PlacePost;
             let cityText:String! = placePost.objectForKey("city") as? String
             let streetText:String! = placePost.objectForKey("street") as? String
@@ -231,6 +229,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
   let countText:Int! = placePost.objectForKey("counter") as? Int
         
         if let images = placePost.valueForKey("images") {
+            if images.count != 0 {
             let imageFiles = images as! NSArray
             let firstImageFile = imageFiles[0]
             firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
@@ -241,6 +240,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                     }
                 }
             })
+            }
         }
         
         if countText != nil{

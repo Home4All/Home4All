@@ -57,7 +57,6 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
                 self.tenantFavoriesTableView.reloadData()
                 
             }
-            
         }
     }
     override func viewDidAppear(animated: Bool) {
