@@ -11,6 +11,10 @@ import UIKit
 class SavedSearchCustomCell: UITableViewCell {
     @IBOutlet weak var propertyType: UILabel!
     @IBOutlet weak var deleteSavedSearchButton: UIButton!
+    
+    @IBOutlet weak var zipcode: UILabel!
+    
+    @IBOutlet weak var keywordsearch: UILabel!
     @IBOutlet weak var priceRangeLabel: UILabel!
     @IBOutlet weak var cityName: UILabel!
     override func awakeFromNib() {
