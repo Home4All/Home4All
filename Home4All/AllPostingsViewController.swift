@@ -57,40 +57,93 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allPostings.count;
     }
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let allpostingTableCell = tableView.dequeueReusableCellWithIdentifier("AllPostingTableCell", forIndexPath: indexPath) as! AllPostingsTableViewCell
+//        
+//        let row = indexPath.row as Int;
+//        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+//        let stateText = postingObject.objectForKey("state") as? String
+//        let zipCode = postingObject.objectForKey("zip") as? NSInteger
+//        if stateText != nil && zipCode != nil {
+//            allpostingTableCell.state.text = stateText! + "\(zipCode!)";
+//        }
+//        let houseType = postingObject.objectForKey("housetype") as? String;
+//        if houseType != nil {
+//              allpostingTableCell.propertyType.text = houseType;
+//        }
+//        
+//        if let images = postingObject.valueForKey("images") {
+//            if images.count == 0 {
+//                return allpostingTableCell
+//            }
+//            let imageFiles = images as! NSArray
+//            let firstImageFile = imageFiles[0]
+//            firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
+//                if let data = data {
+//                    if let image = UIImage(data: data) {
+//                        allpostingTableCell.propertyImageView.image = image;
+//                        postingObject.imageProperty = image
+//                    }
+//                }
+//            })
+//        }
+//      
+//        return allpostingTableCell;
+//        }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let allpostingTableCell = tableView.dequeueReusableCellWithIdentifier("AllPostingTableCell", forIndexPath: indexPath) as! AllPostingsTableViewCell
         
-        let row = indexPath.row as Int;
-        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
-        let stateText = postingObject.objectForKey("state") as? String
-        let zipCode = postingObject.objectForKey("zip") as? NSInteger
-        if stateText != nil && zipCode != nil {
-            allpostingTableCell.state.text = stateText! + "\(zipCode!)";
-        }
-        let houseType = postingObject.objectForKey("housetype") as? String;
-        if houseType != nil {
-              allpostingTableCell.propertyType.text = houseType;
+     let cell = tableView.dequeueReusableCellWithIdentifier("AllPostingTableCell", forIndexPath: indexPath) as! AllPostingsTableViewCell
+        
+        if  self.allPostings.count == 0 {
+            return cell
         }
         
-        if let images = postingObject.valueForKey("images") {
-            if images.count == 0 {
-                return allpostingTableCell
-            }
-            let imageFiles = images as! NSArray
-            let firstImageFile = imageFiles[0]
-            firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
-                if let data = data {
-                    if let image = UIImage(data: data) {
-                        allpostingTableCell.propertyImageView.image = image;
-                        postingObject.imageProperty = image
+        let placePost : PlacePost = self.allPostings[indexPath.row] as! PlacePost;
+        let cityText:String! = placePost.objectForKey("city") as? String
+        let streetText:String! = placePost.objectForKey("street") as? String
+        let priceText:Int! = placePost.objectForKey("rent") as? Int
+        
+        let countText:Int! = placePost.objectForKey("counter") as? Int
+        
+        if let images = placePost.valueForKey("images") {
+            if images.count != 0 {
+                let imageFiles = images as! NSArray
+                let firstImageFile = imageFiles[0]
+                firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
+                    if let data = data {
+                        if let image = UIImage(data: data) {
+                            cell.propertyImageView.image=image
+                            placePost.imageProperty = image
+                        }
                     }
-                }
-            })
+                })
+            }
         }
-      
-        return allpostingTableCell;
+        
+        if countText != nil{
+            print("Count is \(countText)")
+            cell.viewCounter.text = "\(countText) Views"
         }
+        
+        if cityText != nil{
+            print("City is \(cityText)")
+            cell.cityLabel.text=cityText
+        }
+        
+        if streetText != nil{
+            cell.streetLabel.text=streetText
+        }
+        
+        if priceText != nil{
+            print("Price is \(priceText)")
+            cell.rentLabel.text="$ \(priceText) /mo"
+        }
+        return cell
+    }
+    
+    
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

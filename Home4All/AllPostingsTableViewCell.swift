@@ -14,6 +14,17 @@ class AllPostingsTableViewCell: UITableViewCell {
     @IBOutlet weak var zipcode : UILabel!;
     @IBOutlet weak var propertyType : UILabel!;
     @IBOutlet weak var postedBy : UILabel!;
+    
     @IBOutlet weak var propertyImageView : UIImageView!;
+
+    @IBOutlet weak var viewCounter: UILabel!
+
+
+    @IBOutlet weak var streetLabel: UILabel!
+    
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    @IBOutlet weak var rentLabel: UILabel!
+    
 
 }
