@@ -27,11 +27,12 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     var currentObject:String = "";
     var count:Int=0;
     var placePost : PlacePost = PlacePost()
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
   
     var imageFiles : NSArray = NSArray()
     
-    @IBOutlet weak var favoriteButton: UIButton!
+   // @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var detailImageCollectionView: UICollectionView!
     var imagesArray : NSMutableArray = NSMutableArray()
 
@@ -44,6 +45,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
 //        query.whereKey("objectId", equalTo: placePost.valueForKey("objectId")!)
 //       
     
+        self.title="Post Details"
          count =  Int(placePost.valueForKey("counter")! as! NSNumber)
     
         print ("dekhne k pehle \(count)")
@@ -177,7 +179,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
 
                     } else {
                         favouritesArray.addObject(self.placePost)
-                        self.favoriteButton.tintColor = UIColor.blueColor()
+                        self.favoriteButton.tintColor = UIColor.redColor()
 
                     }
                     currentAppUser.setObject(favouritesArray.copy() as! NSArray, forKey: "favorite")

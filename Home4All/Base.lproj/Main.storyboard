@@ -1349,6 +1349,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Gxi-Ko-N1y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="AQd-MG-WXP">
+                            <connections>
+                                <action selector="markfavoriteproperty:" destination="UAX-aG-cYL" id="ohl-tP-3pS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="apartmanetTypeLabel" destination="7Sx-nd-eyk" id="hcn-cw-lH3"/>
                         <outlet property="areaLabel" destination="Iiu-m3-6cs" id="NCa-bA-jfQ"/>
@@ -1356,6 +1363,7 @@
                         <outlet property="contactLabel" destination="UiH-Wb-eDT" id="j5D-fn-pRm"/>
                         <outlet property="descriptionText" destination="cpM-OX-jd0" id="LOJ-Fm-ySQ"/>
                         <outlet property="detailImageCollectionView" destination="O9F-PF-e69" id="dIU-6B-hC6"/>
+                        <outlet property="favoriteButton" destination="AQd-MG-WXP" id="IAW-E2-gim"/>
                         <outlet property="noOfBath" destination="gih-v5-D9Y" id="1Bf-x1-ZcY"/>
                         <outlet property="noOfBedLabel" destination="2WU-ac-pgl" id="C3e-5I-5J9"/>
                         <outlet property="rentLabel" destination="InJ-OK-IIj" id="GC6-23-ZlD"/>
