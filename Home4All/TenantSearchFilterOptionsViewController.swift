@@ -32,8 +32,9 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.location.text = cityValue!
-        self.zipcode.text = "\(zipValue!)"
+            self.location.text = cityValue!
+            self.zipcode.text = "\(zipValue!)"
+    
 
         // Do any additional setup after loading the view.
     }
@@ -43,9 +44,8 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         
         let city = self.savedSearch.valueForKey("city") as? String
         let zipCode = self.savedSearch.valueForKey("zip") as? NSNumber
-        if (city == nil || (city?.isEmpty)!) && zipCode == nil {
+        if (city == nil || (city?.isEmpty)!) && zipCode == nil && (self.location.text == nil || (self.location.text?.isEmpty)!) && (self.zipcode.text == nil || (self.zipcode.text?.isEmpty)!) {
             self.showAlert("Location Missing", message: "Please enter city or zip code to search")
-            
         }else {
         self.navigationController?.popViewControllerAnimated(true)
         self.tenantDelegate?.didFinishSearch(self.savedSearch)
@@ -152,8 +152,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         let savedSearch : SavedSearch = SavedSearch()
         savedSearch.setObject(propertyType.text!, forKey: "propertytype")
         savedSearch.setObject(location.text!, forKey: "city")
-      
-        
         
         var min:Int? = Int(price_min.text!)
         var max:Int? = Int(price_max.text!)
@@ -171,8 +169,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         if (max == nil) {
              max = NSIntegerMax
         }
-        
-      
         
         savedSearch.setObject(searchkeyword.text!, forKey: "keywordsearch")
         
@@ -211,7 +207,5 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                 NSLog("Error Retrieving user for favorite");
             }
         }
-        
     }
-
 }
