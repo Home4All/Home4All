@@ -1029,6 +1029,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O9F-PF-e69">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="326"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="CBf-a6-GDu"/>
+                                    <constraint firstAttribute="height" constant="250" id="H3c-zx-qYk"/>
+                                    <constraint firstAttribute="height" constant="288" id="Y2R-zV-Wp3"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVC-GO-SHO">
+                                    <size key="itemSize" width="605" height="286"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="detailcell" id="BLi-i0-cXF" customClass="PhotoUploadThumbnailCell" customModule="Home4All" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="27.5" width="605" height="286"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="605" height="286"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-3R-x1A">
+                                                    <rect key="frame" x="0.0" y="0.0" width="605" height="298"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" constant="-0.25" id="5zg-aH-TlW"/>
+                                            <constraint firstAttribute="trailing" secondItem="WFr-3R-x1A" secondAttribute="trailing" id="7Vj-YU-zVV"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerX" secondItem="BLi-i0-cXF" secondAttribute="centerX" id="Abc-ae-OIc"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="leading" secondItem="BLi-i0-cXF" secondAttribute="leading" id="DtA-ap-2RX"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="leading" secondItem="BLi-i0-cXF" secondAttribute="leadingMargin" constant="-8" id="LKf-vn-N7a"/>
+                                            <constraint firstAttribute="trailing" secondItem="WFr-3R-x1A" secondAttribute="trailing" id="Qbh-X1-2yz"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" id="WmX-nf-eyE"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="top" secondItem="BLi-i0-cXF" secondAttribute="top" id="ewj-cK-UYH"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="WFr-3R-x1A" secondAttribute="bottom" constant="-20" id="fye-EH-TEe"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerX" secondItem="BLi-i0-cXF" secondAttribute="centerX" id="icJ-Ly-pfI"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" id="kft-cI-vnh"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="leading" secondItem="BLi-i0-cXF" secondAttribute="leading" id="n9O-7X-jU4"/>
+                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="top" secondItem="BLi-i0-cXF" secondAttribute="top" id="wYr-Il-SEk"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="5zg-aH-TlW"/>
+                                                <exclude reference="7Vj-YU-zVV"/>
+                                                <exclude reference="Abc-ae-OIc"/>
+                                                <exclude reference="WmX-nf-eyE"/>
+                                                <exclude reference="icJ-Ly-pfI"/>
+                                                <exclude reference="kft-cI-vnh"/>
+                                                <exclude reference="n9O-7X-jU4"/>
+                                                <exclude reference="wYr-Il-SEk"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="imgView" destination="WFr-3R-x1A" id="YBD-mf-LLV"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CBf-a6-GDu"/>
+                                        <exclude reference="H3c-zx-qYk"/>
+                                        <exclude reference="Y2R-zV-Wp3"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="UAX-aG-cYL" id="XNr-sR-mY7"/>
+                                    <outlet property="delegate" destination="UAX-aG-cYL" id="Erp-zD-T2r"/>
+                                </connections>
+                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1 (669) 241-9734" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiH-Wb-eDT">
                                 <rect key="frame" x="43" y="426" width="145" height="22"/>
                                 <constraints>
@@ -1178,75 +1251,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O9F-PF-e69">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="332"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="CBf-a6-GDu"/>
-                                    <constraint firstAttribute="height" constant="250" id="H3c-zx-qYk"/>
-                                    <constraint firstAttribute="height" constant="288" id="Y2R-zV-Wp3"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVC-GO-SHO">
-                                    <size key="itemSize" width="605" height="286"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="detailcell" id="BLi-i0-cXF" customClass="PhotoUploadThumbnailCell" customModule="Home4All" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="23" width="605" height="286"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="605" height="286"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-3R-x1A">
-                                                    <rect key="frame" x="0.0" y="0.0" width="605" height="286"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" constant="-0.25" id="5zg-aH-TlW"/>
-                                            <constraint firstAttribute="trailing" secondItem="WFr-3R-x1A" secondAttribute="trailing" id="7Vj-YU-zVV"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerX" secondItem="BLi-i0-cXF" secondAttribute="centerX" id="Abc-ae-OIc"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="leading" secondItem="BLi-i0-cXF" secondAttribute="leading" id="DtA-ap-2RX"/>
-                                            <constraint firstAttribute="trailing" secondItem="WFr-3R-x1A" secondAttribute="trailing" id="Qbh-X1-2yz"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" id="WmX-nf-eyE"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="top" secondItem="BLi-i0-cXF" secondAttribute="top" id="ewj-cK-UYH"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerX" secondItem="BLi-i0-cXF" secondAttribute="centerX" id="icJ-Ly-pfI"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="centerY" secondItem="BLi-i0-cXF" secondAttribute="centerY" id="kft-cI-vnh"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="leading" secondItem="BLi-i0-cXF" secondAttribute="leading" id="n9O-7X-jU4"/>
-                                            <constraint firstItem="WFr-3R-x1A" firstAttribute="top" secondItem="BLi-i0-cXF" secondAttribute="top" id="wYr-Il-SEk"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="5zg-aH-TlW"/>
-                                                <exclude reference="7Vj-YU-zVV"/>
-                                                <exclude reference="icJ-Ly-pfI"/>
-                                                <exclude reference="kft-cI-vnh"/>
-                                                <exclude reference="n9O-7X-jU4"/>
-                                                <exclude reference="wYr-Il-SEk"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <outlet property="imgView" destination="WFr-3R-x1A" id="YBD-mf-LLV"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="CBf-a6-GDu"/>
-                                        <exclude reference="H3c-zx-qYk"/>
-                                        <exclude reference="Y2R-zV-Wp3"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="UAX-aG-cYL" id="XNr-sR-mY7"/>
-                                    <outlet property="delegate" destination="UAX-aG-cYL" id="Erp-zD-T2r"/>
-                                </connections>
-                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Apartment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-nd-eyk">
                                 <rect key="frame" x="497" y="381" width="86" height="22"/>
                                 <constraints>
@@ -1273,7 +1277,7 @@
                             <constraint firstItem="cpM-OX-jd0" firstAttribute="centerX" secondItem="9Fx-Tt-UUS" secondAttribute="centerX" id="3mv-2Y-V5A"/>
                             <constraint firstItem="cpM-OX-jd0" firstAttribute="leading" secondItem="LwM-jY-uoA" secondAttribute="leading" id="4Ke-Bl-LmL"/>
                             <constraint firstItem="gih-v5-D9Y" firstAttribute="leading" secondItem="vdW-FC-xtU" secondAttribute="trailing" constant="-77" id="4sA-nn-KwQ"/>
-                            <constraint firstItem="vdW-FC-xtU" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="8" id="4yh-U7-YId"/>
+                            <constraint firstItem="vdW-FC-xtU" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="14" id="4yh-U7-YId"/>
                             <constraint firstAttribute="trailingMargin" secondItem="few-5X-FjD" secondAttribute="trailing" constant="-13" id="50i-ru-OPF"/>
                             <constraint firstItem="UiH-Wb-eDT" firstAttribute="top" secondItem="yGi-Ac-HOA" secondAttribute="bottom" constant="2" id="5Cx-4p-lN8"/>
                             <constraint firstItem="cpM-OX-jd0" firstAttribute="top" secondItem="InJ-OK-IIj" secondAttribute="bottom" constant="26" id="5vM-L4-RKt"/>
@@ -1286,15 +1290,15 @@
                             <constraint firstItem="odH-pR-PUm" firstAttribute="leading" secondItem="9Fx-Tt-UUS" secondAttribute="leadingMargin" constant="-11" id="H2A-iP-OkS"/>
                             <constraint firstItem="gih-v5-D9Y" firstAttribute="leading" secondItem="7Sx-nd-eyk" secondAttribute="leading" id="HmY-ER-NYL"/>
                             <constraint firstItem="cpM-OX-jd0" firstAttribute="top" secondItem="InJ-OK-IIj" secondAttribute="bottom" constant="18" id="Hqf-ff-T0M"/>
-                            <constraint firstItem="IW0-UC-uzx" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="28" id="IdI-BM-F3b"/>
-                            <constraint firstItem="2WU-ac-pgl" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="8" id="Ilm-yQ-tJV"/>
+                            <constraint firstItem="IW0-UC-uzx" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="34" id="IdI-BM-F3b"/>
+                            <constraint firstItem="2WU-ac-pgl" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="14" id="Ilm-yQ-tJV"/>
                             <constraint firstItem="IW0-UC-uzx" firstAttribute="trailing" secondItem="cpM-OX-jd0" secondAttribute="trailing" constant="11" id="J7J-KZ-pgU"/>
                             <constraint firstItem="IW0-UC-uzx" firstAttribute="leading" secondItem="gih-v5-D9Y" secondAttribute="trailing" constant="14" id="JoJ-ny-ohv"/>
                             <constraint firstItem="odH-pR-PUm" firstAttribute="top" secondItem="few-5X-FjD" secondAttribute="bottom" constant="1" id="JsG-Tx-szI"/>
-                            <constraint firstItem="gih-v5-D9Y" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="28" id="K3G-oG-juw"/>
+                            <constraint firstItem="gih-v5-D9Y" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="34" id="K3G-oG-juw"/>
                             <constraint firstItem="VJf-iN-K5f" firstAttribute="leading" secondItem="yGi-Ac-HOA" secondAttribute="trailing" constant="2" id="Ktd-K3-CUF"/>
                             <constraint firstItem="vdW-FC-xtU" firstAttribute="leading" secondItem="2WU-ac-pgl" secondAttribute="trailing" constant="14" id="Mi7-uP-gGl"/>
-                            <constraint firstItem="few-5X-FjD" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="8" id="O7a-cL-ryh"/>
+                            <constraint firstItem="few-5X-FjD" firstAttribute="top" secondItem="O9F-PF-e69" secondAttribute="bottom" constant="14" id="O7a-cL-ryh"/>
                             <constraint firstItem="O9F-PF-e69" firstAttribute="top" secondItem="9Fx-Tt-UUS" secondAttribute="top" id="RLx-GS-8Ve"/>
                             <constraint firstItem="odH-pR-PUm" firstAttribute="leading" secondItem="few-5X-FjD" secondAttribute="leading" id="Rne-z3-dfw"/>
                             <constraint firstItem="LwM-jY-uoA" firstAttribute="top" secondItem="odH-pR-PUm" secondAttribute="bottom" constant="1" id="SXv-2V-A3R"/>
