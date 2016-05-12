@@ -20,7 +20,8 @@ class CustomCell: UITableViewCell {
   
     @IBOutlet weak var viewCount: UILabel!
     @IBOutlet weak var price: UILabel!
-  
+    
+    
     
     
     
