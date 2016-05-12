@@ -207,12 +207,12 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             if(rowLabel == "No Of Rooms"){
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofroom") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("noofroom") as! NSNumber)"
                 }
             } else if (rowLabel == "No Of Baths") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofbath") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("noofbath") as! NSNumber)"
                 }
             }else if(rowLabel == "Property Type") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
@@ -222,7 +222,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             } else if (rowLabel == "Area(Sq Foot)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("area") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("area") as! NSNumber)"
                 }
             }
             else if (rowLabel == "Street") {
@@ -243,19 +243,19 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             }else if (rowLabel == "ContactInfo") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("contact") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("contact") as! NSNumber)"
                 }
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("zip") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("zip") as! NSNumber)"
                 }
             }
                 
             else if (rowLabel == "Rent($)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeRent.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("rent") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("rent") as! NSNumber)"
                 }
             }
             
@@ -274,7 +274,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let sectionHeader : NSString = allKeys[0] as! NSString
         return sectionHeader as String;
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
