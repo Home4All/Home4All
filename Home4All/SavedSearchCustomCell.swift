@@ -17,5 +17,4 @@ class SavedSearchCustomCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

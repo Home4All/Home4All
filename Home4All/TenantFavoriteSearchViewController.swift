@@ -142,5 +142,19 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("FavoriteDetailsegue", sender: indexPath)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "FavoriteDetailsegue"){
+            let indexPath = sender as! NSIndexPath
+            let row = indexPath.row as Int;
+            let postingObject : PlacePost = self.favoriteSearches[row] as! PlacePost;
+            let destinationViewController : TenantPostDetailViewController = segue.destinationViewController as! TenantPostDetailViewController
+            destinationViewController.placePost = postingObject;
+        }
+    }
 
 }

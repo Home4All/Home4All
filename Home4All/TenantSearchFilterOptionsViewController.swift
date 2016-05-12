@@ -1,4 +1,4 @@
-//
+ //
 //  TenantSearchFilterOptionsViewController.swift
 //  Home4All
 //
@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+ protocol TenantSearchFilterOptionsViewControllerDelegate: class {
+    func didFinishSearch(searchOption : SavedSearch)
+ }
 class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDelegate {
 
+   
     @IBOutlet weak var location: UITextField!
     
 //    @IBOutlet weak var area_min: UITextField!
@@ -19,6 +22,9 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     @IBOutlet weak var zipcode: UITextField!
     @IBOutlet weak var propertyType: UITextField!
     @IBOutlet weak var searchkeyword: UITextField!
+    @IBOutlet weak var typePickerView: UIPickerView!
+    weak var tenantDelegate : TenantSearchFilterOptionsViewControllerDelegate?
+    var currentTextField: UITextField = UITextField()
     
     var savedSearch : SavedSearch = SavedSearch()
 
@@ -29,7 +35,18 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     }
     
     @IBAction func searchFilter(sender: AnyObject) {
-
+        self.currentTextField.resignFirstResponder()
+        self.navigationController?.popViewControllerAnimated(true)
+        self.tenantDelegate?.didFinishSearch(self.savedSearch)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.currentTextField = textField;
+        if textField.tag == 600 {
+            self.typePickerView.hidden = false
+        } else {
+            self.typePickerView.hidden = true
+        }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -37,42 +54,65 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         let numberFormatter : NSNumberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         if (textField.tag == 100){
-            
-            self.savedSearch.setObject(textField.text!, forKey: "keyword");
+            if let textValue = textField.text{
+                self.savedSearch.setObject(textValue, forKey: "keyword");
+
+            }
         }else if (textField.tag == 200){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.savedSearch.setObject(numberFromString!, forKey: "city");
+            if let textValue = textField.text{
+                self.savedSearch.setObject(textValue, forKey: "city");
+            }
             
         }else if (textField.tag == 300){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.savedSearch.setObject(numberFromString!, forKey: "zipcode");
+            if let textValue = textField.text{
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+            self.savedSearch.setObject(numberFromString, forKey: "zipcode");
+                }
+            }
             
         }else if (textField.tag == 400){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.savedSearch.setObject(numberFromString!, forKey: "minrent");
+            if let textValue = textField.text{
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                    self.savedSearch.setObject(numberFromString, forKey: "minrent");
+                }
+            }
             
         }else if (textField.tag == 500){
-            let numberFromString = numberFormatter.numberFromString(textField.text!)
-            self.savedSearch.setObject(numberFromString!, forKey: "maxrent");
-            
-        }else if (textField.tag == 600){
-            self.savedSearch.setObject(textField.text!, forKey: "propertytype");
+            if let textValue = textField.text{
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                    self.savedSearch.setObject(numberFromString, forKey: "maxrent");
+                }
+            }
         }
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//         if(segue.identifier == "filterSearchResult"){
-//        let destinationViewController : T_SearchVC = segue.destinationViewController as! T_SearchVC
-//            
-//        destinationViewController.location1 = location.text!
-//        destinationViewController.zipcode1 = Int(zipcode.text!)
-//        destinationViewController.price_max = Int(price_max.text!)
-//              destinationViewController.price_min = Int(price_min.text!)
-//        destinationViewController.area_max = area_max.text!
-//            destinationViewController.area_min = area_min.text!
-//            
-//        }
-//        
-//    }
+    
+    var apartmentType = ["Any","Apartment","House","Condo"]
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1;
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return apartmentType.count
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        
+        return apartmentType[row]
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    
+        self.currentTextField.text = apartmentType[row]
+        self.savedSearch.setObject(self.currentTextField.text!, forKey: "propertytype");
+        self.typePickerView.hidden = true
+    }
+
 
     @IBAction func saveThisSearch(sender: AnyObject) {
         
@@ -96,7 +136,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                     savedSearchesArray.addObject(savedSearch)
              
                     currentAppUser.setObject(savedSearchesArray.copy() as! NSArray, forKey: "savedsearches")
-                    
                 }
                 else {
                     let savedSearchArray = NSArray(objects: savedSearch)
