@@ -107,8 +107,13 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         self.streetLabel.text = placePost.valueForKey("street") as? String
         self.cityLabel.text = placePost.valueForKey("city") as? String
         self.stateLabel.text = placePost.valueForKey("state") as? String
-        self.contactLabel.text = placePost.valueForKey("contact") as? String
-        self.descriptionText.text = placePost.valueForKey("descriptionsearch") as? String
+        
+         self.contactLabel.text = placePost.valueForKey("contact") as? String
+        
+         
+        
+        
+        self.descriptionText.text = placePost.valueForKey("postdescription") as? String
         self.apartmanetTypeLabel.text = placePost.valueForKey("housetype") as? String
      
         self.areaLabel.text = placePost.valueForKey("area") as? String
