@@ -119,13 +119,29 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         let savedSearch : SavedSearch = SavedSearch()
         savedSearch.setObject(propertyType.text!, forKey: "propertytype")
         savedSearch.setObject(location.text!, forKey: "city")
+      
+        
+        
+        var min:Int? = Int(price_min.text!)
+        var max:Int? = Int(price_max.text!)
+        var zip:Int? = Int(zipcode.text!)
+        
+        if (zip == nil) {
+            zip = 0
+        }
+        
+        
+        if (min == nil) {
+            min = 0
+        }
+        
+        if (max == nil) {
+             max = NSIntegerMax
+        }
+        
+      
+        
         savedSearch.setObject(searchkeyword.text!, forKey: "keywordsearch")
-     
-        
-        
-        let min:Int? = Int(price_min.text!)
-        let max:Int? = Int(price_max.text!)
-        let zip:Int? = Int(zipcode.text!)
         
         savedSearch.setObject(min!, forKey: "minrent")
         savedSearch.setObject(max!, forKey: "maxrent")
