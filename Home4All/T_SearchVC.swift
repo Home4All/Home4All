@@ -292,10 +292,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         var maxrent = searchOption.valueForKey("maxrent") as? NSNumber
         let propertType = searchOption.valueForKey("propertytype") as? String
 
-        if (city == nil || (city?.isEmpty)!) {
-            city = self.cityValue
-        }
-       
         
         if (minrent == nil) {
             minrent = NSNumber(int : 0)
@@ -305,7 +301,17 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             maxrent = NSIntegerMax
         }
         
+        if city == nil && zipCode == nil {
+            self.showAlert("Location Missing", message: "Please enter city or zip code to search")
+        }
+        
+        
         let query = PlacePost.query()! as PFQuery
+        if (city == nil || (city?.isEmpty)!) {
+            city = self.cityValue
+        } else {
+            query.whereKey("citysearch", containsString: city?.lowercaseString)
+        }
         
         if (zipCode == nil) {
             zipCode = self.zipCodeValue
@@ -319,7 +325,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             query.whereKey("descriptionsearch", containsString: keyword?.lowercaseString)
         }
         
-        query.whereKey("citysearch", containsString: city?.lowercaseString)
         query.whereKey("rent", lessThan: maxrent!)
         query.whereKey("rent", greaterThan: minrent!)
         
@@ -335,10 +340,21 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             if error != nil{
                 print(error)
             }else{
+                if objects?.count == 0 {
+                    self.showAlert("No Data", message: "No results found")
+                }
                 self.searchResults = objects!;
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 

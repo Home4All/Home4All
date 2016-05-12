@@ -66,7 +66,7 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         }else if (textField.tag == 300){
             if let textValue = textField.text{
                 if let numberFromString = numberFormatter.numberFromString(textValue) {
-            self.savedSearch.setObject(numberFromString, forKey: "zipcode");
+            self.savedSearch.setObject(numberFromString, forKey: "zip");
                 }
             }
             

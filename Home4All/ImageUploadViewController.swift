@@ -137,7 +137,6 @@ extension ImageUploadViewController: UIImagePickerControllerDelegate, UINavigati
             let message : NSString = "You can not add more photos";
             showAlert(title, message: message)
         }
- 
     }
     
     func showAlert(title : NSString, message : NSString) {
