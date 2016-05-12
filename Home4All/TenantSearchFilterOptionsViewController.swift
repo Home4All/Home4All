@@ -202,7 +202,7 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                 }
                 currentAppUser.saveInBackgroundWithBlock({ (success, error) in
                     if (success){
-                       NSLog("Successfully saved searches")
+                        self.showAlert("Successful", message: "Search Options Saved.")
                     } else {
                         NSLog("error in  saving searches")
                     }

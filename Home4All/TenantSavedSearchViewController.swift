@@ -47,10 +47,11 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         }
     }
 
-    @IBAction func removeSavedSearch(sender: AnyObject) {
-        
-        let deleteButton : UIButton = sender as! UIButton;
-        let currentIndex = deleteButton.tag;
+//    @IBAction func removeSavedSearch(sender: AnyObject) {
+         func removeSavedSearch(sender: NSIndexPath) {
+
+//        let deleteButton : UIButton = sender as! UIButton;
+        let currentIndex = sender.row;
         
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
         let query = PFQuery(className: "AppUser")
@@ -71,8 +72,8 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
                 }
             currentAppUser.saveInBackgroundWithBlock({ (success, error) in
                     if (success){
-                        NSLog("Successfully saved searches")
                         self.fetchSavedSearchResults()
+                        self.showAlert("Deleted", message: "Saved Search Deleted.")
                     } else {
                         NSLog("error in  saving searches")
                         
@@ -147,6 +148,28 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
             destinationViewController.iSComingFrmSavedsearch = true;
             
         }
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // you need to implement this method too or you can't swipe to display the actions
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            self.removeSavedSearch(indexPath);
+        }
+        delete.backgroundColor = UIColor.orangeColor()
+        
+        return [delete]
+    }
+    
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     
