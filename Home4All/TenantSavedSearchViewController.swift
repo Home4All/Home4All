@@ -97,6 +97,8 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         let city : String! = savedSearch.objectForKey("city") as? String
         let minRent: Int! = savedSearch.objectForKey("minrent") as? Int
         let maxRent: Int! = savedSearch.objectForKey("maxrent") as? Int
+         let keyword : String! = savedSearch.objectForKey("keywordsearch") as? String
+              let zipcode: Int! = savedSearch.objectForKey("zipcode") as? Int
 
         cell.deleteSavedSearchButton.tag = indexPath.row;
         
@@ -112,6 +114,15 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         if minRent != nil && maxRent != nil{
             cell.priceRangeLabel.text="\(minRent)"+"-"+"\(maxRent)"
         }
+        
+        if keyword != nil{
+            cell.keywordsearch.text=keyword
+        }
+        if zipcode != nil{
+            cell.zipcode.text="\(zipcode)"
+        }
+        
+        
         
         return cell
 
