@@ -31,38 +31,102 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         //            query.whereKey("zip", equalTo: zipCodeValue!)
         //
         //
-        var cityText:String! = savedSearchParameters.objectForKey("city") as? String
-        let max:Int! = savedSearchParameters.objectForKey("maxrent") as? Int
-        let zip:Int! = savedSearchParameters.objectForKey("zipcode") as? Int
+//        let cityText:String! = savedSearchParameters.objectForKey("city") as? String
+//        let max:Int! = savedSearchParameters.objectForKey("maxrent") as? Int
+//        let zip:Int! = savedSearchParameters.objectForKey("zipcode") as? Int
+//        
+//        let min:Int! = savedSearchParameters.objectForKey("minrent") as? Int
+//        
+//        var propertytype:String! = savedSearchParameters.objectForKey("propertytype") as? String
+//        
+//        let keywordesarch:String! = savedSearchParameters.objectForKey("keywordsearch") as? String
+//       
+//        if zip==nil
+//        {
+//        }
+//        else
+//        {
+//            query.whereKey("zip", equalTo: zip!)
+//        }
+//
+//        if cityText==nil {
+//        }
+//        else{
+//        query.whereKey("citysearch", containsString: cityText?.lowercaseString)
+//        }
+////
+////        if min == nil{
+////        } else {
+////            query.whereKey("rent", greaterThan: min!)
+////        }
+////
+////        if max == nil{
+////        } else {
+////            query.whereKey("rent", lessThan: max!)
+////        }
+////        
+////        
+//////        if (propertytype == nil) {
+//////        } else {
+//////            query.whereKey("housetype", containsString: propertytype!)
+//////        }
+//////        
+////
+////        
+////        if (keywordesarch == nil) {
+////        } else {
+////            query.whereKey("descriptionsearch", containsString: keywordesarch?.lowercaseString)
+////        }
         
-        let min:Int! = savedSearchParameters.objectForKey("minrent") as? Int
         
-        let propertytype:String! = savedSearchParameters.objectForKey("propertytype") as? String
+        var keyword = savedSearchParameters.valueForKey("keyword") as? String
+        var city = savedSearchParameters.valueForKey("city") as? String
+        var zipCode = savedSearchParameters.valueForKey("zip") as? NSNumber
+        var minrent = savedSearchParameters.valueForKey("minrent") as? NSNumber
+        var maxrent = savedSearchParameters.valueForKey("maxrent") as? NSNumber
+        let propertType = savedSearchParameters.valueForKey("propertytype") as? String
+        var apartmentType = ["Any","Apartment","House","Condo"]
+
         
-        let keywordesarch:String! = savedSearchParameters.objectForKey("keywordsearch") as? String
-       
-        if zip==nil
-        {
+        if (minrent == nil) {
+            minrent = NSNumber(int : 0)
         }
-        else
-        {
+        
+        if (maxrent == nil) {
+            maxrent = NSIntegerMax
+        }
+        
+    
+        
+      //  let query = PlacePost.query()! as PFQuery
+        if (city == nil || (city?.isEmpty)!) {
             
-            query.whereKey("zipcode", equalTo: zip!)
+        } else {
+            query.whereKey("citysearch", containsString: city?.lowercaseString)
         }
         
-        if cityText==nil {
-        }
-        else{
-            query.whereKey("city", containsString: cityText!)
+        if (zipCode == nil) {
             
         }
+        else {
+            query.whereKey("zip", equalTo: zipCode!)
+        }
+        
+        if (keyword == nil || (keyword?.isEmpty)!) {
+        } else {
+            query.whereKey("descriptionsearch", containsString: keyword?.lowercaseString)
+        }
+        
+        query.whereKey("rent", lessThan: maxrent!)
+        query.whereKey("rent", greaterThan: minrent!)
+        
+        if (propertType == nil || (propertType?.isEmpty)!) {
+            query.whereKey("housetype", containedIn: apartmentType )
+        } else {
+            query.whereKey("housetype", containsString: propertType)
+        }
         
         
-        
-        query.whereKey("rent", greaterThanOrEqualTo: min!)
-        query.whereKey("rent", lessThanOrEqualTo: max!)
-        query.whereKey("housetype", containsString: propertytype!)
-        query.whereKey("descriptionsearch", containsString: keywordesarch?.lowercaseString)
         
         
         query.findObjectsInBackgroundWithBlock {
@@ -131,6 +195,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
         
         if let images = placePost.valueForKey("images") {
             let imageFiles = images as! NSArray
+            if imageFiles.count != 0 {
             let firstImageFile = imageFiles[0]
             firstImageFile.getDataInBackgroundWithBlock({ (data, error) in
                 if let data = data {
@@ -140,6 +205,7 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
                     }
                 }
             })
+            }
         }
      
         if cityText != nil{
