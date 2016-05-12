@@ -146,10 +146,9 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
             let destinationViewController : TenantFavoriteSearchViewController = segue.destinationViewController as! TenantFavoriteSearchViewController
             destinationViewController.savedSearchParameters = postingObject;
             destinationViewController.iSComingFrmSavedsearch = true;
-            
+            destinationViewController.title = "";
         }
     }
-    
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         // you need to implement this method too or you can't swipe to display the actions
@@ -170,7 +169,5 @@ class TenantSavedSearchViewController: UIViewController, UITableViewDataSource, 
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    
+    }    
 }

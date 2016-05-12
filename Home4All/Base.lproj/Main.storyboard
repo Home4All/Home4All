@@ -1491,7 +1491,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="ZGk-4N-fvQ"/>
+                    <navigationItem key="navigationItem" title="Favorite" id="ZGk-4N-fvQ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="3EW-2P-X7Y"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tenantFavoriesTableView" destination="sfE-8U-n2C" id="kSy-yJ-RFO"/>
                         <segue destination="UAX-aG-cYL" kind="show" identifier="FavoriteDetailsegue" id="Peq-Z9-8gG"/>
@@ -1642,7 +1644,7 @@
                             <constraint firstItem="1cA-g6-C4U" firstAttribute="leading" secondItem="R96-VG-joc" secondAttribute="leading" id="nfz-wd-e4d"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="89F-z3-DHl">
+                    <navigationItem key="navigationItem" title="Saved Search" id="89F-z3-DHl">
                         <barButtonItem key="backBarButtonItem" title="Saved Search" id="fuM-Sh-ZGO"/>
                     </navigationItem>
                     <connections>
