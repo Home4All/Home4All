@@ -15,8 +15,9 @@ class SavedSearchCustomCell: UITableViewCell {
     @IBOutlet weak var zipcode: UILabel!
     
     @IBOutlet weak var keywordsearch: UILabel!
-    @IBOutlet weak var priceRangeLabel: UILabel!
+    @IBOutlet weak var priceMinLabel: UILabel!
     @IBOutlet weak var cityName: UILabel!
+    @IBOutlet weak var priceMaxLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
