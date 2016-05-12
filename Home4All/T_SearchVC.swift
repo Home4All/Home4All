@@ -279,6 +279,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         if(segue.identifier == "SearchOptionSegue"){
             let destinationViewController : TenantSearchFilterOptionsViewController = segue.destinationViewController as! TenantSearchFilterOptionsViewController
             destinationViewController.tenantDelegate = self;
+            destinationViewController.cityValue = self.cityValue
+            destinationViewController.zipValue = self.zipCodeValue
         }
     }
     
@@ -301,10 +303,6 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             maxrent = NSIntegerMax
         }
         
-        if city == nil && zipCode == nil {
-            self.showAlert("Location Missing", message: "Please enter city or zip code to search")
-            return
-        }
         
         let query = PlacePost.query()! as PFQuery
         if (city == nil || (city?.isEmpty)!) {

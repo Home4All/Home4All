@@ -25,28 +25,61 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
     @IBOutlet weak var typePickerView: UIPickerView!
     weak var tenantDelegate : TenantSearchFilterOptionsViewControllerDelegate?
     var currentTextField: UITextField = UITextField()
+    var cityValue : String?
+    var zipValue :Int?
     
     var savedSearch : SavedSearch = SavedSearch()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.location.text = cityValue!
+        self.zipcode.text = "\(zipValue!)"
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func searchFilter(sender: AnyObject) {
         self.currentTextField.resignFirstResponder()
+        
+        let city = self.savedSearch.valueForKey("city") as? String
+        let zipCode = self.savedSearch.valueForKey("zip") as? NSNumber
+        if (city == nil || (city?.isEmpty)!) && zipCode == nil {
+            self.showAlert("Location Missing", message: "Please enter city or zip code to search")
+            
+        }else {
         self.navigationController?.popViewControllerAnimated(true)
         self.tenantDelegate?.didFinishSearch(self.savedSearch)
+        }
+    }
+    
+    func showAlert(title : NSString, message : NSString) {
+        let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField.tag == 600 {
+            self.currentTextField.resignFirstResponder()
+            self.typePickerView.hidden = false
+            self.currentTextField = textField;
+            return false
+        }else {
+            self.typePickerView.hidden = true
+            self.currentTextField = textField;
+
+        }
+        return true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         self.currentTextField = textField;
-        if textField.tag == 600 {
-            self.typePickerView.hidden = false
-        } else {
-            self.typePickerView.hidden = true
-        }
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -161,7 +194,6 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
                 if let  savedSearches = currentAppUser.valueForKey("savedsearches") {
                     let savedSearchesArray : NSMutableArray = savedSearches.mutableCopy() as! NSMutableArray
                     savedSearchesArray.addObject(savedSearch)
-             
                     currentAppUser.setObject(savedSearchesArray.copy() as! NSArray, forKey: "savedsearches")
                 }
                 else {
