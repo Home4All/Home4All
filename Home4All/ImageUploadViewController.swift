@@ -63,7 +63,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
 //    
     func textViewDidChange(textView: UITextView) {
         if let descriptionText = textView.text {
-            self.placePost.setObject(descriptionText, forKey: "description");
+            self.placePost.setObject(descriptionText, forKey: "postdescription");
             self.placePost.setObject(descriptionText.lowercaseString, forKey: "descriptionsearch");
         }
     }

@@ -303,8 +303,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         if city == nil && zipCode == nil {
             self.showAlert("Location Missing", message: "Please enter city or zip code to search")
+            return
         }
-        
         
         let query = PlacePost.query()! as PFQuery
         if (city == nil || (city?.isEmpty)!) {

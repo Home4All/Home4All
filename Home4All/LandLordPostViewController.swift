@@ -30,7 +30,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var thumbnailCollectionView : UICollectionView!
     @IBOutlet weak var postTableView : UITableView!
     var tableViewData : NSMutableArray = []
-    var propertyTypes = ["Any","Apartment","House","Condo"];
+    var propertyTypes = ["Apartment","House","Condo"];
     var availableNumberOfRooms = ["1","2","3", "4","5","6"];
     var availableNumberOfBaths = ["1","1.5","2", "2.5","3"];
     var currentTextField : UITextField = UITextField()
@@ -242,7 +242,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             }else if (rowLabel == "ContactInfo") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("noofroom") as? String
+                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("contact") as? String
                 }
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
@@ -259,7 +259,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             }
             
             postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
-
         
         return postTableViewCell;
     }
@@ -278,12 +277,16 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
-//        self.postTableView.contentInset = contentInset
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeContactInfo.rawValue)) {
+            textField.keyboardType = UIKeyboardType.NumberPad;
+        }
+    }
     
+ 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         var alreadyPresented = false;
 
@@ -337,7 +340,11 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         if (textField.tag == TextFieldTag.TextFieldTypeArea.rawValue){
             if let textValue = textField.text {
-                self.placePost.setObject(textValue, forKey: "area");
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                    self.placePost.setObject(numberFromString, forKey: "area");
+                } else {
+                    self.placePost.setObject(NSNumber(int : 0), forKey: "area");
+                }
             }
             
         }else if (textField.tag == TextFieldTag.TextFieldTypeRent.rawValue){
@@ -351,7 +358,9 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
             if let textValue = textField.text {
-                self.placePost.setObject(textValue, forKey: "contact");
+                if let numberFromString = numberFormatter.numberFromString(textValue) {
+                    self.placePost.setObject(numberFromString, forKey: "contact");
+                }
             }
 
         }else if (textField.tag == TextFieldTag.TextFieldTypeState.rawValue){
