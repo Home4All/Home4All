@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/ViewController.swift"
-            timestampString = "483579991.217996"
+            timestampString = "484763301.271501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "landLordLoginClicked()"
             landmarkType = "5">
          </BreakpointContent>
