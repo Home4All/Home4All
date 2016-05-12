@@ -94,6 +94,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
         
         self.placePost.setObject(imageFiles.copy() as! NSArray,forKey: "images");
         self.placePost.setObject(userid, forKey: "postedby")
+        self.placePost.setObject(NSNumber(int : 0), forKey: "counter")
         self.placePost.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if succeeded {
                 NSLog("Object Uploaded")
