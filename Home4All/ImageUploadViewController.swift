@@ -84,7 +84,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
         let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as! NSString;
         let emailid = NSUserDefaults.standardUserDefaults().objectForKey("emailid") as! NSString;
         
-        var imageFiles : NSMutableArray = NSMutableArray()
+        let imageFiles : NSMutableArray = NSMutableArray()
         
         for anImage in self.imagesToUpload {
             let pictureData = UIImageJPEGRepresentation(anImage as! UIImage, 0.25)
@@ -113,7 +113,9 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
                         (response: AnyObject?, error: NSError?) -> Void in
                         if (response != nil) {
                             NSLog(response as! String);
-                            self.showAlert("Success", message: "Post saved and Mail sent");
+//                            self.showAlert("Success", message: "Post saved and Mail sent");
+                            self.navigationController?.popToRootViewControllerAnimated(true);
+                            self.tabBarController?.selectedIndex = 0;
                         }
                     }
                 }

@@ -287,7 +287,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     func didFinishSearch(searchOption : SavedSearch) {
         print(searchOption);
         
-        var keyword = searchOption.valueForKey("keyword") as? String
+        let keyword = searchOption.valueForKey("keyword") as? String
         var city = searchOption.valueForKey("city") as? String
         var zipCode = searchOption.valueForKey("zip") as? NSNumber
         var minrent = searchOption.valueForKey("minrent") as? NSNumber

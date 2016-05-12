@@ -79,13 +79,13 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
 ////        }
         
         
-        var keyword = savedSearchParameters.valueForKey("keyword") as? String
-        var city = savedSearchParameters.valueForKey("city") as? String
-        var zipCode = savedSearchParameters.valueForKey("zip") as? NSNumber
+        let keyword = savedSearchParameters.valueForKey("keyword") as? String
+        let city = savedSearchParameters.valueForKey("city") as? String
+        let zipCode = savedSearchParameters.valueForKey("zip") as? NSNumber
         var minrent = savedSearchParameters.valueForKey("minrent") as? NSNumber
         var maxrent = savedSearchParameters.valueForKey("maxrent") as? NSNumber
         let propertType = savedSearchParameters.valueForKey("propertytype") as? String
-        var apartmentType = ["Any","Apartment","House","Condo"]
+        let apartmentType = ["Any","Apartment","House","Condo"]
 
         
         if (minrent == nil) {

@@ -59,6 +59,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidAppear(animated: Bool) {
      // self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
+        self.emptyAllTextFileds()
         
     }
     
@@ -131,10 +132,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             tempTextField = textfield as! UITextField;
             tempTextField.text = ""
     }
-        self.imageToUpload.image = nil;
+//        self.imageToUpload.image = nil;
         self.imagesToUpload = [];
 
-        self.uploadImage.enabled = true;
+//        self.uploadImage.enabled = true;
     }
     
     @IBAction func selectPicturePressed(sender: AnyObject) {
