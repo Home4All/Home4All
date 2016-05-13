@@ -78,7 +78,6 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
 ////            query.whereKey("descriptionsearch", containsString: keywordesarch?.lowercaseString)
 ////        }
         
-        
         let keyword = savedSearchParameters.valueForKey("keyword") as? String
         let city = savedSearchParameters.valueForKey("city") as? String
         let zipCode = savedSearchParameters.valueForKey("zip") as? NSNumber
@@ -219,7 +218,6 @@ class TenantFavoriteSearchViewController: UIViewController, UITableViewDelegate,
             print("View count is \(counterText)")
             cell.viewCount.text="\(counterText) Views"
         }
-        
         return cell
     }
     

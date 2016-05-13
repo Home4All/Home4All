@@ -63,6 +63,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.currentTextField.resignFirstResponder()
+    }
+    
     func arrangeTableView() {
         
         let addressData : NSMutableDictionary = NSMutableDictionary();

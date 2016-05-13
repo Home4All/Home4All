@@ -304,11 +304,11 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         let query = PlacePost.query()! as PFQuery
 
-        if ((keyword == nil || (keyword?.isEmpty)!)  && minrent == nil && maxrent == nil  && (propertType == nil || (propertType?.isEmpty)!)) {
-            query.whereKey("citysearch", equalTo: (self.cityValue?.lowercaseString)!)
-            query.whereKey("zip", equalTo:self.zipCodeValue!)
-            
-        } else {
+//        if ((keyword == nil || (keyword?.isEmpty)!)  && minrent == nil && maxrent == nil  && (propertType == nil || (propertType?.isEmpty)!)) {
+//            query.whereKey("citysearch", equalTo: (self.cityValue?.lowercaseString)!)
+//            query.whereKey("zip", equalTo:self.zipCodeValue!)
+//            
+//        } else {
         
         if (minrent == nil) {
             minrent = NSNumber(int : 0)
@@ -320,14 +320,12 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         if (city == nil || (city?.isEmpty)!) {
             city = self.cityValue
-            query.whereKey("citysearch", equalTo:(self.cityValue?.lowercaseString)!)
         } else {
-            query.whereKey("citysearch", equalTo: (city?.lowercaseString)!)
+            query.whereKey("citysearch", containsString: (city?.lowercaseString)!)
         }
         
         if (zipCode == nil) {
             zipCode = self.zipCodeValue
-            query.whereKey("zip", equalTo: self.zipCodeValue!)
 
         }
         else {
@@ -347,7 +345,7 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         } else {
             query.whereKey("housetype", containsString: propertType)
         }
-        }
+        
         
         query.findObjectsInBackgroundWithBlock {
             (objects, error) -> Void in

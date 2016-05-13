@@ -212,6 +212,8 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         
     }
     
+   
+    
     //MARK - CollectionView Delegate
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
