@@ -185,7 +185,10 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         let query = PlacePost.query()! as PFQuery
         
         // 2
-        query.whereKey("city", containsString: cityValue!)
+        var city = self.cityValue
+        query.whereKey("citysearch", containsString: (city?.lowercaseString)!)
+
+//        query.whereKey("citysearch", containsString: self.cityValue?.lo)
         query.whereKey("zip", equalTo: zipCodeValue!)
         
         //
@@ -197,12 +200,11 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             if error != nil{
                 print(error)
                 
-                
             }else{
                 
             self.searchResults = objects!;
+            print(objects)
             self.tableView.reloadData()
-                
             }
             
         }

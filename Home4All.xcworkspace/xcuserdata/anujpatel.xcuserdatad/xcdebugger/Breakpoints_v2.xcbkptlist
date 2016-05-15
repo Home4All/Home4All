@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
             endingLineNumber = "61"
-            landmarkName = "searchFilter(_:)"
+            landmarkName = "showAlert(_:message:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -368,6 +368,22 @@
             startingLineNumber = "197"
             endingLineNumber = "197"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/T_SearchVC.swift"
+            timestampString = "484798977.894194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "defaultSearch()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
