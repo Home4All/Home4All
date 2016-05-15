@@ -44,7 +44,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         
 //        query.whereKey("objectId", equalTo: placePost.valueForKey("objectId")!)
 //       
-    
+    checkFavorites()
         self.title="Post Details"
          count =  Int(placePost.valueForKey("counter")! as! NSNumber)
     
@@ -247,5 +247,53 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(defaultAction)
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+
+    
+    func checkFavorites(){
+       
+        currentObject = (placePost.valueForKey("objectId") as? String)!
+        
+ 
+
+        let userId = NSUserDefaults.standardUserDefaults().valueForKey("userid");
+        let query = PFQuery(className: "AppUser")
+        query.whereKey("userid", equalTo: userId!);
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            let pfObjects : NSArray = objects!;
+            if pfObjects.count > 0 && error == nil {
+                let currentAppUser = pfObjects[0] as! PFObject;
+
+                if let  favorites = currentAppUser.valueForKey("favorite") {
+                    let favouritesArray : NSMutableArray = favorites.mutableCopy() as! NSMutableArray
+                    for aPlacePost in favouritesArray  {
+                        //print ("fav array is \(aPlacePost)")
+                        
+                      //  print(" object id isssss \(self.currentObject)")
+                        let currentPlacePost = aPlacePost as! PlacePost;
+                    //    print ("curr placepot is is \(currentPlacePost)")
+                        print ("currentPlacePost issss \(currentPlacePost.objectId)")
+                        print ("currentObject  issss \(self.currentObject)")
+                        
+                        if(currentPlacePost.objectId == self.currentObject) {
+                            print ("this is favorite")
+                            
+                           self.favoriteButton.tintColor = UIColor.redColor()
+                            break
+                            
+                        }
+                        else{
+                           self.favoriteButton.tintColor = UIColor.blueColor()
+                    }
+                }
+                
+                
+            }
+            
+            
+        }}
+
+
     }
 }
