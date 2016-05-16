@@ -22,8 +22,11 @@ class ViewController: UIViewController,GIDSignInUIDelegate {
         imageView.animationImages = [UIImage(named: "images1.jpg")!,UIImage(named: "images2.jpg")!,UIImage(named: "images3.jpg")!, UIImage(named: "images4.jpg")!];
         imageView.animationDuration = 8;
         imageView.startAnimating()
+        
             // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
