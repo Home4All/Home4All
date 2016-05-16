@@ -472,6 +472,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         if(segue.identifier == "PhotoUpload"){
             let destinationViewController : ImageUploadViewController = segue.destinationViewController as! ImageUploadViewController
             destinationViewController.placePost = self.placePost;
+            destinationViewController.editInAction = self.editInAction;
         }
     }
 }

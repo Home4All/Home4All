@@ -14,6 +14,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
     @IBOutlet weak var imageCollectionView : UICollectionView!;
     var imagesToUpload : NSMutableArray = NSMutableArray();
     var placePost : PlacePost = PlacePost()
+    var editInAction : Bool = false;
     
     var username: String?
     
@@ -22,8 +23,42 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageUploadViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ImageUploadViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        
+        if self.editInAction {
+            self.retrieveImagesForCurrentPost();
+            if let description = self.placePost.valueForKey("postdescription") as? String{
+                self.descriptiontextView.text = description
+            }
+        }
             }
     
+    override func viewDidAppear(animated: Bool) {
+       
+        
+    }
+    
+    func retrieveImagesForCurrentPost() {
+        var imageFiles : NSArray = NSArray();
+        let imagesArray : NSMutableArray = NSMutableArray()
+        if let images = self.placePost.valueForKey("images") {
+            imageFiles = images as! NSArray
+            var counter : Int = 0;
+            for imageFile in imageFiles {
+                imageFile.getDataInBackgroundWithBlock({ (data, error) in
+                    if error == nil {
+                            counter = counter + 1;
+                            imagesArray.addObject(UIImage(data: data!)!)
+                        if counter == imageFiles.count {
+                            self.imagesToUpload.addObjectsFromArray(imagesArray as [AnyObject]);
+                            self.imageCollectionView.reloadData()
+                            
+                        }
+                    }
+                })
+            }
+           
+        }
+    }
     
     func keyboardWillShow(notification:NSNotification){
         
@@ -75,12 +110,6 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
         return true
     }
     
-//    func textViewDidEndEditing(textView: UITextView) {
-//        if let descriptionText = textView.text {
-//        self.placePost.setObject(descriptionText, forKey: "description");
-//        }
-//    }
-//    
     func textViewDidChange(textView: UITextView) {
         if let descriptionText = textView.text {
             self.placePost.setObject(descriptionText, forKey: "postdescription");
@@ -124,7 +153,13 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
                 let price = self.placePost.valueForKey("rent") as? NSNumber
                 
                 if place != nil && price != nil {
-                    let postInfo  = "  You have posted a home with:"+"price"+"\(price)"+"at"+"\(place)";
+                    
+                    var postInfo : String = String()
+                    if self.editInAction {
+                        postInfo = "  You have Edited the old posting  with:"+"price"+"\(price!)"+"at"+"\(place!)";
+                    } else {
+                        postInfo = " You have made a new Posting with:"+"price"+"\(price!)"+"at"+"\(place!)";
+                    }
                     
                     let valueObjects : NSArray = [emailid,username,postInfo];
                     let keys : NSArray = ["email","name","message"];
