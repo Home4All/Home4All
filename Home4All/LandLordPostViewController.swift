@@ -21,7 +21,7 @@ enum TextFieldTag : NSInteger {
     case TextFieldTypeZip
 };
 
-class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITabBarDelegate{
     
     @IBOutlet weak var uploadImage: UIButton!
     @IBOutlet weak var propertyPickerView: UIPickerView!
@@ -64,7 +64,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
      // self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
         self.emptyAllTextFileds()
-        
     }
   
     func arrangeTableView() {
@@ -211,55 +210,77 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             if(rowLabel == "No Of Rooms"){
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagRoom.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("noofroom") as! NSNumber)"
+                    if let  noOfRoom = placePost.valueForKey("noofroom") as? NSNumber {
+                          postTableViewCell.propertyMetricLabelValue?.text = "\(noOfRoom)"
+                    }
+                  
                 }
             } else if (rowLabel == "No Of Baths") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTagBath.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("noofbath") as! NSNumber)"
+                    if let  noofbath = placePost.valueForKey("noofbath") as? NSNumber {
+                        postTableViewCell.propertyMetricLabelValue?.text = "\(noofbath)"
+                    }
+      
                 }
             }else if(rowLabel == "Property Type") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeHouse.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("housetype") as? String
+                    if let housetype = placePost.valueForKey("housetype") as? String {
+                        postTableViewCell.propertyMetricLabelValue?.text = housetype
+                    }
                 }
             } else if (rowLabel == "Area(Sq Foot)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeArea.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("area") as! NSNumber)"
+                    if let  area = placePost.valueForKey("area") as? NSNumber {
+                        postTableViewCell.propertyMetricLabelValue?.text = "\(area)"
+                    }
+                    
                 }
             }
             else if (rowLabel == "Street") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeStreet.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("street") as? String
-                }
+                    if let street = placePost.valueForKey("street") as? String {
+                        postTableViewCell.propertyMetricLabelValue?.text = street
+                    }                 }
             }else if (rowLabel == "CityName") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeCityName.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("city") as? String
-                }
+                    if let city = placePost.valueForKey("city") as? String {
+                        postTableViewCell.propertyMetricLabelValue?.text = city
+                    }                }
             }else if (rowLabel == "State") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeState.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = placePost.valueForKey("state") as? String
+                    if let state = placePost.valueForKey("state") as? String {
+                        postTableViewCell.propertyMetricLabelValue?.text = state
+                    }
                 }
             }else if (rowLabel == "ContactInfo") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("contact") as! NSNumber)"
+                    if let  contact = placePost.valueForKey("contact") as? NSNumber {
+                        postTableViewCell.propertyMetricLabelValue?.text = "\(contact)"
+                    }
+         
                 }
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("zip") as! NSNumber)"
+                    if let  zip = placePost.valueForKey("zip") as? NSNumber {
+                        postTableViewCell.propertyMetricLabelValue?.text = "\(zip)"
+                    }
                 }
             }
                 
             else if (rowLabel == "Rent($)") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeRent.rawValue
                 if editInAction == true {
-                    postTableViewCell.propertyMetricLabelValue?.text = "\(placePost.valueForKey("rent") as! NSNumber)"
+                    if let  rent = placePost.valueForKey("rent") as? NSNumber {
+                        postTableViewCell.propertyMetricLabelValue?.text = "\(rent)"
+                    }
                 }
             }
             
