@@ -56,17 +56,17 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
+     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
      // self.thumbnailCollectionView.reloadData()
         self.propertyPickerView.reloadAllComponents()
         self.emptyAllTextFileds()
         
     }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.currentTextField.resignFirstResponder()
-    }
-    
+  
     func arrangeTableView() {
         
         let addressData : NSMutableDictionary = NSMutableDictionary();
@@ -286,13 +286,31 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeContactInfo.rawValue)) {
+            
+            // Create a button bar for the number pad
+            let keyboardDoneButtonView = UIToolbar()
+            keyboardDoneButtonView.sizeToFit()
+            
+            // Setup the buttons to be put in the system.
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(LandLordPostViewController.endEditingNow) )
+            let toolbarButtons = [item]
+            
+            //Put the buttons into the ToolBar and display the tool bar
+            keyboardDoneButtonView.setItems(toolbarButtons, animated: false)
+            textField.inputAccessoryView = keyboardDoneButtonView
+
             textField.keyboardType = UIKeyboardType.NumberPad;
         }
+    }
+    
+    func endEditingNow(){
+        self.view.endEditing(true)
     }
     
  
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         var alreadyPresented = false;
+        self.propertyPickerView.hidden = true
 
         for textFieldObj in self.allTextFields {
             if(textFieldObj.tag == textField.tag) {
