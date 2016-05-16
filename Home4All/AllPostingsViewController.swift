@@ -103,6 +103,10 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         let placePost : PlacePost = self.allPostings[indexPath.row] as! PlacePost;
         let cityText:String! = placePost.objectForKey("city") as? String
         let streetText:String! = placePost.objectForKey("street") as? String
+        let statusText:String! = placePost.objectForKey("status") as? String
+        
+        
+        
         let priceText:Int! = placePost.objectForKey("rent") as? Int
         
         let countText:Int! = placePost.objectForKey("counter") as? Int
@@ -120,6 +124,11 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 })
             }
+        }
+        
+        if statusText != nil{
+            print("status is \(statusText)")
+            cell.status.text=statusText
         }
         
         if countText != nil{
@@ -204,6 +213,8 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
             let destinationViewController : TenantPostDetailViewController = segue.destinationViewController as! TenantPostDetailViewController
             destinationViewController.placePost = postingObject;
+    
+            destinationViewController.isComingFromLandlord = true
             destinationViewController.navigationItem.rightBarButtonItem = nil
         }
     }

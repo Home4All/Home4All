@@ -26,6 +26,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var areaLabel: UILabel!
     var currentObject:String = "";
     var count:Int=0;
+    var isComingFromLandlord:Bool=false
     var placePost : PlacePost = PlacePost()
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
@@ -44,7 +45,13 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         
 //        query.whereKey("objectId", equalTo: placePost.valueForKey("objectId")!)
 //       
-    checkFavorites()
+        if isComingFromLandlord {
+        }
+        else{
+            checkFavorites()
+            
+        }
+        
         self.title="Post Details"
          count =  Int(placePost.valueForKey("counter")! as! NSNumber)
     
@@ -106,35 +113,59 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         print(placePost)
         
         self.retrieveImagesForCurrentPost()
-        self.streetLabel.text = placePost.valueForKey("street") as? String
-        self.cityLabel.text = placePost.valueForKey("city") as? String
-        self.stateLabel.text = placePost.valueForKey("state") as? String
         
-         self.contactLabel.text = placePost.valueForKey("contact") as? String
+        if let streetValue = placePost.valueForKey("street") {
+            self.streetLabel.text = streetValue as? String
+        }
         
-         
+        if let cityValue = placePost.valueForKey("city") {
+            self.cityLabel.text = cityValue as? String
+        }
         
+        if let stateValue = placePost.valueForKey("state") {
+            self.stateLabel.text = stateValue as? String
+        }
         
-        self.descriptionText.text = placePost.valueForKey("postdescription") as? String
-        self.apartmanetTypeLabel.text = placePost.valueForKey("housetype") as? String
-     
-        self.areaLabel.text = placePost.valueForKey("area") as? String
-    
-        let noOfRoomsString = String(placePost.valueForKey("noofroom")!)
+        if let ContactValue = placePost.valueForKey("contact"){
+            self.contactLabel.text = String("\(ContactValue)")
+
+        }
+        
+        if let descriptionText = placePost.valueForKey("postdescription") {
+            self.descriptionText.text = descriptionText as? String
+
+        }
+        
+        if let houseType = placePost.valueForKey("housetype") {
+            self.apartmanetTypeLabel.text = houseType as? String
+
+        }
+        
+        if let noOfRoom = placePost.valueForKey("noofroom") {
+        let noOfRoomsString = String(noOfRoom)
         self.noOfBedLabel.text = noOfRoomsString
+        }
         
         
-        let noOfBathsString = String(placePost.valueForKey("noofbath")!)
+        if let noOfBath = placePost.valueForKey("noofbath") {
+        let noOfBathsString = String(noOfBath)
         self.noOfBath.text = noOfBathsString
-
-        let areaLabelString = String("\(placePost.valueForKey("area")!)")
-        self.areaLabel.text = areaLabelString
-
-        let rentLabelString = String("$ \(placePost.valueForKey("rent")!) /mo")
-        self.rentLabel.text = rentLabelString
+        }
         
-        let zipCodeLabelString = String("\(placePost.valueForKey("zip")!)")
+        if let areaValue = placePost.valueForKey("area") {
+        let areaLabelString = String("\(areaValue)")
+        self.areaLabel.text = areaLabelString
+        }
+        
+        if let rentValue = placePost.valueForKey("rent") {
+        let rentLabelString = String("$ \(rentValue) /mo")
+        self.rentLabel.text = rentLabelString
+        }
+        
+        if let zipCodeValue = placePost.valueForKey("zip") {
+        let zipCodeLabelString = String("\(zipCodeValue)")
         self.zipCodeLabel.text = zipCodeLabelString
+        }
         
     }
     
@@ -284,12 +315,10 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
                             
                         }
                         else{
-                           self.favoriteButton.tintColor = UIColor.blueColor()
+                           self.favoriteButton.tintColor! = UIColor.blueColor()
                     }
                 }
-                
-                
-            }
+                            }
             
             
         }}
