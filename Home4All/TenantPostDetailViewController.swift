@@ -26,6 +26,7 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var areaLabel: UILabel!
     var currentObject:String = "";
     var count:Int=0;
+    var isComingFromLandlord:Bool=false
     var placePost : PlacePost = PlacePost()
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
@@ -44,7 +45,13 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
         
 //        query.whereKey("objectId", equalTo: placePost.valueForKey("objectId")!)
 //       
-    checkFavorites()
+        if isComingFromLandlord {
+        }
+        else{
+            checkFavorites()
+            
+        }
+        
         self.title="Post Details"
          count =  Int(placePost.valueForKey("counter")! as! NSNumber)
     
@@ -284,12 +291,10 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
                             
                         }
                         else{
-                           self.favoriteButton.tintColor = UIColor.blueColor()
+                           self.favoriteButton.tintColor! = UIColor.blueColor()
                     }
                 }
-                
-                
-            }
+                            }
             
             
         }}

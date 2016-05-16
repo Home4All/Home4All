@@ -457,10 +457,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVr-pJ-ls5">
-                                                    <rect key="frame" x="2" y="0.5" width="596" height="219.5"/>
+                                                    <rect key="frame" x="2" y="0.0" width="596" height="219.5"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTe-bs-QOi">
-                                                    <rect key="frame" x="7" y="192" width="90" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1000 Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTe-bs-QOi" colorLabel="IBBuiltInLabel-Red">
+                                                    <rect key="frame" x="8" y="192" width="90" height="22"/>
                                                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="fRN-2S-ivk"/>
@@ -500,6 +500,13 @@
                                                     <color key="textColor" red="0.29411764709999999" green="0.68627450980000004" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fl2-Qk-Xv0">
+                                                    <rect key="frame" x="438" y="8" width="87" height="36"/>
+                                                    <color key="tintColor" red="0.49993689233254501" green="1" blue="0.8924825148328317" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="RPb-On-PPq" secondAttribute="bottom" constant="1.5" id="7ci-c8-fCQ"/>
@@ -525,6 +532,7 @@
                                             <outlet property="cityLabel" destination="dRo-BH-PBu" id="yek-Sf-qHm"/>
                                             <outlet property="propertyImageView" destination="QVr-pJ-ls5" id="Ief-eD-8AC"/>
                                             <outlet property="rentLabel" destination="jlP-UP-DBu" id="KWb-Qp-Upi"/>
+                                            <outlet property="status" destination="fl2-Qk-Xv0" id="YYS-sB-KRW"/>
                                             <outlet property="streetLabel" destination="RPb-On-PPq" id="Nc4-gS-tLS"/>
                                             <outlet property="viewCounter" destination="dTe-bs-QOi" id="a5F-8T-bb3"/>
                                         </connections>
@@ -564,7 +572,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91d-t6-JfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4327.5" y="352.5"/>
+            <point key="canvasLocation" x="4327" y="352"/>
         </scene>
         <!--Landlord-->
         <scene sceneID="KBF-dN-lWe">
@@ -1330,6 +1338,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoM-YA-wz3">
+                                <rect key="frame" x="0.0" y="272" width="566" height="512"/>
+                                <state key="normal" title="Button" image="unfilled"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1867,11 +1879,12 @@
     </scenes>
     <resources>
         <image name="Home_Start_Page.png" width="512" height="512"/>
+        <image name="unfilled" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dAO-rQ-p5Y"/>
         <segue reference="g6K-zH-piA"/>
-        <segue reference="aoC-Xz-n4B"/>
-        <segue reference="1we-EJ-REM"/>
+        <segue reference="Ot5-Ck-8fN"/>
+        <segue reference="Peq-Z9-8gG"/>
+        <segue reference="SJ4-my-rE8"/>
     </inferredMetricsTieBreakers>
 </document>

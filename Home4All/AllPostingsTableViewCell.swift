@@ -27,4 +27,5 @@ class AllPostingsTableViewCell: UITableViewCell {
     @IBOutlet weak var rentLabel: UILabel!
     
 
+    @IBOutlet weak var status: UILabel!
 }

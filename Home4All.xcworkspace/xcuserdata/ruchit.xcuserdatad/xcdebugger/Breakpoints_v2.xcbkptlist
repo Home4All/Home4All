@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantPostDetailViewController.swift"
-            timestampString = "484783462.715773"
+            timestampString = "485052966.374689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantPostDetailViewController.swift"
-            timestampString = "484783462.715773"
+            timestampString = "485052966.374689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantPostDetailViewController.swift"
-            timestampString = "485040667.748181"
+            timestampString = "485052966.374689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "checkFavorites()"
             landmarkType = "5">
          </BreakpointContent>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantPostDetailViewController.swift"
-            timestampString = "485041244.82875"
+            timestampString = "485052966.374689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "checkFavorites()"
             landmarkType = "5">
          </BreakpointContent>
@@ -276,13 +276,169 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Home4All/TenantPostDetailViewController.swift"
-            timestampString = "485041244.82875"
+            timestampString = "485052966.374689"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "checkFavorites()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/CustomCell.swift"
+            timestampString = "485050418.779883"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "CustomCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.CustomCell.viewCount.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/CustomCell.swift"
+                  timestampString = "485052967.554516"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.CustomCell.viewCount.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/CustomCell.swift"
+                  timestampString = "485052967.55463"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.CustomCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; Home4All.CustomCell"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/CustomCell.swift"
+                  timestampString = "485052967.554723"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "273">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.CustomCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Home4All.CustomCell&gt;"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/CustomCell.swift"
+                  timestampString = "485052967.55481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Home4All/TenantPostDetailViewController.swift"
+            timestampString = "485052765.269354"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "TenantPostDetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.TenantPostDetailViewController.iscComingFromLandlord.getter : Swift.Bool"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/TenantPostDetailViewController.swift"
+                  timestampString = "485052967.555983"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.TenantPostDetailViewController.iscComingFromLandlord.setter : Swift.Bool"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/TenantPostDetailViewController.swift"
+                  timestampString = "485052967.556129"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.TenantPostDetailViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Home4All.TenantPostDetailViewController"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/TenantPostDetailViewController.swift"
+                  timestampString = "485052967.556235"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "838">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Home4All.TenantPostDetailViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Home4All.TenantPostDetailViewController&gt;"
+                  moduleName = "Home4All"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruchit/Desktop/Home4All/Home4All/TenantPostDetailViewController.swift"
+                  timestampString = "485052967.55641"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "744">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
