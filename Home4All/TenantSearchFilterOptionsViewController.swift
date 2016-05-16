@@ -32,8 +32,19 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if cityValue != nil {
             self.location.text = cityValue!
+        } else {
+            self.location.text = ""
+        }
+        
+        if zipValue != nil{
             self.zipcode.text = "\(zipValue!)"
+        }else {
+            self.zipcode.text = ""
+        }
+        
     
 
         // Do any additional setup after loading the view.
