@@ -314,14 +314,20 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         if (city == nil || (city?.isEmpty)!) {
             city = self.cityValue
-            query.whereKey("citysearch", containsString: (city?.lowercaseString)!)
+            if city != nil {
+                query.whereKey("city", equalTo: city!)
+            }
+            
+            
         } else {
             query.whereKey("citysearch", containsString: (city?.lowercaseString)!)
         }
         
         if (zipCode == nil) {
             zipCode = self.zipCodeValue
+            if zipCode != nil {
             query.whereKey("zip", equalTo: zipCode!)
+            }
 
         }
         else {

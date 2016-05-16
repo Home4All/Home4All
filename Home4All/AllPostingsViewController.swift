@@ -160,11 +160,12 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             
             self.deleteCurrentpost(indexPath)
         }
-        delete.backgroundColor = UIColor.lightGrayColor()
+        delete.backgroundColor = UIColor.redColor()
         
         let edit = UITableViewRowAction(style: .Normal, title: "Edit") { action, index in
             
@@ -173,8 +174,38 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         edit.backgroundColor = UIColor.orangeColor()
         
+        
+        let rented = UITableViewRowAction(style: .Normal, title: "Mark as rented") { action, index in
+            
+            self.rentCurrentpost(indexPath)
+            
+        }
+        rented.backgroundColor = UIColor.grayColor()
+        
+        let available = UITableViewRowAction(style: .Normal, title: "Mark as available") { action, index in
+            
+            self.availableCurrentpost(indexPath)
+            
+        }
+        available.backgroundColor = UIColor.grayColor()
+        
+        
+        
+        
+        let postingObject : PlacePost = self.allPostings[indexPath.row] as! PlacePost;
+        
+        if let propertyStatus = postingObject.valueForKey("status") as? String {
+            if propertyStatus == "Rented" {
+                
+                return [delete, edit, available]
+
+            }
+            else {
+                return [delete, edit,rented]
+            }
+        }
         return [delete, edit]
-    }
+}
     
     func deleteCurrentpost(indexPath : NSIndexPath) {
         let row = indexPath.row as Int;
@@ -186,6 +217,33 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
+    func rentCurrentpost(indexPath : NSIndexPath) {
+        let row = indexPath.row as Int;
+        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+        postingObject.setObject("Rented", forKey: "status")
+        
+        postingObject.saveInBackgroundWithBlock { (success, errors) in
+            if(success){
+                self.showAlert("Successful", message: "Posting status changed.")
+                self.retrieveAllPostings()
+            }
+        }
+    }
+    
+    func availableCurrentpost(indexPath : NSIndexPath) {
+        let row = indexPath.row as Int;
+        let postingObject : PlacePost = self.allPostings[row] as! PlacePost;
+        postingObject.setObject("Available", forKey: "status")
+        
+        postingObject.saveInBackgroundWithBlock { (success, errors) in
+            if(success){
+                self.showAlert("Successful", message: "Posting status changed.")
+                self.retrieveAllPostings()
+            }
+        }
+    }
+
+    
     
     func showAlert(title : NSString, message : NSString) {
         let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
