@@ -41,9 +41,9 @@ class TenantSearchFilterOptionsViewController: UIViewController, UITextFieldDele
         
         if zipValue != nil{
             self.zipcode.text = "\(zipValue!)"
-        }else {
-            zipValue = nil
-            self.zipcode.text = ""
+        }else  {
+            zipValue == 0
+            //self.zipcode.text = zipValue
         }
         
     

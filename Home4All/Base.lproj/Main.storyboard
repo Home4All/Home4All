@@ -1091,7 +1091,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="detailcell" id="BLi-i0-cXF" customClass="PhotoUploadThumbnailCell" customModule="Home4All" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="605" height="286"/>
+                                        <rect key="frame" x="0.0" y="27.5" width="605" height="286"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="605" height="286"/>
@@ -1881,9 +1881,9 @@
         <image name="Home_Start_Page.png" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g6K-zH-piA"/>
         <segue reference="Ot5-Ck-8fN"/>
+        <segue reference="g6K-zH-piA"/>
+        <segue reference="Peq-Z9-8gG"/>
         <segue reference="SJ4-my-rE8"/>
-        <segue reference="YOt-Xo-jjg"/>
     </inferredMetricsTieBreakers>
 </document>

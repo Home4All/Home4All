@@ -313,8 +313,9 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         }
         
         if (city == nil || (city?.isEmpty)!) {
-            city = self.cityValue
-            if city != nil {
+            //city = self.cityValue
+            city = ""
+            if city != "" {
                 query.whereKey("city", equalTo: city!)
             }
             
@@ -324,7 +325,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         }
         
         if (zipCode == nil) {
-            zipCode = self.zipCodeValue
+            //zipCode = self.zipCodeValue
+            zipCode == 0
             if zipCode != nil {
             query.whereKey("zip", equalTo: zipCode!)
             }
@@ -339,8 +341,8 @@ class T_SearchVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
             query.whereKey("descriptionsearch", containsString: keyword?.lowercaseString)
         }
         
-        query.whereKey("rent", lessThan: maxrent!)
-        query.whereKey("rent", greaterThan: minrent!)
+        query.whereKey("rent", lessThanOrEqualTo: maxrent!)
+        query.whereKey("rent", greaterThanOrEqualTo: minrent!)
         
         if (propertType == nil || (propertType?.isEmpty)! || propertType == "Any") {
             query.whereKey("housetype", containedIn: apartmentType )
