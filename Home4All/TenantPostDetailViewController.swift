@@ -104,12 +104,6 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
 //        }
         
         
-        
-        
-        
-        
-        
-        
         print(placePost)
         
         self.retrieveImagesForCurrentPost()

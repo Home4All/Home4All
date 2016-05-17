@@ -141,6 +141,7 @@ class ImageUploadViewController: UIViewController, UICollectionViewDelegate, UIC
             imageFiles.addObject(file!)
         }
         
+        
         self.placePost.setObject(imageFiles.copy() as! NSArray,forKey: "images");
         self.placePost.setObject(userid, forKey: "postedby")
         self.placePost.setObject("Available", forKey: "status")

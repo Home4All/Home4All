@@ -104,9 +104,7 @@ class AllPostingsViewController: UIViewController, UITableViewDelegate, UITableV
         let cityText:String! = placePost.objectForKey("city") as? String
         let streetText:String! = placePost.objectForKey("street") as? String
         let statusText:String! = placePost.objectForKey("status") as? String
-        
-        
-        
+                
         let priceText:Int! = placePost.objectForKey("rent") as? Int
         
         let countText:Int! = placePost.objectForKey("counter") as? Int

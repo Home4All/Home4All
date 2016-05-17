@@ -19,6 +19,7 @@ enum TextFieldTag : NSInteger {
     case TextFieldTypeRent
     case TextFieldTypeContactInfo
     case TextFieldTypeZip
+    case TextFieldTypeEmail
 };
 
 class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITabBarDelegate{
@@ -103,6 +104,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let contactInfoDic : NSMutableDictionary = NSMutableDictionary();
         let contactInfo : NSMutableArray = NSMutableArray();
         contactInfo.addObject("Contact Info");
+        contactInfo.addObject("Email");
         contactInfoDic.setValue(contactInfo, forKey: "Contact Info")
         tableViewData.addObject(contactInfoDic);
         
@@ -258,7 +260,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                         postTableViewCell.propertyMetricLabelValue?.text = state
                     }
                 }
-            }else if (rowLabel == "ContactInfo") {
+            }else if (rowLabel == "Contact Info") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeContactInfo.rawValue
                 if editInAction == true {
                     if let  contact = placePost.valueForKey("contact") as? NSNumber {
@@ -266,6 +268,9 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                     }
          
                 }
+                postTableViewCell.propertyMetricLabelValue?.placeholder = "000-000-0000";
+                return postTableViewCell;
+                
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
                 if editInAction == true {
@@ -283,7 +288,17 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                     }
                 }
             }
-            
+            else if (rowLabel == "Email") {
+                postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeEmail.rawValue
+                postTableViewCell.propertyMetricLabelValue?.placeholder = "abc.abc@abc.com";
+                if editInAction == true {
+                    if let  email = placePost.valueForKey("email") as? String {
+                        postTableViewCell.propertyMetricLabelValue?.text = email
+                    }
+                }
+                return postTableViewCell;
+        }
+        
             postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
         
         return postTableViewCell;
@@ -306,7 +321,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeContactInfo.rawValue)) {
+        if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue)) {
             
             // Create a button bar for the number pad
             let keyboardDoneButtonView = UIToolbar()
@@ -402,7 +417,13 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         }else if (textField.tag == TextFieldTag.TextFieldTypeContactInfo.rawValue){
             if let textValue = textField.text {
                 if let numberFromString = numberFormatter.numberFromString(textValue) {
-                    self.placePost.setObject(numberFromString, forKey: "contact");
+                    if !validateContact(textValue) {
+                        self.placePost.setObject(numberFromString, forKey: "contact");
+
+                    } else {
+                        self.placePost.setObject(numberFromString, forKey: "contact");
+                    }
+                    
                 }
             }
 
@@ -430,7 +451,30 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                     self.placePost.setObject(numberFromString, forKey: "zip");
                 }
             }
+        }else if (textField.tag == TextFieldTag.TextFieldTypeEmail.rawValue){
+            if let textValue = textField.text {
+                if self.isValidEmail(textValue) {
+                    self.placePost.setObject(textValue, forKey: "email");
+                } else {
+                    self.placePost.setObject(textValue, forKey: "email");
+                }
+            }
         }
+    }
+    
+    func validateContact(value: String) -> Bool {
+        let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluateWithObject(value)
+        return result
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
     }
     
     //MARK - PickerView Methods
@@ -470,32 +514,66 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "PhotoUpload"){
-            let destinationViewController : ImageUploadViewController = segue.destinationViewController as! ImageUploadViewController
-            destinationViewController.placePost = self.placePost;
-            destinationViewController.editInAction = self.editInAction;
+            if isRequiredValuesPresent() {
+                let destinationViewController : ImageUploadViewController = segue.destinationViewController as! ImageUploadViewController
+                destinationViewController.placePost = self.placePost;
+                destinationViewController.editInAction = self.editInAction;
+            }
         }
+    }
+    
+    func isRequiredValuesPresent() -> Bool {
+        
+         let streetValue = placePost.valueForKey("street")
+         let cityValue = placePost.valueForKey("city")
+         let stateValue = placePost.valueForKey("state")
+        let houseType = placePost.valueForKey("housetype")
+        let noOfRoom = placePost.valueForKey("noofroom")
+        
+        let noOfBath = placePost.valueForKey("noofbath")
+        let areaValue = placePost.valueForKey("area")
+        let rentValue = placePost.valueForKey("rent")
+        let zipCodeValue = placePost.valueForKey("zip")
+        if let contactValue = placePost.valueForKey("contact") {
+            if (!self.validateContact("\(contactValue)")){
+                self.showAlert("Wrong Format", message: "Please provide USA format number.")
+            }
+        }
+        
+        if let email = placePost.valueForKey("email") {
+            if (!self.isValidEmail(email as! String)){
+                self.showAlert("Wrong Format", message: "Please Provide proper mail Id")
+            }
+        }
+        
+        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil) {
+            
+            self.showAlert("Insufficient Information", message: "Please provide all the values before posting");
+        }
+        
+        return true;
     }
 }
 
 
 extension LandLordPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        if self.imagesToUpload.count > 0 {
-            self.imagesToUpload = []
-        }
-        
-        self.imageToUpload.image = image;
-        self.imagesToUpload.addObject(image);
-//        self.thumbnailCollectionView.reloadData()
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        if(self.imagesToUpload.count == 1 ) {
-            let title : NSString = "Limit Reached";
-            let message : NSString = "You can not add more photos";
-            showAlert(title, message: message)
-            self.uploadImage.enabled = false
-        }
-}
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+//        if self.imagesToUpload.count > 0 {
+//            self.imagesToUpload = []
+//        }
+//        
+//        self.imageToUpload.image = image;
+//        self.imagesToUpload.addObject(image);
+////        self.thumbnailCollectionView.reloadData()
+//        picker.dismissViewControllerAnimated(true, completion: nil)
+//        if(self.imagesToUpload.count == 1 ) {
+//            let title : NSString = "Limit Reached";
+//            let message : NSString = "You can not add more photos";
+//            showAlert(title, message: message)
+//            self.uploadImage.enabled = false
+//        }
+//}
     
     func showAlert(title : NSString, message : NSString) {
         let alertController = UIAlertController(title: title as String, message:message as String, preferredStyle: .Alert)
