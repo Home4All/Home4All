@@ -546,7 +546,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             }
         }
         
-        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil) {
+        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil || placePost.valueForKey("contact") == nil || placePost.valueForKey("email") == nil) {
             
             self.showAlert("Insufficient Information", message: "Please provide all the values before posting");
         }
