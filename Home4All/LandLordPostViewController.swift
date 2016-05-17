@@ -268,8 +268,6 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
                     }
          
                 }
-                postTableViewCell.propertyMetricLabelValue?.placeholder = "000-000-0000";
-                return postTableViewCell;
                 
             }else if (rowLabel == "ZipCode") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeZip.rawValue
@@ -290,13 +288,11 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
             }
             else if (rowLabel == "Email") {
                 postTableViewCell.propertyMetricLabelValue?.tag = TextFieldTag.TextFieldTypeEmail.rawValue
-                postTableViewCell.propertyMetricLabelValue?.placeholder = "abc.abc@abc.com";
                 if editInAction == true {
                     if let  email = placePost.valueForKey("email") as? String {
                         postTableViewCell.propertyMetricLabelValue?.text = email
                     }
                 }
-                return postTableViewCell;
         }
         
             postTableViewCell.propertyMetricLabelValue?.placeholder = "Enter"+(setionDataArray[indexPath.row] as! String);
@@ -534,19 +530,11 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let areaValue = placePost.valueForKey("area")
         let rentValue = placePost.valueForKey("rent")
         let zipCodeValue = placePost.valueForKey("zip")
-        if let contactValue = placePost.valueForKey("contact") {
-            if (!self.validateContact("\(contactValue)")){
-                self.showAlert("Wrong Format", message: "Please provide USA format number.")
-            }
-        }
+        let contactValue = placePost.valueForKey("contact")
+        let email = placePost.valueForKey("email")
         
-        if let email = placePost.valueForKey("email") {
-            if (!self.isValidEmail(email as! String)){
-                self.showAlert("Wrong Format", message: "Please Provide proper mail Id")
-            }
-        }
         
-        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil || placePost.valueForKey("contact") == nil || placePost.valueForKey("email") == nil) {
+        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil || contactValue == nil || email == nil ) {
             
             self.showAlert("Insufficient Information", message: "Please provide all the values before posting");
         }
