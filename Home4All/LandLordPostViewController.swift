@@ -317,7 +317,7 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue)) {
+        if(textField.tag == (TextFieldTag.TextFieldTypeZip.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeArea.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeRent.rawValue) || textField.tag == (TextFieldTag.TextFieldTypeContactInfo.rawValue)) {
             
             // Create a button bar for the number pad
             let keyboardDoneButtonView = UIToolbar()
@@ -533,10 +533,10 @@ class LandLordPostViewController: UIViewController, UICollectionViewDelegate, UI
         let contactValue = placePost.valueForKey("contact")
         let email = placePost.valueForKey("email")
         
-        
-        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil || contactValue == nil || email == nil ) {
+        if (streetValue == nil || cityValue == nil || stateValue == nil ||  houseType == nil || noOfRoom == nil || noOfBath == nil || areaValue == nil || rentValue == nil || zipCodeValue == nil || contactValue == nil || email == nil) {
             
             self.showAlert("Insufficient Information", message: "Please provide all the values before posting");
+            return false;
         }
         
         return true;
