@@ -17,7 +17,6 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var apartmanetTypeLabel: UILabel!
     
     @IBOutlet weak var noOfBedLabel: UILabel!
-    
     @IBOutlet weak var noOfBath: UILabel!
     
     @IBOutlet weak var zipCodeLabel: UILabel!
@@ -306,15 +305,13 @@ class TenantPostDetailViewController: UIViewController, UICollectionViewDelegate
                             
                            self.favoriteButton.tintColor = UIColor.redColor()
                             break
-                            
                         }
                         else{
-                           self.favoriteButton.tintColor! = UIColor.blueColor()
+                           self.favoriteButton.tintColor = UIColor.blueColor()
                     }
                 }
-                            }
-            
-            
+            }
+        
         }}
 
 
